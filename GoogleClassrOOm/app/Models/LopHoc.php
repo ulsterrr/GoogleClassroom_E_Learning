@@ -10,12 +10,12 @@ class LopHoc extends Model
     use HasFactory;
     protected $table = 'lop_hocs';
     public function lopHocThongBao(){
-        return $this->hasMany('App\Models\LopHocThongBao');
+        return $this->hasMany('App\Models\LopHocThongBao','lophocid','id');
     }
     public function coTaiKhoan(){
-        return $this->belongsToMany('App\Models\TaiKhoan');
-    }
-    public function lopHocYeuCau(){
-        return $this->hasMany('App\Models\YeuCauLopHoc');
+        return $this->belongsToMany('App\Models\TaiKhoan',
+                                    'yeu_cau_lop_hocs',
+                                'lophocid','taikhoanid',
+                                'id','id');
     }
 }

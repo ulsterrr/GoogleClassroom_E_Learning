@@ -10,6 +10,6 @@ class LoaiTaiKhoan extends Model
     use HasFactory;
     protected $table = 'loai_tai_khoans';
     public function taiKhoan(){
-        return $this->hasMany('App\Models\TaiKhoan');
+        return $this->hasMany('App\Models\TaiKhoan','maloaitk','id');
     }
 }

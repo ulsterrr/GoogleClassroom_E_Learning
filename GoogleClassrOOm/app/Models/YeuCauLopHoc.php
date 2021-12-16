@@ -9,8 +9,4 @@ class YeuCauLopHoc extends Model
 {
     use HasFactory;
     protected $table = 'yeu_cau_lop_hocs';
-
-    public function thuocTaiKhoan(){
-        return $this->hasOne('App\Models\TaiKhoan','taikhoanid','id');
-    }
 }

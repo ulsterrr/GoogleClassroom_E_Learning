@@ -13,13 +13,16 @@ class TaiKhoan extends Model
     public function loaiTaiKhoan(){
         return $this->hasOne('App\Models\LoaiTaiKhoan','maloaitk','id');
     }
-    public function lopHoc(){
-        return $this->belongsToMany('App\Models\LopHoc');
+    public function coLopHoc(){
+        return $this->belongsToMany('App\Models\LopHoc',
+                                    'yeu_cau_lop_hocs',
+                                'taikhoanid','lophocid',
+                                'id','id');
     }
     public function taiKhoanYeuCau(){
-        return $this->hasMany('App\Models\YeuCauLopHoc');
+        return $this->hasMany('App\Models\YeuCauLopHoc','taikhoanid','id');
     }
     public function taiKhoanBinhLuan(){
-        return $this->hasMany('App\Models\LopHocBinhLuan');
+        return $this->hasMany('App\Models\LopHocBinhLuan','taikhoanid','id');
     }
 }

@@ -17,6 +17,7 @@ class CreateLopHocBinhLuansTable extends Migration
             $table->id();
             $table->string('noidung');
             $table->integer('taikhoanid');
+            $table->integer('thongbaoid');
             $table->dateTime('thoigian');
             $table->timestamps();
             $table->softDeletes();

@@ -9,4 +9,6 @@ class LopHocBinhLuan extends Model
 {
     use HasFactory;
     protected $table = 'lop_hoc_binh_luans';
+
+    
 }

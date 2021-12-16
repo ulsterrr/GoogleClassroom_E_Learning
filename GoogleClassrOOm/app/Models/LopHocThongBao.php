@@ -15,4 +15,10 @@ class LopHocThongBao extends Model
     public function lopHocBT(){
         return $this->hasMany('App\Models\LopHocBaiTap');
     }
+    public function thuocveTaiKhoan(){
+        return $this->belongsToMany('App\Models\TaiKhoan',
+                                    'lop_hoc_binh_luans',
+                                'thongbaoid','taikhoanid',
+                                'id','id');
+    }
 }

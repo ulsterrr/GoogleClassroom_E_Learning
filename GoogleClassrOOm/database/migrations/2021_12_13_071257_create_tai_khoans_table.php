@@ -18,7 +18,7 @@ class CreateTaiKhoansTable extends Migration
             $table->string('taikhoan');
             $table->string('matkhau');
             $table->string('hoten');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('sdt');
             $table->string('hinhdaidien');
             $table->integer('maloaitk');

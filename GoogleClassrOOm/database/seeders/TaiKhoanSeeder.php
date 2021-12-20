@@ -17,16 +17,16 @@ class TaiKhoanSeeder extends Seeder
     {
         $dsLoaiTK = LoaiTaiKhoan::all();
         foreach($dsLoaiTK as $loaiTK){
-        for($i=1;$i<=10;$i++)
+        for($i=11;$i<=20;$i++)
         {
             $taikhoan = new TaiKhoan;
             $taikhoan->taikhoan = "taikhoan{$i}";
             $taikhoan->matkhau = "taikhoanmoi";
             $taikhoan->hoten = "Tài Khoản {$i}";
-            $taikhoan->email = "email{$i}@caothang.edu.vn";
+            $taikhoan->email = "email{$i}@gmail.com";
             $taikhoan->sdt = "12345678{$i}";
             $taikhoan->hinhdaidien = "taikhoan{$i}.jpg";
-            $taikhoan->maloaitk = $loaiTK->id;
+            $taikhoan->maloaitk = 2;
             $taikhoan->save();
         }
     }

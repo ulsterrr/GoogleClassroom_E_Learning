@@ -11,7 +11,7 @@ class TaiKhoan extends Model
     protected $table = 'tai_khoans';
 
     public function loaiTaiKhoan(){
-        return $this->hasOne('App\Models\LoaiTaiKhoan','maloaitk','id');
+        return $this->belongsTo('App\Models\LoaiTaiKhoan','maloaitk','id');
     }
     public function coLopHoc(){
         return $this->belongsToMany('App\Models\LopHoc',

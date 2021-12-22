@@ -24,15 +24,16 @@
   </head>
 
   <body>
-    <form action="{{ route('dang-nhap') }}" method="POST">
-    @csrf
+    <!-- <form action="{{ route('dang-nhap') }}" method="POST"> -->
+    
     <div class="mt-5 col-10 col-md-7 col-lg-3 text-center mx-auto">
       <div class="board">
         <img src="{{ asset('svgs/board.svg') }}" alt="Board" />
       </div>
       <h1 class="fs-2 mb-3">Forgot Password</h1>
-
-      <form>
+      
+      <form action="{{route('quenMatKhau')}}" method="post">
+      @csrf
         <div class="mb-3">
           <input
             class="form-control py-3"
@@ -40,20 +41,20 @@
             name="tai_khoan"
           />
         </div>
-        <div class="mb-3">
+        <!-- <div class="mb-3">
           <input
             type="password"
             class="form-control py-3"
             placeholder="Email"
             name="email"
           />
-        </div>
+        </div> -->
         <div class="mb-3">
             <input
-              type="password"
+              type="text"
               class="form-control py-3"
               placeholder="Phone Number"
-              name="sdt"
+              name="Phone"
             />
           </div>
           <div class="mb-3">
@@ -61,17 +62,17 @@
               type="password"
               class="form-control py-3"
               placeholder="New Password"
-              name="new-pass"
+              name="newpass"
             />
           </div>
-        <div class="mb-3">
+        <!-- <div class="mb-3">
           <input
             type="password"
             class="form-control py-3"
             placeholder="Confirm Password"
             name="check-newpass"
           />
-        </div>
+        </div> -->
         
         <button type="submit" class="w-100 py-3 btn btn-primary mb-3">      
           Reset my Password

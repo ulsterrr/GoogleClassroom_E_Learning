@@ -14,6 +14,7 @@ class DangNhapController extends Controller
     public function xulyDangNhap(Request $req){
 
         $taikhoan = TaiKhoan::where('taikhoan', $req->ten_tai_khoan)->first();
+        
         if(empty($taikhoan)) {
             echo "Not user";
         }
@@ -21,10 +22,10 @@ class DangNhapController extends Controller
             echo "Sai mat khau";
         }
         else if ($taikhoan->maloaitk == 1) {
-            return redirect()->route('giang-vien')->with(compact('taiKhoan'));
+            return redirect()->route('giang-vien')->with(compact('taikhoan'));
         }
         else {
-            return redirect()->route('hoc-sinh')->with(compact('taiKhoan'));
+            return redirect()->route('hoc-sinh')->with(compact('taikhoan'));
         }
 
     }

@@ -69,7 +69,7 @@
           Sign In
         </button>
         <div class="my-2">OR</div>
-        <a href="{{ route('quen-mat-khau') }}" class="d-block mb-3 text-primary">Forgot password?</a>
+        <a href="{{ route('quenMK') }}" class="d-block mb-3 text-primary">Forgot password?</a>
         <button class="w-100 py-3 btn btn-dark">Sign Up</button>
       </form>
     </div>

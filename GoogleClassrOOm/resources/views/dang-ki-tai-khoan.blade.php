@@ -7,7 +7,7 @@
     <title>Register</title>
 
     <!-- Tab icon -->
-    <link rel="icon" href="./svgs/board.svg" />
+    <link rel="icon" href="{{ asset('svgs/board.svg') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,9 +18,9 @@
     />
 
     <!-- Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/common.css" />
-    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/reset.css') }}" />
   </head>
 
   <body>

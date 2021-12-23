@@ -15,8 +15,8 @@ class CreateTaiKhoansTable extends Migration
     {
         Schema::create('tai_khoans', function (Blueprint $table) {
             $table->id();
-            $table->string('taikhoan');
-            $table->string('matkhau');
+            $table->string('username');
+            $table->string('password');
             $table->string('hoten');
             $table->string('email');
             $table->string('sdt');

@@ -16,5 +16,9 @@ class GiangVienController extends Controller
     public function thongTinTK(){
         
     }
+    public function dsLopHoc(){
+        $dsLop = LopHoc::all();
+        return view('giang-vien', compact('dsLop'));
+    }
 
 }

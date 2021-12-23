@@ -7,7 +7,7 @@
     <title>Student</title>
 
     <!-- Tab icon -->
-    <link rel="icon" href="./svgs/board.svg" />
+    <link rel="icon" href="{{ asset('svgs/board.svg') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

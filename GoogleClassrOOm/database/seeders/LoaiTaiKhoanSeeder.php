@@ -14,14 +14,16 @@ class LoaiTaiKhoanSeeder extends Seeder
      */
     public function run()
     {    
-            $taikhoan = new LoaiTaiKhoan();
-            $taikhoan->tenloaitk = "Học sinh";
-            $taikhoan->mota = "Tài khoản với nghiệp vụ là học sinh tham gia lớp học";
-            $taikhoan->save();
+        $taikhoan1 = new LoaiTaiKhoan();
+        $taikhoan1->tenloaitk = "Giáo viên";
+        $taikhoan1->mota = "Tài khoản với nghiệp vụ là giáo viên";
+        $taikhoan1->save();
 
-            $taikhoan1 = new LoaiTaiKhoan();
-            $taikhoan1->tenloaitk = "Giáo viên";
-            $taikhoan1->mota = "Tài khoản với nghiệp vụ là giáo viên";
-            $taikhoan1->save();
+        $taikhoan = new LoaiTaiKhoan();
+        $taikhoan->tenloaitk = "Học sinh";
+        $taikhoan->mota = "Tài khoản với nghiệp vụ là học sinh tham gia lớp học";
+        $taikhoan->save();
+
+            
     }
 }

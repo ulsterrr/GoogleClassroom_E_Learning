@@ -18,10 +18,11 @@
     />
 
     <!-- Styles -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/common.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/reset.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/components.css') }}" />
 
     <!-- Scripts -->
     <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
@@ -43,16 +44,51 @@
       "
     >
       <a href="#" class="logo me-3">
-        <img src="svgs/logo.svg" alt="Logo" />
+        <img src="{{ asset('svgs/logo.svg') }}" alt="Logo" />
       </a>
+
+      <div class="popup ms-auto">
+        <div class="avatar me-3 cursor-pointer">
+          <img
+            src="https://avatars.dicebear.com/api/adventurer-neutral/123456.svg"
+            alt="Avatar"
+          />
+        </div>
+
+        <div
+          class="
+            popup__content
+            d-flex
+            flex-column
+            align-items-center
+            shadow
+            rounded-3
+            bg-white
+          "
+        >
+          <img
+            class="popup__avatar cursor-pointer"
+            src="https://avatars.dicebear.com/api/adventurer-neutral/123456.svg"
+            alt="Avatar"
+          />
+          <p class="popup__email">youremail@gmail.com</p>
+          <a class="popup__link" href="#" target="_blank"
+            >Manage your account</a
+          >
+          <div class="popup__logout mt-auto cursor-pointer">Log Out</div>
+
+          <div class="popup__pseudo"></div>
+        </div>
+      </div>
 
       <div class="d-flex gap-3">
         <span class="flex-center text-nowrap d-none d-md-flex"
-          >Welcome student</span
+          >Xin chào {{ auth()->user()->hoten }}</span
         >
         <input class="form-control py-2" placeholder="Search for class" />
         <button class="btn btn-primary py-2">Search</button>
-        <button class="btn btn-dark py-2">Log Out</button>
+        <a class="btn btn-dark py-2" href="{{ route('dang-xuat') }}">Log Out
+        </a>
       </div>
     </header>
 
@@ -157,6 +193,8 @@
     <section>
       <div class="container">
         <div class="row">
+          @foreach ($dsLop as $lopHoc)
+
           <div class="col-md-4 col-lg-3 mb-5">
             <div class="d-flex flex-column h-100">
               <img
@@ -168,7 +206,7 @@
                 <div
                   class="d-flex align-items-center justify-content-between mb-2"
                 >
-                  <h5 class="class-card__classname">Fullstack</h5>
+                  <h5 class="class-card__classname">{{ $lopHoc->tenlop }}</h5>
                   <div class="btn btn-dark fs-6">&#x2716;</div>
                 </div>
 
@@ -180,150 +218,17 @@
                 </div>
 
                 <p class="class-card__subjects truncate">
-                  HTML, CSS, JavaScriptHTML, CSS, JavaScriptHTML, CSS,
-                  JavaScriptHTML, CSS, JavaScriptHTML, CSS, JavaScriptHTML, CSS,
-                  JavaScriptHTML, CSS, JavaScript
+                  {{ $lopHoc->chude }}
                 </p>
 
                 <div class="class-card_code">
-                  <span>Code: </span><span>123456</span>
+                  <span>Code: </span><span>{{ $lopHoc->code }}</span>
                 </div>
               </div>
               <button class="btn btn-primary mt-auto py-2">Go to Class</button>
             </div>
-          </div>
-          <div class="col-md-4 col-lg-3 mb-5">
-            <div class="d-flex flex-column h-100">
-              <img
-                src="https://cdn.dribbble.com/users/1338391/screenshots/15344962/media/6564bb2cf0975c926b603b7133486307.jpg?compress=1&resize=1600x1200"
-                class="img-cover h-50"
-                alt="Card background"
-              />
-              <div class="class-card__body my-2">
-                <div
-                  class="d-flex align-items-center justify-content-between mb-2"
-                >
-                  <h5 class="class-card__classname">Fullstack</h5>
-                  <div class="btn btn-dark fs-6">&#x2716;</div>
-                </div>
-
-                <div
-                  class="d-flex align-items-center justify-content-between mb-2"
-                >
-                  <span class="class-card__role fs-5">Teacher</span>
-                  <div class="btn btn-dark">Edit</div>
-                </div>
-
-                <p class="class-card__subjects truncate">
-                  HTML, CSS, JavaScript
-                </p>
-
-                <div class="class-card_code">
-                  <span>Code: </span><span>123456</span>
-                </div>
-              </div>
-              <button class="btn btn-primary mt-auto py-2">Go to Class</button>
-            </div>
-          </div>
-          <div class="col-md-4 col-lg-3 mb-5">
-            <div class="d-flex flex-column h-100">
-              <img
-                src="https://cdn.dribbble.com/users/1338391/screenshots/15344962/media/6564bb2cf0975c926b603b7133486307.jpg?compress=1&resize=1600x1200"
-                class="img-cover h-50"
-                alt="Card background"
-              />
-              <div class="class-card__body my-2">
-                <div
-                  class="d-flex align-items-center justify-content-between mb-2"
-                >
-                  <h5 class="class-card__classname">Fullstack</h5>
-                  <div class="btn btn-dark fs-6">&#x2716;</div>
-                </div>
-
-                <div
-                  class="d-flex align-items-center justify-content-between mb-2"
-                >
-                  <span class="class-card__role fs-5">Teacher</span>
-                  <div class="btn btn-dark">Edit</div>
-                </div>
-
-                <p class="class-card__subjects truncate">
-                  HTML, CSS, JavaScript
-                </p>
-
-                <div class="class-card_code">
-                  <span>Code: </span><span>123456</span>
-                </div>
-              </div>
-              <button class="btn btn-primary mt-auto py-2">Go to Class</button>
-            </div>
-          </div>
-          <div class="col-md-4 col-lg-3 mb-5">
-            <div class="d-flex flex-column h-100">
-              <img
-                src="https://cdn.dribbble.com/users/1338391/screenshots/15344962/media/6564bb2cf0975c926b603b7133486307.jpg?compress=1&resize=1600x1200"
-                class="img-cover h-50"
-                alt="Card background"
-              />
-              <div class="class-card__body my-2">
-                <div
-                  class="d-flex align-items-center justify-content-between mb-2"
-                >
-                  <h5 class="class-card__classname">Fullstack</h5>
-                  <div class="btn btn-dark fs-6">&#x2716;</div>
-                </div>
-
-                <div
-                  class="d-flex align-items-center justify-content-between mb-2"
-                >
-                  <span class="class-card__role fs-5">Teacher</span>
-                  <div class="btn btn-dark">Edit</div>
-                </div>
-
-                <p class="class-card__subjects truncate">
-                  HTML, CSS, JavaScript
-                </p>
-
-                <div class="class-card_code">
-                  <span>Code: </span><span>123456</span>
-                </div>
-              </div>
-              <button class="btn btn-primary mt-auto py-2">Go to Class</button>
-            </div>
-          </div>
-          <div class="col-md-4 col-lg-3 mb-5">
-            <div class="d-flex flex-column h-100">
-              <img
-                src="https://cdn.dribbble.com/users/1338391/screenshots/15344962/media/6564bb2cf0975c926b603b7133486307.jpg?compress=1&resize=1600x1200"
-                class="img-cover h-50"
-                alt="Card background"
-              />
-              <div class="class-card__body my-2">
-                <div
-                  class="d-flex align-items-center justify-content-between mb-2"
-                >
-                  <h5 class="class-card__classname">Fullstack</h5>
-                  <div class="btn btn-dark fs-6">&#x2716;</div>
-                </div>
-
-                <div
-                  class="d-flex align-items-center justify-content-between mb-2"
-                >
-                  <span class="class-card__role fs-5">Teacher</span>
-                  <div class="btn btn-dark">Edit</div>
-                </div>
-
-                <p class="class-card__subjects truncate">
-                  HTML, CSS, JavaScript
-                </p>
-
-                <div class="class-card_code">
-                  <span>Code: </span><span>123456</span>
-                </div>
-              </div>
-              <button class="btn btn-primary mt-auto py-2">Go to Class</button>
-            </div>
-          </div>
+          </div>              
+          @endforeach
         </div>
       </div>
     </section>

@@ -42,7 +42,7 @@
           <input
             type=""
             class="form-control py-3"
-            name="ten_tai_khoan"
+            name="username"
             placeholder="Username"
           />
         </div>
@@ -50,7 +50,7 @@
           <input
             type="password"
             class="form-control py-3"
-            name="mat_khau"
+            name="password"
             placeholder="Password"
           />
         </div>

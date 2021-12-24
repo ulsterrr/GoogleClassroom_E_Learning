@@ -13,7 +13,7 @@ class CreateLoaiTaiKhoansTable extends Migration
      */
     public function up()
     {
-        Schema::create('loai_tai_khoans', function (Blueprint $table) {
+        Schema::create('loaitaikhoan', function (Blueprint $table) {
             $table->id();
             $table->string('tenloaitk');
             $table->string('mota');

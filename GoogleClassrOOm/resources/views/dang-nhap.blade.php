@@ -29,15 +29,14 @@
   </head>
 
   <body>
-    <form action="{{ route('xuly-dangnhap') }}" method="POST">
-    @csrf
+   
     <div class="mt-5 col-10 col-md-7 col-lg-3 text-center mx-auto">
       <div class="board">
         <img src="svgs/board.svg" alt="Board" />
       </div>
       <h1 class="fs-2 mb-3">Sign In</h1>
-
-      <form>
+      <form action="{{ route('xuly-dangnhap') }}" method="POST">
+    @csrf
         <div class="mb-3">
           <input
             type=""
@@ -70,9 +69,8 @@
         </button>
         <div class="my-2">OR</div>
         <a href="{{ route('quenMK') }}" class="d-block mb-3 text-primary">Forgot password?</a>
-        <button class="w-100 py-3 btn btn-dark">Sign Up</button>
-      </form>
+        </form>
+        <button  class="w-100 py-3 btn btn-dark"><a style="color:white;text-decoration:none " href="{{ route('DangKi') }}">Sign Up</a></button>
     </div>
-    </form>
   </body>
 </html>

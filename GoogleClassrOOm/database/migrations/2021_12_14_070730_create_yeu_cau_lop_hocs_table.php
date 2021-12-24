@@ -13,7 +13,7 @@ class CreateYeuCauLopHocsTable extends Migration
      */
     public function up()
     {
-        Schema::create('yeu_cau_lop_hocs', function (Blueprint $table) {
+        Schema::create('yeucaulophoc', function (Blueprint $table) {
             $table->id();
             $table->integer('taikhoanid');
             $table->integer('lophocid');

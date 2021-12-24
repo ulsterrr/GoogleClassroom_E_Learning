@@ -13,7 +13,7 @@ class CreateLopHocBinhLuansTable extends Migration
      */
     public function up()
     {
-        Schema::create('lop_hoc_binh_luans', function (Blueprint $table) {
+        Schema::create('lophocbinhluan', function (Blueprint $table) {
             $table->id();
             $table->string('noidung');
             $table->integer('taikhoanid');

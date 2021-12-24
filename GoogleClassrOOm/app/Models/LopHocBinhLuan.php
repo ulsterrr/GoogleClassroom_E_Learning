@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LopHocBinhLuan extends Model
 {
     use HasFactory;
-    protected $table = 'lop_hoc_binh_luans';
+    protected $table = 'lophocbinhluan';
 
     
 }

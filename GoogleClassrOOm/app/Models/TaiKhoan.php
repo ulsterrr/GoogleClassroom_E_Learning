@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class TaiKhoan extends Authenticatable
 {
     use HasFactory;
-    protected $table = 'tai_khoans';
+    protected $table = 'taikhoan';
 
     public function loaiTaiKhoan(){
         return $this->belongsTo('App\Models\LoaiTaiKhoan','maloaitk','id');

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LoaiTaiKhoan extends Model
 {
     use HasFactory;
-    protected $table = 'loai_tai_khoans';
+    protected $table = 'loaitaikhoan';
     public function taiKhoan(){
         return $this->hasMany('App\Models\TaiKhoan','maloaitk','id');
     }

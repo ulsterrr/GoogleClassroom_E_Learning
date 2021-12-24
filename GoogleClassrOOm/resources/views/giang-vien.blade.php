@@ -198,7 +198,7 @@
           <div class="col-md-4 col-lg-3 mb-5">
             <div class="d-flex flex-column h-100">
               <img
-                src="https://cdn.dribbble.com/users/1338391/screenshots/15344962/media/6564bb2cf0975c926b603b7133486307.jpg?compress=1&resize=1600x1200"
+                src="{{ $lopHoc->hinh }}"
                 class="img-cover h-50"
                 alt="Card background"
               />

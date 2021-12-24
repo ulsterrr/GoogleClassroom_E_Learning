@@ -25,9 +25,11 @@ class TaiKhoanSeeder extends Seeder
             $taikhoan->password = Hash::make('12345678');
             $taikhoan->hoten = "Tài Khoản {$i}";
             $taikhoan->email = "email{$i}@gmail.com";
+            $taikhoan->token = "";
             $taikhoan->sdt = "01234567{$i}";
             $taikhoan->hinhdaidien = "taikhoan{$i}.jpg";
             $taikhoan->maloaitk = $random;
+            $taikhoan->hoatdong = 1;
             $taikhoan->save();
         }
     }

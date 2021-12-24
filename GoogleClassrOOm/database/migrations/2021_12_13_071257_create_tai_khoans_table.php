@@ -13,7 +13,7 @@ class CreateTaiKhoansTable extends Migration
      */
     public function up()
     {
-        Schema::create('tai_khoans', function (Blueprint $table) {
+        Schema::create('taikhoan', function (Blueprint $table) {
             $table->id();
             $table->string('username');
             $table->string('password');
@@ -21,6 +21,7 @@ class CreateTaiKhoansTable extends Migration
             $table->string('email');
             $table->string('sdt');
             $table->string('hinhdaidien');
+            $table->string('token');
             $table->integer('maloaitk');
             $table->boolean('hoatdong')->default(0);
             $table->timestamps();

@@ -13,7 +13,7 @@ class CreateLopHocBaiTapsTable extends Migration
      */
     public function up()
     {
-        Schema::create('lop_hoc_bai_taps', function (Blueprint $table) {
+        Schema::create('lophocbaitap', function (Blueprint $table) {
             $table->id();
             $table->integer('taikhoanid');
             $table->integer('diemso');

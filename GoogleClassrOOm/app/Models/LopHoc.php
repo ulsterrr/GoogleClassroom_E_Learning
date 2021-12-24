@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LopHoc extends Model
 {
     use HasFactory;
-    protected $table = 'lop_hocs';
+    protected $table = 'lophoc';
     public function lopHocThongBao(){
         return $this->hasMany('App\Models\LopHocThongBao','lophocid','id');
     }

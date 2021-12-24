@@ -13,12 +13,14 @@ class CreateLopHocsTable extends Migration
      */
     public function up()
     {
-        Schema::create('lop_hocs', function (Blueprint $table) {
+        Schema::create('lophoc', function (Blueprint $table) {
             $table->id();
             $table->string('tenlop');
             $table->string('chude');
             $table->string('hinh');
             $table->string('code');
+            $table->string('token');
+            $table->string('ID_TaiKhoan');
             $table->timestamps();
             $table->softDeletes();
         });

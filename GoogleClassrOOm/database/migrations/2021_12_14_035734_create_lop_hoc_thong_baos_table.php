@@ -13,7 +13,7 @@ class CreateLopHocThongBaosTable extends Migration
      */
     public function up()
     {
-        Schema::create('lop_hoc_thong_baos', function (Blueprint $table) {
+        Schema::create('lophocthongbao', function (Blueprint $table) {
             $table->id();
             $table->string('tieude');
             $table->string('chude');

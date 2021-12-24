@@ -21,6 +21,8 @@ class LopHocSeeder extends Seeder
             $taikhoan->tenlop = "Lớp học {$i}";
             $taikhoan->chude = "Chủ đề {$i}";
             $taikhoan->hinh = "background{$i}.jpg";
+            $taikhoan->ID_TaiKhoan = 1;
+            $taikhoan->token = "";
             $taikhoan->code = Str::random(6);
             $taikhoan->save();
         }

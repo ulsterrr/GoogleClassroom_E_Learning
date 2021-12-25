@@ -6,7 +6,8 @@ use App\Http\Controllers\DangKiController;
 use App\Http\Controllers\GiangVienController;
 use App\Http\Controllers\QuenMatKhauController;
 use App\Http\Controllers\ThemLopController;
-
+use App\Http\Controllers\SuaLopController;
+use App\Http\Controllers\XoaLopController;
 
 Route::get('/', function () {
     return view('trang-chu');
@@ -28,6 +29,7 @@ Route::get('/dang-ki-tai-khoan',function(){
 })->name('DangKi');
 Route::post('/dang-ki-tai-khoan',[DangKiController::class,'dangKi']
 )->name('dang-ki');
+
 Route::get('/quen-mat-khau', function () {
     return view('quen-mk');
 })->name('quenMK');
@@ -38,3 +40,9 @@ Route::get('/them-lop-hoc',function(){
 })->name('ThemLop');
 Route::post('/them-lop-hoc',[ThemLopController::class,'themLop']
 )->name('themlop');
+
+Route::get('sua-lop-hoc/{id}',[SuaLopController::class,'getLop'])->name('SuaLop');
+Route::post('sua-lop-hoc/{id}',[SuaLopController::class,'suaLop']
+)->name('sualophoc');
+
+Route::get('xoa-lop-hoc/{id}',[XoaLopController::class,'xoaLop'])->name('XoaLop');

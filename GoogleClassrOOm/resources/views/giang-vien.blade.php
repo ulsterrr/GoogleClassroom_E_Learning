@@ -85,8 +85,7 @@
         <span class="flex-center text-nowrap d-none d-md-flex"
           >Xin chào {{ auth()->user()->hoten }}</span
         >
-        <input class="form-control py-2" placeholder="Search for class" />
-        <button class="btn btn-primary py-2">Search</button>
+    
         <a class="btn btn-dark py-2" href="{{ route('dang-xuat') }}">Log Out
         </a>
       </div>
@@ -99,7 +98,8 @@
         data-bs-toggle="modal"
         data-bs-target="#modal-teacher"
       >
-        Add new class
+      <a style="color:white;text-decoration:none " href="{{ route('ThemLop') }}">Add new class</a>
+        
       </button>
 
       <div
@@ -111,15 +111,7 @@
       >
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Add new class</h5>
-              <button
-                type="button"
-                class="btn-close btn-modal"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
+          
 
             <form class="">
               <div class="mx-3 my-3">
@@ -207,14 +199,14 @@
                   class="d-flex align-items-center justify-content-between mb-2"
                 >
                   <h5 class="class-card__classname">{{ $lopHoc->tenlop }}</h5>
-                  <div class="btn btn-dark fs-6">&#x2716;</div>
+                  <a href="{{route('XoaLop',['id'=>$lopHoc->id])}}"><div class="btn btn-dark fs-6">&#x2716;</div></a>
                 </div>
 
                 <div
                   class="d-flex align-items-center justify-content-between mb-2"
                 >
                   <span class="class-card__role fs-5">Teacher</span>
-                  <div class="btn btn-dark">Edit</div>
+                  <div class="btn btn-dark"><a style="color:white;text-decoration:none " href="{{ route('SuaLop',['id'=>$lopHoc->id]) }}">Edit</a></div>
                 </div>
 
                 <p class="class-card__subjects truncate">

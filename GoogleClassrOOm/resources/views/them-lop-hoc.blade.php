@@ -32,7 +32,7 @@
     <style>
 .labl {
     display : block;
-    width: 300px;
+    width: 205px;
     height:130px;
 }
 .labl > input{ /* HIDE RADIO */
@@ -110,6 +110,7 @@
     <form class="add-class" action="{{route('themlop')}}" method="post">
       @csrf
       <div class="mx-3 my-3">
+      <h3 style="justify-content: center;text-align: center;padding-bottom:25px"> Thêm lớp học</h3>
         <div class="mb-3">
           <input name="classname" class="form-control py-3" placeholder="Class Name" />
         </div>

@@ -29,22 +29,22 @@
     <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
     <script src="{{ asset('js/main.js') }}" defer></script>
     <style>
-.labl {
-    display : block;
-    width: 300px;
-    height:130px;
-}
-.labl > input{ /* HIDE RADIO */
-    visibility: hidden; /* Makes input not-clickable */
-    position: absolute; /* Remove input from document flow */
-}
-.labl > input + div{ /* DIV STYLES */
-    cursor:pointer;
-    border:2px solid transparent;
-}
-.labl > input:checked + div{ /* (RADIO CHECKED) DIV STYLES */
-    border: 1px solid #ff6600;
-}
+      .labl {
+          display : block;
+          width: 210px;
+          height:115px;
+      }
+      .labl > input{ /* HIDE RADIO */
+          visibility: hidden; /* Makes input not-clickable */
+          position: absolute; /* Remove input from document flow */
+      }
+      .labl > input + div{ /* DIV STYLES */
+          cursor:pointer;
+          border:2px solid transparent;
+      }
+      .labl > input:checked + div{ /* (RADIO CHECKED) DIV STYLES */
+          border: 1px solid #ff6600;
+      }
       </style>
   </head>
 
@@ -111,7 +111,7 @@
     <form class="add-class" action="{{route('sualophoc',['id'=>$lophoc->id])}}" method="post">
       @csrf
       <div class="mx-3 my-3">
-        <h1>Thay đổi thông tin lớp học</h1>
+        <h3 style = "padding-bottom:20px; justify-content: center; display: flex;">Thay đổi thông tin lớp học</h3>
         <div class="mb-3">
           <input name="classname" class="form-control py-3" value="{{$lophoc->tenlop}}" placeholder="Class Name" />
         </div>
@@ -172,11 +172,12 @@
           class="btn btn-secondary btn-modal"
           data-bs-dismiss="modal"
         >
-          Cancel
+        <a style="color:white;text-decoration:none " href="{{ route('giang-vien') }}">Trở về</a>
         </button>
         <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
           Sửa
         </button>
+       
       </div>
     </form>
   </body>

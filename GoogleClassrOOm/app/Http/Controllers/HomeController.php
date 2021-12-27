@@ -16,7 +16,7 @@ class HomeController extends Controller
         $upImage = $req->image;
         $name = $req->file('image')->getClientOriginalName();
  
-        $req->file('image')->storeAs('images', 'taikhoan2.jpg');
+        $req->file('image')->storeAs('images', $name);
         if(!empty($req->username)){
             $taikhoan->username = $req->username;
         }

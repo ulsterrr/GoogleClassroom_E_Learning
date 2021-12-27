@@ -53,7 +53,7 @@
         >
           <img
             class="popup__avatar cursor-pointer"
-            src="https://avatars.dicebear.com/api/adventurer-neutral/123456.svg"
+            src="{{ asset('images/'.auth()->user()->hinhdaidien) }}"
             alt="Avatar"
           />
           <div class="d-flex gap-3">
@@ -75,7 +75,7 @@
     <section class="dashboard container">
       <div class="dashboard__header">
         <img
-          src="https://avatars.dicebear.com/api/adventurer-neutral/123456.svg"
+        src="{{ asset('images/'.auth()->user()->hinhdaidien) }}"
           alt="Avatar"
           class="dashboard__avatar"
         />

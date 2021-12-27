@@ -69,7 +69,7 @@
       <div class="popup ms-auto">
         <div class="avatar me-3 cursor-pointer">
           <img
-            src="https://avatars.dicebear.com/api/adventurer-neutral/123456.svg"
+          src="{{ asset('images/'.auth()->user()->hinhdaidien) }}"
             alt="Avatar"
           />
         </div>
@@ -87,7 +87,7 @@
         >
           <img
             class="popup__avatar cursor-pointer"
-            src="https://avatars.dicebear.com/api/adventurer-neutral/123456.svg"
+            src="{{ asset('images/'.auth()->user()->hinhdaidien) }}"
             alt="Avatar"
           />
           <div class="d-flex gap-3">

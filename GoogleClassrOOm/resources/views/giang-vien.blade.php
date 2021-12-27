@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/reset.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/components.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Scripts -->
     <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
@@ -225,8 +226,102 @@
                   class="d-flex align-items-center justify-content-between mb-2"
                 >
                   <span class="class-card__role fs-5">Teacher</span>
+<<<<<<< HEAD
                   
                   <a href="{{ route('SuaLop',['id'=>$lopHoc->id]) }}"><div class="btn btn-dark">Edit</div></a>
+=======
+
+                  <div>
+                    <section>
+                    <button
+                      type="button"
+                      class="btn btn-dark"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modal-teacher"
+                    >
+                     Sửa 
+                    </button>
+              
+                    <div
+                      class="modal fade"
+                      id="modal-teacher"
+                      tabindex="-1"
+                      style="display: none"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                        
+              
+                          <form class="">
+                            <div class="mx-3 my-3">
+                              <div class="mb-3">
+                                <input class="form-control py-3" placeholder="Class Name" />
+                              </div>
+                              <div class="mb-3">
+                                <input class="form-control py-3" placeholder="Subject" />
+                              </div>
+                              <div class="mb-3">
+                                <input class="form-control py-3" placeholder="Room" />
+                              </div>
+                              <div>
+                                <p>Choose background</p>
+                                <div class="backgrounds">
+                                  <div class="background h-100 cursor-pointer">
+                                    <img
+                                      class="img-cover rounded"
+                                      src="https://cdn.dribbble.com/users/1338391/screenshots/15344962/media/6564bb2cf0975c926b603b7133486307.jpg?compress=1&resize=1600x1200"
+                                      alt="Background"
+                                    />
+                                  </div>
+                                  <div class="background h-100 cursor-pointer">
+                                    <img
+                                      class="img-cover rounded"
+                                      src="https://cdn.dribbble.com/users/1338391/screenshots/15322399/media/4290a3ccff443d96fe1c8d990211254e.jpg?compress=1&resize=1600x1200"
+                                      alt="Background"
+                                    />
+                                  </div>
+                                  <div class="background h-100 cursor-pointer">
+                                    <img
+                                      class="img-cover rounded"
+                                      src="https://cdn.dribbble.com/users/1338391/screenshots/15333283/media/8b76dd5f6d7d18d37e4e3b74b33cd903.jpg?compress=1&resize=1600x1200"
+                                      alt="Background"
+                                    />
+                                  </div>
+                                  <div class="background h-100 cursor-pointer">
+                                    <img
+                                      class="img-cover rounded"
+                                      src="https://cdn.dribbble.com/users/1338391/screenshots/15318231/media/4c725fe4efbaa9d498f39f13600e396a.jpg?compress=1&resize=1600x1200"
+                                      alt="Background"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+              
+                            <div class="modal-footer">
+                              <button
+                                type="button"
+                                class="btn btn-secondary btn-modal"
+                                data-bs-dismiss="modal"
+                              >
+                                Cancel
+                              </button>
+                              <button
+                                type="button"
+                                class="btn btn-primary"
+                                data-bs-dismiss="modal"
+                              >
+                                Add
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                  </div>
+>>>>>>> ee602d5d0c97f1b6442340f8a2288d7f19b49f57
                 </div>
 
                 <p class="class-card__subjects truncate">

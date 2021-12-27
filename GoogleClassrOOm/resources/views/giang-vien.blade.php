@@ -203,7 +203,7 @@
                   class="d-flex align-items-center justify-content-between mb-2"
                 >
                   <span class="class-card__role fs-5">Teacher</span>
-                  <div class="btn btn-dark"><a style="color:white;text-decoration:none " href="{{ route('SuaLop',['id'=>$lopHoc->id]) }}">Edit</a></div>
+                  <div class="btn btn-dark">Edit</div>
                 </div>
 
                 <p class="class-card__subjects truncate">

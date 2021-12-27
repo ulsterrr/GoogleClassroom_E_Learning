@@ -17,11 +17,12 @@
       rel="stylesheet"
     />
 
-    <<!-- Styles -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/common.css') }}" rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/reset.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/components.css') }}" />
 
     <!-- Scripts -->
     <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
@@ -43,16 +44,46 @@
       "
     >
       <a href="#" class="logo me-3">
-        <img src="svgs/logo.svg" alt="Logo" />
+        <img src="{{ asset('svgs/logo.svg') }}" alt="Logo" />
       </a>
 
-      <div class="d-flex gap-3">
-        <span class="flex-center text-nowrap d-none d-md-flex"
-          >Welcome student</span
+      <div class="popup ms-auto">
+        <div class="avatar me-3 cursor-pointer">
+          <img
+          src="{{ asset('images/'.auth()->user()->hinhdaidien) }}"
+            alt="Avatar"
+          />
+        </div>
+
+        <div
+          class="
+            popup__content
+            d-flex
+            flex-column
+            align-items-center
+            shadow
+            rounded-3
+            bg-white
+          "
         >
-        <input class="form-control py-2" placeholder="Search for class" />
-        <button class="btn btn-primary py-2">Search</button>
-        <button class="btn btn-dark py-2">Log Out</button>
+          <img
+            class="popup__avatar cursor-pointer"
+            src="{{ asset('images/'.auth()->user()->hinhdaidien) }}"
+            alt="Avatar"
+          />
+          <div class="d-flex gap-3">
+            <span class="flex-center text-nowrap d-none d-md-flex"
+              >{{ auth()->user()->hoten }}</span>       
+          </div>
+          <p class="popup__email">{{ auth()->user()->email }}</p>
+          <a class="popup__link" href="{{ route('youraccount') }}" target="_blank"
+            >Manage your account</a
+          >
+          <div class="popup__logout mt-auto cursor-pointer"><a class="btn btn-primary" href="{{ route('dang-xuat') }}">Log Out
+          </a></div>
+
+          <div class="popup__pseudo"></div>
+        </div>
       </div>
     </header>
 

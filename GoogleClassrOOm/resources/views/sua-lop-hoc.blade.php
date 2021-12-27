@@ -26,8 +26,8 @@
    
 
     <!-- Scripts -->
-    <script src="js/bootstrap.min.js" defer></script>
-    <script src="js/main.js" defer></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
+    <script src="{{ asset('js/main.js') }}" defer></script>
     <style>
 .labl {
     display : block;
@@ -63,13 +63,13 @@
       "
     >
       <a href="#" class="logo me-3">
-        <img src="svgs/logo.svg" alt="Logo" />
+        <img src="{{ asset('svgs/logo.svg') }}" alt="Logo" />
       </a>
 
       <div class="popup ms-auto">
         <div class="avatar me-3 cursor-pointer">
           <img
-            src="https://avatars.dicebear.com/api/adventurer-neutral/123456.svg"
+          src="{{ asset('images/'.auth()->user()->hinhdaidien) }}"
             alt="Avatar"
           />
         </div>
@@ -87,31 +87,31 @@
         >
           <img
             class="popup__avatar cursor-pointer"
-            src="https://avatars.dicebear.com/api/adventurer-neutral/123456.svg"
+            src="{{ asset('images/'.auth()->user()->hinhdaidien) }}"
             alt="Avatar"
           />
-          <p class="popup__email">youremail@gmail.com</p>
-          <a class="popup__link" href="edit.html" target="_blank"
+          <div class="d-flex gap-3">
+            <span class="flex-center text-nowrap d-none d-md-flex"
+              >{{ auth()->user()->hoten }}</span>       
+          </div>
+          <p class="popup__email">{{ auth()->user()->email }}</p>
+          <a class="popup__link" href="{{ route('youraccount') }}" target="_blank"
             >Manage your account</a
           >
-          <div class="popup__logout mt-auto cursor-pointer">Log Out</div>
+          <div class="popup__logout mt-auto cursor-pointer"><a class="btn btn-primary" href="{{ route('dang-xuat') }}">Log Out
+          </a></div>
 
           <div class="popup__pseudo"></div>
         </div>
       </div>
 
-      <div class="d-flex gap-3">
-        <span class="flex-center text-nowrap d-none d-md-flex"
-          >Welcome Teacher</span
-        >
-        <button class="btn btn-dark py-2">Log Out</button>
-      </div>
+    
     </header>
 
     <form class="add-class" action="{{route('sualophoc',['id'=>$lophoc->id])}}" method="post">
       @csrf
       <div class="mx-3 my-3">
-      <h3 style="justify-content: center;text-align: center;padding-bottom:25px"> Sửa lớp học</h3>
+        <h1>Thay đổi thông tin lớp học</h1>
         <div class="mb-3">
           <input name="classname" class="form-control py-3" value="{{$lophoc->tenlop}}" placeholder="Class Name" />
         </div>
@@ -175,7 +175,7 @@
           Cancel
         </button>
         <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
-          Add
+          Sửa
         </button>
       </div>
     </form>

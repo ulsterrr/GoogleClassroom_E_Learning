@@ -14,9 +14,16 @@ class SuaLopController extends Controller
     }
     function suaLop(Request $req,$id){
         $lophoc=LopHoc::find($id);
-        $lophoc->tenlop=$req->classname;
-        $lophoc->chude=$req->subject;
-        $lophoc->hinh = $req->radioname;
+        if(!empty($req->classname)){
+            $lophoc->tenlop=$req->classname;
+        }
+        if(!empty($req->subject)){
+            $lophoc->chude=$req->subject;
+        }
+        if(!empty($req->radioname)){
+            $lophoc->hinh = $req->radioname;
+        }
+        
         $lophoc->save();
         return redirect()->route("giang-vien");
     }

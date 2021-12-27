@@ -4,6 +4,7 @@ use App\Http\Controllers\DangNhapController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DangKiController;
 use App\Http\Controllers\GiangVienController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\QuenMatKhauController;
 use App\Http\Controllers\ThemLopController;
 use App\Http\Controllers\SuaLopController;
@@ -27,6 +28,13 @@ Route::get('/dang-xuat', [DangNhapController::class, 'dangXuat'])->name('dang-xu
 Route::get('/dang-ki-tai-khoan',function(){
     return view('dang-ki-tai-khoan');
 })->name('DangKi');
+Route::get('/cap-nhat-tai-khoan',[HomeController::class,'suaTK']
+)->name('cap-nhat-tai-khoan')->middleware('auth');
+Route::post('/cap-nhat-tai-khoan',[HomeController::class,'editTK']
+)->name('xl-cap-nhat-tai-khoan')->middleware('auth');
+Route::get('/chi-tiet-tai-khoan',function(){
+    return view('chi-tiet-tai-khoan');
+})->name('youraccount');
 Route::post('/dang-ki-tai-khoan',[DangKiController::class,'dangKi']
 )->name('dang-ki');
 

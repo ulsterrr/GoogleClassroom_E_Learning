@@ -204,7 +204,7 @@
                   class="d-flex align-items-center justify-content-between mb-2"
                 >
                   <span class="class-card__role fs-5">Teacher</span>
-<<<<<<< HEAD
+
                   <div>
                     <section>
                     <button
@@ -294,10 +294,7 @@
                       </div>
                     </div>
                   </section>
-                </div>
-=======
-                  <div class="btn btn-dark">Edit</div>
->>>>>>> fc30d69d5cae8eea4856f4d5c33d7de1a3d54690
+                  </div>
                 </div>
 
                 <p class="class-card__subjects truncate">

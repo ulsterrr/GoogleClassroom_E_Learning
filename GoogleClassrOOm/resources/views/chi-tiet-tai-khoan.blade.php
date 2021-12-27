@@ -29,7 +29,7 @@
     <!-- Header -->
     <header class="header fixed-top shadow d-flex px-4 py-3 bg-white">
       <a href="#" class="logo mr-3">
-        <img src="svgs/logo.svg" alt="Logo" />
+        <img src="{{ asset('svgs/logo.svg') }}" alt="Logo" />
       </a>
 
       <div class="popup ms-auto">
@@ -56,11 +56,16 @@
             src="https://avatars.dicebear.com/api/adventurer-neutral/123456.svg"
             alt="Avatar"
           />
-          <p class="popup__email">youremail@gmail.com</p>
-          <a class="popup__link" href="edit.html" target="_blank"
+          <div class="d-flex gap-3">
+            <span class="flex-center text-nowrap d-none d-md-flex"
+              >{{ auth()->user()->hoten }}</span>       
+          </div>
+          <p class="popup__email">{{ auth()->user()->email }}</p>
+          <a class="popup__link" href="{{ route('youraccount') }}" target="_blank"
             >Manage your account</a
           >
-          <div class="popup__logout mt-auto cursor-pointer">Log Out</div>
+          <div class="popup__logout mt-auto cursor-pointer"><a class="btn btn-primary" href="{{ route('dang-xuat') }}">Log Out
+          </a></div>
 
           <div class="popup__pseudo"></div>
         </div>
@@ -74,7 +79,7 @@
           alt="Avatar"
           class="dashboard__avatar"
         />
-        <h1 class="dashboard__username">Your name - (ID: 12345)</h1>
+        <h1 class="dashboard__username">{{ auth()->user()->hoten }} - (ID: {{ auth()->user()->id }})</h1>
       </div>
 
       <div class="dashboard__info">
@@ -82,23 +87,23 @@
         <ul class="dashboard__info-items">
           <li class="dashboard__info-item">
             <span class="dashboard__info-item-left">Tài khoản</span>
-            <span>12345</span>
+            <span>{{ auth()->user()->username }}</span>
           </li>
           <li class="dashboard__info-item">
             <span class="dashboard__info-item-left">Mật khẩu</span>
-            <span>12345</span>
+            <span>{{ auth()->user()->password }}</span>
           </li>
           <li class="dashboard__info-item">
             <span class="dashboard__info-item-left">Họ tên</span>
-            <span>12345</span>
+            <span>{{ auth()->user()->hoten }}</span>
           </li>
           <li class="dashboard__info-item">
             <span class="dashboard__info-item-left">Email</span>
-            <span>12345</span>
+            <span>{{ auth()->user()->email }}</span>
           </li>
           <li class="dashboard__info-item">
             <span class="dashboard__info-item-left">Số điện thoại</span>
-            <span>12345</span>
+            <span>{{ auth()->user()->sdt }}</span>
           </li>
           <li class="dashboard__info-item">
             <span class="dashboard__info-item-left">Ảnh đại diện</span>
@@ -109,17 +114,17 @@
             />
           </li>
           <li class="dashboard__info-item">
-            <span class="dashboard__info-item-left">Mã loại tài khoản</span>
-            <span>12345</span>
+            <span class="dashboard__info-item-left">Loại tài khoản</span>
+            <span>Giáo viên</span>
           </li>
           <li class="dashboard__info-item">
             <span class="dashboard__info-item-left">Hoạt động</span>
-            <span>12345</span>
+            <span>Đang hoạt động</span>
           </li>
         </ul>
         <a
           class="dashboard__submit btn btn-primary text-white"
-          href="edit.html"
+          href="{{ route('cap-nhat-tai-khoan') }}"
           target="_blank"
           >Edit</a
         >

@@ -68,27 +68,24 @@
         >
           <img
             class="popup__avatar cursor-pointer"
-            src="https://avatars.dicebear.com/api/adventurer-neutral/123456.svg"
+            src=""
             alt="Avatar"
           />
-          <p class="popup__email">youremail@gmail.com</p>
-          <a class="popup__link" href="#" target="_blank"
+          <div class="d-flex gap-3">
+            <span class="flex-center text-nowrap d-none d-md-flex"
+              >{{ auth()->user()->hoten }}</span>       
+          </div>
+          <p class="popup__email">{{ auth()->user()->email }}</p>
+          <a class="popup__link" href="{{ route('youraccount') }}" target="_blank"
             >Manage your account</a
           >
-          <div class="popup__logout mt-auto cursor-pointer">Log Out</div>
+          <div class="popup__logout mt-auto cursor-pointer"><a class="btn btn-primary" href="{{ route('dang-xuat') }}">Log Out
+          </a></div>
 
           <div class="popup__pseudo"></div>
         </div>
       </div>
-
-      <div class="d-flex gap-3">
-        <span class="flex-center text-nowrap d-none d-md-flex"
-          >Xin chào {{ auth()->user()->hoten }}</span
-        >
-    
-        <a class="btn btn-dark py-2" href="{{ route('dang-xuat') }}">Log Out
-        </a>
-      </div>
+     
     </header>
 
     <section class="px-4 space-header mb-4">
@@ -98,7 +95,7 @@
         data-bs-toggle="modal"
         data-bs-target="#modal-teacher"
       >
-      <a style="color:white;text-decoration:none " href="{{ route('ThemLop') }}">Add new class</a>
+      123
         
       </button>
 
@@ -199,7 +196,7 @@
                   class="d-flex align-items-center justify-content-between mb-2"
                 >
                   <h5 class="class-card__classname">{{ $lopHoc->tenlop }}</h5>
-                  <a href="{{route('XoaLop',['id'=>$lopHoc->id])}}"><div class="btn btn-dark fs-6">&#x2716;</div></a>
+                  <a href="{{ route('XoaLop',['id'=>$lopHoc->id]) }}"><div class="btn btn-dark fs-6">&#x2716;</div></a>
                 </div>
 
                 <div
@@ -222,7 +219,7 @@
           </div>              
           @endforeach
         </div>
-      </div>
+      </div> 
     </section>
   </body>
 </html>

@@ -18,16 +18,17 @@
     />
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}"/>
-    <link rel="stylesheet" href= "{{ asset('css/common.css ') }}" />
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css.map') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/reset.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/components.css') }}" />
    
 
     <!-- Scripts -->
-    <script src="js/bootstrap.min.js" defer></script>
-    <script src="js/main.js" defer></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
+    <script src="{{ asset('js/main.js') }}" defer></script>
     <style>
 .labl {
     display : block;
@@ -63,7 +64,7 @@
       "
     >
       <a href="#" class="logo me-3">
-        <img src="svgs/logo.svg" alt="Logo" />
+        <img src="{{ asset('svgs/logo.svg') }}" alt="Logo" />
       </a>
 
       <div class="popup ms-auto">
@@ -90,21 +91,19 @@
             src="https://avatars.dicebear.com/api/adventurer-neutral/123456.svg"
             alt="Avatar"
           />
-          <p class="popup__email">youremail@gmail.com</p>
-          <a class="popup__link" href="edit.html" target="_blank"
+          <div class="d-flex gap-3">
+            <span class="flex-center text-nowrap d-none d-md-flex"
+              >{{ auth()->user()->hoten }}</span>       
+          </div>
+          <p class="popup__email">{{ auth()->user()->email }}</p>
+          <a class="popup__link" href="{{ route('youraccount') }}" target="_blank"
             >Manage your account</a
           >
-          <div class="popup__logout mt-auto cursor-pointer">Log Out</div>
+          <div class="popup__logout mt-auto cursor-pointer"><a class="btn btn-primary" href="{{ route('dang-xuat') }}">Log Out
+          </a></div>
 
           <div class="popup__pseudo"></div>
         </div>
-      </div>
-
-      <div class="d-flex gap-3">
-        <span class="flex-center text-nowrap d-none d-md-flex"
-          >Welcome Teacher</span
-        >
-        <button class="btn btn-dark py-2">Log Out</button>
       </div>
     </header>
 
@@ -166,13 +165,9 @@
       </div>
 
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary btn-modal"
-          data-bs-dismiss="modal"
-        >
-          Cancel
-        </button>
+
+        <a class="btn btn-danger" href="{{ route('giang-vien') }}">Hủy
+        </a>
         <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
           Add
         </button>

@@ -28,6 +28,24 @@
     <!-- Scripts -->
     <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
     <script src="{{ asset('js/main.js') }}" defer></script>
+    <style>
+      .labl {
+        display : block;
+        width: 210px;
+        height:115px;
+      }
+      .labl > input{ /* HIDE RADIO */
+      visibility: hidden; /* Makes input not-clickable */
+      position: absolute; /* Remove input from document flow */
+      }
+      .labl > input + div{ /* DIV STYLES */
+      cursor:pointer;
+      border:2px solid transparent;
+      }
+      .labl > input:checked + div{ /* (RADIO CHECKED) DIV STYLES */
+      border: 1px solid #ff6600;
+      }
+    </style>
   </head>
 
   <body>
@@ -96,7 +114,7 @@
         data-bs-toggle="modal"
         data-bs-target="#modal-teacher"
       >
-      123
+  Thêm lớp
         
       </button>
 
@@ -111,69 +129,73 @@
           <div class="modal-content">
           
 
-            <form class="">
-              <div class="mx-3 my-3">
-                <div class="mb-3">
-                  <input class="form-control py-3" placeholder="Class Name" />
+        <form class="add-class" action="{{route('themlop')}}" method="post">
+          @csrf
+          <div class="mx-3 my-3">
+          <h3 style="justify-content: center;text-align: center;padding-bottom:25px"> Thêm lớp học</h3>
+            <div class="mb-3">
+              <input name="classname" class="form-control py-3" placeholder="Class Name" />
+            </div>
+            <div class="mb-3">
+              <input name="subject" class="form-control py-3" placeholder="Subject" />
+            </div>
+            <div>
+              <p>Choose background</p>
+              <div class="backgrounds">
+                <div class="background h-100 cursor-pointer">
+                <label class="labl">
+                <input type="radio" name="radioname" value="https://cdn.dribbble.com/users/1338391/screenshots/15344962/media/6564bb2cf0975c926b603b7133486307.jpg?compress=1&resize=1600x1200"/>
+                  <img 
+                    class="img-cover rounded"
+                    src="https://cdn.dribbble.com/users/1338391/screenshots/15344962/media/6564bb2cf0975c926b603b7133486307.jpg?compress=1&resize=1600x1200"
+                    alt="Background"
+                  />
+                </label>
                 </div>
-                <div class="mb-3">
-                  <input class="form-control py-3" placeholder="Subject" />
+                <div class="background h-100 cursor-pointer ">
+                <label class="labl">
+                <input type="radio" name="radioname" value="https://cdn.dribbble.com/users/1338391/screenshots/15322399/media/4290a3ccff443d96fe1c8d990211254e.jpg?compress=1&resize=1600x1200" />
+                  <img 
+                    class="img-cover rounded"
+                    src="https://cdn.dribbble.com/users/1338391/screenshots/15322399/media/4290a3ccff443d96fe1c8d990211254e.jpg?compress=1&resize=1600x1200"
+                    alt="Background"
+                  />
+                  </label>
                 </div>
-                <div class="mb-3">
-                  <input class="form-control py-3" placeholder="Room" />
+                
+                <div class="background h-100 cursor-pointer ">
+                <label class="labl">
+                <input type="radio" name="radioname" value="https://cdn.dribbble.com/users/1338391/screenshots/15333283/media/8b76dd5f6d7d18d37e4e3b74b33cd903.jpg?compress=1&resize=1600x1200" />
+                  <img 
+                    class="img-cover rounded"
+                    src="https://cdn.dribbble.com/users/1338391/screenshots/15333283/media/8b76dd5f6d7d18d37e4e3b74b33cd903.jpg?compress=1&resize=1600x1200"
+                    alt="Background"
+                  />
+                  </label>
                 </div>
-                <div>
-                  <p>Choose background</p>
-                  <div class="backgrounds">
-                    <div class="background h-100 cursor-pointer">
-                      <img
-                        class="img-cover rounded"
-                        src="https://cdn.dribbble.com/users/1338391/screenshots/15344962/media/6564bb2cf0975c926b603b7133486307.jpg?compress=1&resize=1600x1200"
-                        alt="Background"
-                      />
-                    </div>
-                    <div class="background h-100 cursor-pointer">
-                      <img
-                        class="img-cover rounded"
-                        src="https://cdn.dribbble.com/users/1338391/screenshots/15322399/media/4290a3ccff443d96fe1c8d990211254e.jpg?compress=1&resize=1600x1200"
-                        alt="Background"
-                      />
-                    </div>
-                    <div class="background h-100 cursor-pointer">
-                      <img
-                        class="img-cover rounded"
-                        src="https://cdn.dribbble.com/users/1338391/screenshots/15333283/media/8b76dd5f6d7d18d37e4e3b74b33cd903.jpg?compress=1&resize=1600x1200"
-                        alt="Background"
-                      />
-                    </div>
-                    <div class="background h-100 cursor-pointer">
-                      <img
-                        class="img-cover rounded"
-                        src="https://cdn.dribbble.com/users/1338391/screenshots/15318231/media/4c725fe4efbaa9d498f39f13600e396a.jpg?compress=1&resize=1600x1200"
-                        alt="Background"
-                      />
-                    </div>
-                  </div>
+                <div class="background h-100 cursor-pointer " >
+                <label class="labl">
+                  <input type="radio" name="radioname" value="https://cdn.dribbble.com/users/1338391/screenshots/15318231/media/4c725fe4efbaa9d498f39f13600e396a.jpg?compress=1&resize=1600x1200" />
+                  <img 
+                    class="img-cover rounded"
+                    src="https://cdn.dribbble.com/users/1338391/screenshots/15318231/media/4c725fe4efbaa9d498f39f13600e396a.jpg?compress=1&resize=1600x1200"
+                    alt="Background"
+                  />
+                  </label>
                 </div>
               </div>
+            </div>
+          </div>
 
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary btn-modal"
-                  data-bs-dismiss="modal"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  data-bs-dismiss="modal"
-                >
-                  Add
-                </button>
-              </div>
-            </form>
+          <div class="modal-footer">
+
+            <a class="btn btn-danger" href="{{ route('giang-vien') }}">Hủy
+            </a>
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+              Add
+            </button>
+          </div>
+        </form>
           </div>
         </div>
       </div>
@@ -203,97 +225,19 @@
                 <div
                   class="d-flex align-items-center justify-content-between mb-2"
                 >
-                  <span class="class-card__role fs-5">Teacher</span>
-
+                  <span class="class-card__role fs-5">Teacher</span>  
                   <div>
-                    <section>
-                    <button
-                      type="button"
-                      class="btn btn-dark"
-                      data-bs-toggle="modal"
-                      data-bs-target="#modal-teacher"
-                    >
-                     Sửa 
-                    </button>
-              
-                    <div
-                      class="modal fade"
-                      id="modal-teacher"
-                      tabindex="-1"
-                      style="display: none"
-                      aria-hidden="true"
-                    >
-                      <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                        
-              
-                          <form class="">
-                            <div class="mx-3 my-3">
-                              <div class="mb-3">
-                                <input class="form-control py-3" placeholder="Class Name" />
-                              </div>
-                              <div class="mb-3">
-                                <input class="form-control py-3" placeholder="Subject" />
-                              </div>
-                              <div class="mb-3">
-                                <input class="form-control py-3" placeholder="Room" />
-                              </div>
-                              <div>
-                                <p>Choose background</p>
-                                <div class="backgrounds">
-                                  <div class="background h-100 cursor-pointer">
-                                    <img
-                                      class="img-cover rounded"
-                                      src="https://cdn.dribbble.com/users/1338391/screenshots/15344962/media/6564bb2cf0975c926b603b7133486307.jpg?compress=1&resize=1600x1200"
-                                      alt="Background"
-                                    />
-                                  </div>
-                                  <div class="background h-100 cursor-pointer">
-                                    <img
-                                      class="img-cover rounded"
-                                      src="https://cdn.dribbble.com/users/1338391/screenshots/15322399/media/4290a3ccff443d96fe1c8d990211254e.jpg?compress=1&resize=1600x1200"
-                                      alt="Background"
-                                    />
-                                  </div>
-                                  <div class="background h-100 cursor-pointer">
-                                    <img
-                                      class="img-cover rounded"
-                                      src="https://cdn.dribbble.com/users/1338391/screenshots/15333283/media/8b76dd5f6d7d18d37e4e3b74b33cd903.jpg?compress=1&resize=1600x1200"
-                                      alt="Background"
-                                    />
-                                  </div>
-                                  <div class="background h-100 cursor-pointer">
-                                    <img
-                                      class="img-cover rounded"
-                                      src="https://cdn.dribbble.com/users/1338391/screenshots/15318231/media/4c725fe4efbaa9d498f39f13600e396a.jpg?compress=1&resize=1600x1200"
-                                      alt="Background"
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-              
-                            <div class="modal-footer">
-                              <button
-                                type="button"
-                                class="btn btn-secondary btn-modal"
-                                data-bs-dismiss="modal"
-                              >
-                                Cancel
-                              </button>
-                              <button
-                                type="button"
-                                class="btn btn-primary"
-                                data-bs-dismiss="modal"
-                              >
-                                Add
-                              </button>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
+                  <section>
+      <button
+        type="button"
+        class="btn btn-dark"
+      >
+
+   
+        <a style="color:white;text-decoration:none " href="{{ route('DangKi',['id',$lopHoc->id]) }}">Edit</a>
+      </button>
+
+    </section>
                   </div>
                 </div>
 

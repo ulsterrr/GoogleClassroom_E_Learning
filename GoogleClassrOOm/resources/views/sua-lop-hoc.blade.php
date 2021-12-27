@@ -111,7 +111,7 @@
     <form class="add-class" action="{{route('sualophoc',['id'=>$lophoc->id])}}" method="post">
       @csrf
       <div class="mx-3 my-3">
-        <h1>Sua lop hoc</h1>
+      <h3 style="justify-content: center;text-align: center;padding-bottom:25px"> Sửa lớp học</h3>
         <div class="mb-3">
           <input name="classname" class="form-control py-3" value="{{$lophoc->tenlop}}" placeholder="Class Name" />
         </div>

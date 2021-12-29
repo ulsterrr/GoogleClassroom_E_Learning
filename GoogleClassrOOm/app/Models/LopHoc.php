@@ -14,8 +14,11 @@ class LopHoc extends Model
     }
     public function coTaiKhoan(){
         return $this->belongsToMany('App\Models\TaiKhoan',
-                                    'yeu_cau_lop_hocs',
+                                    'YeuCauLopHoc',
                                 'lophocid','taikhoanid',
                                 'id','id');
+    }
+    public function TaiKhoan(){
+        return $this->belongsTo('App\Models\TaiKhoan','ID_TaiKhoan','id');
     }
 }

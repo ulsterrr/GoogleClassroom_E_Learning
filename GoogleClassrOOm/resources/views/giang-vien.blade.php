@@ -234,7 +234,7 @@
       >
 
    
-        <a style="color:white;text-decoration:none " href="{{ route('DangKi',['id',$lopHoc->id]) }}">Edit</a>
+        <a style="color:white;text-decoration:none " href="{{Route('SuaLop',['id'=>$lopHoc->id]) }}">Edit</a>
       </button>
 
     </section>
@@ -249,7 +249,8 @@
                   <span>Code: </span><span>{{ $lopHoc->code }}</span>
                 </div>
               </div>
-              <button class="btn btn-primary mt-auto py-2">Go to Class</button>
+              
+              <a href="{{route('ChiTietLopHoc',['id'=>$lopHoc])}}" class="btn btn-primary mt-auto py-2">Go to Class</a>
             </div>
           </div>              
           @endforeach

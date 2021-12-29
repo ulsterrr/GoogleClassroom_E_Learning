@@ -17,7 +17,8 @@ class GiangVienController extends Controller
         
     }
     public function dsLopHoc(){
-        $dsLop = LopHoc::all();
+        $dsLop = LopHoc::where('ID_TaiKhoan',auth()->user()->id)->get();
+
         return view('giang-vien', compact('dsLop'));
     }
 

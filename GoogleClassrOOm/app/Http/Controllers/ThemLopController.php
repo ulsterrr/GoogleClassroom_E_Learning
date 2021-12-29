@@ -15,7 +15,7 @@ class ThemLopController extends Controller
         $lopHoc->hinh = $req->radioname;
         $lopHoc->token = "";
         $lopHoc->code= Str::random(6);
-        $lopHoc->ID_TaiKhoan = 1;
+        $lopHoc->ID_TaiKhoan = auth()->user()->id;
         $lopHoc->save();
         return  redirect()->route("giang-vien");
      }

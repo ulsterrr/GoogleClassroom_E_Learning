@@ -16,7 +16,7 @@ class TaiKhoan extends Authenticatable
     }
     public function coLopHoc(){
         return $this->belongsToMany('App\Models\LopHoc',
-                                    'yeu_cau_lop_hocs',
+                                    'YeuCauLopHoc',
                                 'taikhoanid','lophocid',
                                 'id','id');
     }
@@ -25,5 +25,8 @@ class TaiKhoan extends Authenticatable
     }
     public function taiKhoanBinhLuan(){
         return $this->hasMany('App\Models\LopHocBinhLuan','taikhoanid','id');
+    }
+    public function dslophoc(){
+        return $this->hasMany('App\Models\LopHoc');
     }
 }

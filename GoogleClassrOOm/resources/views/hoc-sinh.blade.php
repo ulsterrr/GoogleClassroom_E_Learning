@@ -28,7 +28,6 @@
     <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
     <script src="{{ asset('js/main.js') }}" defer></script>
   </head>
-
   <body>
     <!-- Header -->
     <header
@@ -116,9 +115,10 @@
               ></button>
             </div>
 
-            <form class="">
+            <form class="" action="{{Route('GiaNhapLop')}}" method="post">
+              @csrf
               <div class="mx-3 my-3">
-                <input class="form-control py-3" placeholder="Class code" />
+                <input name="classcode" class="form-control py-3" placeholder="Class code" />
               </div>
 
               <div class="modal-footer">
@@ -130,7 +130,7 @@
                   Cancel
                 </button>
                 <button
-                  type="button"
+                  type="submit"
                   class="btn btn-primary py-2"
                   data-bs-dismiss="modal"
                 >
@@ -141,6 +141,52 @@
           </div>
         </div>
       </div>
+    </section>
+    <section>
+      <div class="container">
+        <div class="row">
+          @foreach ($class->coLopHoc as $lopHoc)
+
+          <div class="col-md-4 col-lg-3 mb-5">
+            <div class="d-flex flex-column h-100">
+              <img
+                src="{{ $lopHoc->hinh }}"
+                class="img-cover h-50"
+                alt="Card background"
+              />
+              <div class="class-card__body my-2">
+                <div
+                  class="d-flex align-items-center justify-content-between mb-2"
+                >
+                  <h5 class="class-card__classname">{{ $lopHoc->tenlop }}</h5>              
+                </div>
+
+                <div
+                  class="d-flex align-items-center justify-content-between mb-2"
+                >
+                  <span class="class-card__role fs-5">{{$class->hoten}}</span> 
+                  <div>
+                  <section>
+ 
+
+    </section>
+                  </div>
+                </div>
+
+                <p class="class-card__subjects truncate">
+                  {{ $lopHoc->chude }}
+                </p>
+
+                <div class="class-card_code">
+                  <span>Code: </span><span>{{ $lopHoc->code }}</span>
+                </div>
+              </div>
+              <button class="btn btn-primary mt-auto py-2">Go to Class</button>
+            </div>
+          </div>              
+          @endforeach
+        </div>
+      </div> 
     </section>
   </body>
 </html>

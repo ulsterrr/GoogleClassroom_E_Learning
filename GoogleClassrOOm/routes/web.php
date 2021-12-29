@@ -9,6 +9,11 @@ use App\Http\Controllers\QuenMatKhauController;
 use App\Http\Controllers\ThemLopController;
 use App\Http\Controllers\SuaLopController;
 use App\Http\Controllers\XoaLopController;
+use App\Http\Controllers\GianhaplopController;
+use App\Http\Controllers\HocSinhController;
+use App\Http\Controllers\LopHocController;
+
+
 
 Route::get('/', function () {
     return view('trang-chu');
@@ -16,9 +21,7 @@ Route::get('/', function () {
 
 Route::get('/giang-vien', [GiangVienController::class, 'dsLopHoc'])->name('giang-vien')->middleware('auth');
 
-Route::get('/hoc-sinh', function () {
-    return view('hoc-sinh');
-})->name('hoc-sinh');
+Route::get('/hoc-sinh',[HocSinhController::class,'getclass'])->name('hoc-sinh');
 
 Route::get('/dang-nhap', [DangNhapController::class, 'dangNhap'])->name('dang-nhap')->middleware('guest');
 Route::post('/dang-nhap', [DangNhapController::class, 'xulyDangNhap'])->name('xuly-dangnhap')->middleware('guest');
@@ -54,3 +57,7 @@ Route::post('sua-lop-hoc/{id}',[SuaLopController::class,'suaLop']
 )->name('sualophoc');
 
 Route::get('xoa-lop-hoc/{id}',[XoaLopController::class,'xoaLop'])->name('XoaLop');
+
+Route::post('gia-nhap-lop',[GianhaplopController::class,'gianhaplop'])->name('GiaNhapLop');
+
+Route::get('chi-tiet-lop-hoc/{id}',[LopHocController::class,'detailClass'])->name("ChiTietLopHoc");

@@ -209,15 +209,11 @@
 
           <div class="col-md-4 col-lg-3 mb-5">
             <div class="d-flex flex-column h-100">
-              <div>
-              <a href="{{ route('LopHoc',['id'=>$lopHoc->id]) }}">
                 <img
                   src="{{ $lopHoc->hinh }}"
                   class="img-cover h-50"
                   alt="Card background"
                 />
-              </a>
-              </div>
               <div class="class-card__body my-2">
                 <div
                   class="d-flex align-items-center justify-content-between mb-2"
@@ -254,7 +250,7 @@
                 </div>
               </div>
               
-              <a href="{{route('ChiTietLopHoc',['id'=>$lopHoc])}}" class="btn btn-primary mt-auto py-2">Go to Class</a>
+              <a href="{{ route('LopHoc',['id'=>$lopHoc->id]) }}" class="btn btn-primary mt-auto py-2">Go to Class</a>
             </div>
           </div>              
           @endforeach

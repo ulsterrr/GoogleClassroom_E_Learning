@@ -19,6 +19,6 @@ class DangKiController extends Controller
        $taiKhoan->maloaitk=2;
        $taiKhoan->hoatdong=0;
        $taiKhoan->save();
-       return View("dang-nhap");
+       return redirect()->route("dang-nhap");
     }
 }

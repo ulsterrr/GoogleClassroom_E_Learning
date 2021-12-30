@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\TaiKhoan;
+use App\Models\LopHoc;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Hash;
@@ -38,5 +39,9 @@ class HomeController extends Controller
         
         $taikhoan->save();
         return redirect()->route("dang-nhap");
+    }
+    function vaoLop($id){
+        $layInfoLop=LopHoc::find($id);
+        return view("lop-hoc", compact("layInfoLop"));
     }
 }

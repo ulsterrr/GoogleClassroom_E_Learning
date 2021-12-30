@@ -209,11 +209,13 @@
 
           <div class="col-md-4 col-lg-3 mb-5">
             <div class="d-flex flex-column h-100">
-              <img
-                src="{{ $lopHoc->hinh }}"
-                class="img-cover h-50"
-                alt="Card background"
-              />
+              <a href="{{ route('LopHoc',['id'=>$lopHoc->id]) }}">
+                <img
+                  src="{{ $lopHoc->hinh }}"
+                  class="img-cover h-50"
+                  alt="Card background"
+                />
+              </a>
               <div class="class-card__body my-2">
                 <div
                   class="d-flex align-items-center justify-content-between mb-2"

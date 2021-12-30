@@ -21,8 +21,8 @@ class GianhaplopController extends Controller
                 $gianhap->save();
                 return redirect()->route("hoc-sinh");
             }
-            return "đa gia nhap";
+            return "Đã tham gia";
         }
-        return "lop học không tồn tại";
+        return "Lớp học không tồn tại";
     }
 }

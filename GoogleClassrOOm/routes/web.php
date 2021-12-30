@@ -16,7 +16,7 @@ use App\Http\Controllers\LopHocController;
 
 
 Route::get('/', function () {
-    return view('trang-chu');
+    return view('dang-nhap');
 });
 
 Route::get('/giang-vien', [GiangVienController::class, 'dsLopHoc'])->name('giang-vien')->middleware('auth');

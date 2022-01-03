@@ -13,13 +13,16 @@ use App\Http\Controllers\GianhaplopController;
 use App\Http\Controllers\HocSinhController;
 use App\Http\Controllers\LopHocController;
 
+Route::group(['prefix'=>'/', 'middleware' => ['auth','giangvien']],function(){
+    Route::get('/giang-vien', [GiangVienController::class, 'dsLopHoc'])->name('giang-vien');
+});
 
 
 Route::get('/', function () {
     return view('dang-nhap');
 });
 
-Route::get('/giang-vien', [GiangVienController::class, 'dsLopHoc'])->name('giang-vien')->middleware('auth');
+//Route::get('/giang-vien', [GiangVienController::class, 'dsLopHoc'])->name('giang-vien')->middleware('auth');
 
 Route::get('/hoc-sinh',[HocSinhController::class,'getclass'])->name('hoc-sinh');
 

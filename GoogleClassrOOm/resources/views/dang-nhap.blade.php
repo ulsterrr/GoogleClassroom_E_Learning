@@ -32,9 +32,10 @@
    
     <div class="mt-5 col-10 col-md-7 col-lg-3 text-center mx-auto">
       <div class="board">
-        <img src="svgs/board.svg" alt="Board" />
+        <img src="{{ asset('svgs/board.svg') }}" alt="Board" />
       </div>
       <h1 class="fs-2 mb-3">Sign In</h1>
+      
       <form action="{{ route('xuly-dangnhap') }}" method="POST">
     @csrf
         <div class="mb-3">
@@ -53,6 +54,15 @@
             placeholder="Password"
           />
         </div>
+        <h6 style="color:Tomato;">
+        <?php
+	$message = Session::get('message');
+	if($message){
+		echo '<span class="text-alert">'.$message.'</span>';
+		Session::put('message',null);
+	}
+	?>
+        </h6>
         <div class="d-flex form-check mb-3">
           <input
             class="form-check-input me-2"

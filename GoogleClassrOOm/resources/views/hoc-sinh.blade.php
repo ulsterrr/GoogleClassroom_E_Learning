@@ -23,12 +23,35 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/reset.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/components.css') }}" />
+    <style>
+      .alert {
+        padding: 20px;
+        background-color: #f44336;
+        color: white;
+      }
+      
+      .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      
+      .closebtn:hover {
+        color: black;
+      }
+      </style>
 
     <!-- Scripts -->
     <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
     <script src="{{ asset('js/main.js') }}" defer></script>
   </head>
   <body>
+    
     <!-- Header -->
     <header
       class="
@@ -85,7 +108,7 @@
         </div>
       </div>
     </header>
-
+    
     <section class="px-4 space-header mb-4">
       <button
         type="button"
@@ -142,6 +165,18 @@
         </div>
       </div>
     </section>
+    <h6 style="color:Tomato;">
+      <?php
+      $message = Session::get('message');
+      $none = "'none';";
+      if($message){
+        echo '<div class="alert">
+              <span class="closebtn" onclick="this.parentElement.style.display='.$none.'">&times;</span>
+              <strong></strong>'.$message.'</div>';
+        Session::put('message',null);
+      }
+      ?>
+    </h6>
     <section>
       <div class="container">
         <div class="row">

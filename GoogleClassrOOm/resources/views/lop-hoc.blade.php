@@ -53,7 +53,7 @@
         <a class="d-flex align-items-center text-secondary" href="#"
           >Classwork</a
         >
-        <a class="d-flex align-items-center text-secondary" href="#">People</a>
+        <a class="d-flex align-items-center text-secondary" href="{{Route('dsSinhVien',['id'=>$layInfoLop->id])}}">People</a>
       </nav>
 
       <div class="popup ms-auto">
@@ -164,7 +164,8 @@
               </div>
               <span class="text-white">Thêm một nội dung vào lớp học của bạn</span>
             </button>
-
+            <form action="{{route('themBaiDang',['id'=>$layInfoLop->id])}}" method="post" enctype="multipart/form-data">
+              @csrf
             <div
               class="modal fade"
               id="modal-input"
@@ -192,8 +193,11 @@
                   </div>
 
                   <div class="px-3 mb-3">
-                    <div class="form-floating">
+                  <input type="text"placeholder="Tieu de" name="tieude">
+                  <input type="text"placeholder="Chu de" name="chude">
+                    <div class="form-floating" style="padding-top: 5px;" >
                       <textarea
+                      name="noidung"
                         class="form-control"
                         placeholder="Leave a comment here"
                         id="floatingTextarea2"
@@ -204,7 +208,7 @@
                       >
                     </div>
                   </div>
-
+                  <input type="datetime-local" name="deadline" style="margin:10px;">
                   <div class="modal-footer d-flex justify-content-between">
                     <div>
                       <label class="upload cursor-pointer" for="upload">
@@ -214,7 +218,7 @@
                           alt="Upload"
                         />
                       </label>
-                      <input id="upload" type="file" />
+                      <input     name="file" id="upload" type="file" />
                     </div>
                     <div class="d-flex">
                       <button
@@ -225,7 +229,7 @@
                         Hủy
                       </button>
                       <button
-                        type="button"
+                        type="submit"
                         class="btn btn-primary py-2"
                         data-bs-dismiss="modal"
                       >
@@ -236,7 +240,72 @@
                 </div>
               </div>
             </div>
+            </form>
 
+          @foreach($baidang as $value)
+            <ul>
+              <li class="bg-white px-3 py-4 rounded shadow">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="d-flex align-items-center mb-3">
+                    <img
+                      class="avatar me-3"
+                      src="https://avatars.dicebear.com/api/adventurer-neutral/123456.svg"
+                      alt="Avatar"
+                    />
+                    <h3 class="fs-5">{{$layInfoLop->TaiKhoan->hoten}}</h3>
+                  </div>
+                  <div class="btn btn-dark text-white">&#x2716;</div>
+                </div>
+
+                <p class="border-bottom pb-3">{{$value->noidung}}</p>
+
+                <div class="fw-bold text-decoration mb-4">
+                  Nhận xét về lớp học:
+                </div>
+
+                <ul class="mt-2 border-bottom">
+                  <li>
+                    <div
+                      class="
+                        d-flex
+                        align-items-center
+                        justify-content-between
+                        mb-3
+                      "
+                    >
+                      <div class="d-flex align-items-center">
+                        <img
+                          class="avatar me-3"
+                          src="https://avatars.dicebear.com/api/adventurer-neutral/12345.svg"
+                          alt="Avatar"
+                        />
+                        <div>
+                          <h3 class="fs-6">Student</h3>
+                          <time class="text-black-50">10 th 11</time>
+                        </div>
+                      </div>
+                      <div class="btn btn-dark text-white">&#x2716;</div>
+                    </div>
+                    <p>Hi there!</p>
+                  </li>
+                </ul>
+
+                <form class="d-flex align-items-center mt-4">
+                  <img
+                    class="avatar me-3"
+                    src="https://avatars.dicebear.com/api/adventurer-neutral/123456.svg"
+                    alt="Avatar"
+                  />
+                  <input
+                    class="flex-grow-1 border me-2 p-2"
+                    placeholder="Write your comment..."
+                  />
+                  <button type="submit" class="btn btn-primary">Send</button>
+                </form>
+              </li>
+            </ul>
+
+@endforeach
             <ul>
               <li class="bg-white px-3 py-4 rounded shadow">
                 <div class="d-flex align-items-center justify-content-between">

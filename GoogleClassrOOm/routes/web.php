@@ -67,3 +67,7 @@ Route::get('chi-tiet-lop-hoc/{id}',[LopHocController::class,'detailClass'])->nam
 
 Route::get('lop-hoc/{id}',[HomeController::class,'vaoLop'])->name('LopHoc');
 //Route::post('lop-hoc/{id}',[HomeController::class,'suaLop'])->name('sualophoc');
+
+Route::get('hoc-sinh-trong-lop/{id}',[LopHocController::class,'danhSachSinhVien'])->name('dsSinhVien');
+
+Route::post('them-bai-dang/{id}',[LopHocController::class,'themBaiDang'])->name('themBaiDang');

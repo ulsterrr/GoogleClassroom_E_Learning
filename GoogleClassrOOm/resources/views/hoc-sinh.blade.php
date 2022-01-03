@@ -216,7 +216,7 @@
                   <span>Code: </span><span>{{ $lopHoc->code }}</span>
                 </div>
               </div>
-              <button class="btn btn-primary mt-auto py-2">Go to Class</button>
+              <a href="{{ route('LopHoc',['id'=>$lopHoc->id]) }}" class="btn btn-primary mt-auto py-2">Go to Class</a>
             </div>
           </div>              
           @endforeach

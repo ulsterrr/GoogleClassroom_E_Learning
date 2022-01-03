@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\TaiKhoan;
 use App\Models\LopHoc;
 use Illuminate\Http\Request;
-
+use App\Models\LopHocThongBao; 
 use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
@@ -42,6 +42,7 @@ class HomeController extends Controller
     }
     function vaoLop($id){
         $layInfoLop=LopHoc::find($id);
-        return view("lop-hoc", compact("layInfoLop"));
+        $baidang=LopHocThongBao::where('lophocid',$id)->get();
+        return view("lop-hoc", compact("layInfoLop","baidang"));
     }
 }

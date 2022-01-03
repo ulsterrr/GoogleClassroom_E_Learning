@@ -11,7 +11,7 @@ class QuenMatKhauController extends Controller
         $taiKhoan = TaiKhoan::where('sdt',$req->Phone)->first();
         
         if(!empty($taiKhoan)){
-            $taiKhoan->matkhau=$req->newpass;
+            $taiKhoan->password=Hash::make($req->newpass);
         }
         $taiKhoan->save();
         return redirect()->route("dang-nhap");

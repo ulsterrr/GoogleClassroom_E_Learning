@@ -208,6 +208,7 @@
                       >
                     </div>
                   </div>
+                  <h5 style="padding-left:10px;">Hạn nộp</h5>
                   <input type="datetime-local" name="deadline" style="margin:10px;">
                   <div class="modal-footer d-flex justify-content-between">
                     <div>
@@ -243,7 +244,7 @@
             </form>
 
           @foreach($baidang as $value)
-            <ul>
+            <ul style="padding-bottom:20px;">
               <li class="bg-white px-3 py-4 rounded shadow">
                 <div class="d-flex align-items-center justify-content-between">
                   <div class="d-flex align-items-center mb-3">

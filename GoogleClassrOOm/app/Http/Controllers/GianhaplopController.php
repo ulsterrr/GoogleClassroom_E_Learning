@@ -17,7 +17,7 @@ class GianhaplopController extends Controller
                 $gianhap= new YeuCauLopHoc;
                 $gianhap->taikhoanid=auth()->user()->id;
                 $gianhap->lophocid=$lophoc->id;
-                $gianhap->trangthai=1;
+                $gianhap->trangthai=0;
                 $gianhap->save();
                 return redirect()->route("hoc-sinh");
             }

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\LopHoc;
 use App\Models\LopHocThongBao;
-
+use App\Models\YeuCauLopHoc;
+use App\Models\TaiKhoan;
 class LopHocController extends Controller
 {
     function detailClass($id){
@@ -15,7 +16,8 @@ class LopHocController extends Controller
     function danhSachSinhVien($id){
         //dd($id);
         $lophoc=LopHoc::find($id);
-        return view('danh-sach-sinhvien-class',compact('lophoc'));
+        $dsHocvien=YeuCauLopHoc::where('lophocid',$id)->get();
+        return view('danh-sach-cho',compact('lophoc','dsHocvien'));
     }
     function themBaiDang(Request $request,$id){
         $baidang= new LopHocThongBao;
@@ -28,5 +30,36 @@ class LopHocController extends Controller
         $baidang->lophocid=$id;
         $baidang->save();
         return back();
+    }
+    public function confirmstudent($idtaikhoan,$idlop)
+    {
+        $confirm=YeuCauLopHoc::where([['lophocid',$idlop],['taikhoanid',$idtaikhoan]])->first();
+        $confirm->trangthai=1;
+        $confirm->save();
+        return back();
+
+    }
+    public function deleteStudent($idtaikhoan,$idlop)
+    {
+        $delete=YeuCauLopHoc::where([['lophocid',$idlop],['taikhoanid',$idtaikhoan]])->first();
+        $delete->delete();
+        return back();
+    }
+    public function addstudentbymail(Request $req,$id){
+        $add = TaiKhoan::where('email',$req->addmail)->first();
+        if(!empty($add)){
+            $checkYeucau=YeuCauLopHoc::where([['lophocid',$id],['taikhoanid', $add->id]])->first();
+            if(empty($checkYeucau)){
+                $yeucau=new YeuCauLopHoc;
+                $yeucau ->taikhoanid =  $add->id;
+                $yeucau ->lophocid = $id;
+                $yeucau ->trangthai=1;
+                $yeucau->save();
+                return back()->with('success','Them thanh cong');
+            }else{
+                return back()->with('failed','Da tham gia');
+            }
+        }
+        return back()->with('error','Mail không tồn tại');
     }
 }

@@ -68,6 +68,10 @@ Route::get('chi-tiet-lop-hoc/{id}',[LopHocController::class,'detailClass'])->nam
 Route::get('lop-hoc/{id}',[HomeController::class,'vaoLop'])->name('LopHoc');
 //Route::post('lop-hoc/{id}',[HomeController::class,'suaLop'])->name('sualophoc');
 
-Route::get('hoc-sinh-trong-lop/{id}',[LopHocController::class,'danhSachSinhVien'])->name('dsSinhVien');
+Route::get('danh-sach-cho/{id}',[LopHocController::class,'danhSachSinhVien'])->name('dsSinhVien');
+Route::get('confirmStudent/{idtaikhoan}/{idlop}',[LopHocController::class,'confirmstudent'])->name('confirmstudent');
+Route::get('deleteStudent/{idtaikhoan}/{idlop}',[LopHocController::class,'deleteStudent'])->name('deletestudent');
 
 Route::post('them-bai-dang/{id}',[LopHocController::class,'themBaiDang'])->name('themBaiDang');
+
+Route::post('addmail/{id}',[LopHocController::class,'addstudentbymail'])->name('AddMail');

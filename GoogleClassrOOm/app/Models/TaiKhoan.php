@@ -12,7 +12,7 @@ class TaiKhoan extends Authenticatable
     protected $table = 'taikhoan';
 
     public function loaiTaiKhoan(){
-        return $this->belongsToMany('App\Models\LoaiTaiKhoan','maloaitk','id');
+        return $this->belongsTo('App\Models\LoaiTaiKhoan','maloaitk','id');
     }
     public function coLopHoc(){
         return $this->belongsToMany('App\Models\LopHoc',

@@ -30,11 +30,11 @@ class DangNhapController extends Controller
             return redirect()->route('hoc-sinh')->with(compact('taikhoan'));
         }*/
         $credentials = $req->only('username', 'password');
+
         $taikhoan = TaiKhoan::where('username', $req->username)->first();
+        
         if (Auth::attempt($credentials)) {
             // Chứng thực thành công
-            
-        
             if ($taikhoan->maloaitk == 1) {
             return redirect()->route('giang-vien')->with(compact('taikhoan'));
             }

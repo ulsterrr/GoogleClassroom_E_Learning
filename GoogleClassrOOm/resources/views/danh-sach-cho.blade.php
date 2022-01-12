@@ -16,7 +16,22 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <!-- Script -->
+    <script>
+    var deleteLinks = document.querySelectorAll(".delete");
 
+    for (var i = 0; i <script deleteLinks.length; i++) {
+    deleteLinks[i].addEventListener("click", function (event) {
+    event.preventDefault();
+
+    var choice = confirm(this.getAttribute("data-confirm"));
+
+    if (choice) {
+      window.location.href = this.getAttribute("href");
+    }
+    });
+    }
+    </script>
     <!-- Styles -->
     <link rel="stylesheet" href=   "{{ asset('css/bootstrap.min.css') }}"  />
     <link rel="stylesheet" href=  "{{ asset('css/common.css') }}" />
@@ -96,7 +111,7 @@
           <div class="d-flex align-items-center">
             <div class="avatar me-3">
               <img
-                src="https://avatars.dicebear.com/api/adventurer-neutral/123456.svg"
+                src="{{ asset('images/'.$lophoc->TaiKhoan->hinhdaidien) }}"
                 alt="Avatar"
               />
             </div>
@@ -117,7 +132,7 @@
 
             <div class="avatar me-3">
               <img
-                src="https://avatars.dicebear.com/api/adventurer-neutral/123456.svg"
+                src="{{ asset('images/'.$hocvien->TaiKhoan->hinhdaidien) }}"
                 alt="Avatar"
               />
             </div>
@@ -126,6 +141,7 @@
           </div>
      
         </div>
+      <br>
         @endif
         @endforeach
       </div>

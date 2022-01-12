@@ -14,7 +14,7 @@ class DangKiController extends Controller
        $taiKhoan->hoten=$req->Fullname;
        $taiKhoan->email=$req->email;
        $taiKhoan->sdt=$req->Phone;
-       $taiKhoan->hinhdaidien="";
+       $taiKhoan->hinhdaidien="df_account.svg";
        $taiKhoan->token="";
        $taiKhoan->maloaitk=2;
        $taiKhoan->hoatdong=0;

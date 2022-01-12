@@ -77,7 +77,7 @@
         >
           <img
             class="popup__avatar cursor-pointer"
-            src="https://avatars.dicebear.com/api/adventurer-neutral/123456.svg"
+            src="{{ asset('images/'.auth()->user()->hinhdaidien) }}"
             alt="Avatar"
           />
           <div class="d-flex gap-3">
@@ -86,7 +86,7 @@
           </div>
           <p class="popup__email">{{ auth()->user()->email }}</p>
           <a class="popup__link" href="{{ route('youraccount') }}" target="_blank"
-            >Manage your account</a
+            >Quản lý tài khoản</a
           >
           <div class="popup__logout mt-auto cursor-pointer"><a class="btn btn-primary" href="{{ route('dang-xuat') }}">Log Out
           </a></div>
@@ -115,7 +115,7 @@
         <h1 class="banner__class">{{ $layInfoLop->tenlop }}</h1>
         <div class="fs-4">
           <span>Teacher: </span
-          ><span class="banner__teacher">Teacher name</span>
+          ><span class="banner__teacher">{{$layInfoLop->TaiKhoan->hoten}}</span>
         </div>
         <div class="fs-4">
           <span>Subject: </span
@@ -131,9 +131,9 @@
         <div class="row">
           <div class="col col-lg-3 d-none d-lg-block">
             <div class="border pt-4 px-4 pb-5">
-              <div class="mb-4">Upcoming</div>
-              <p class="mb-5">Woohoo, no work due soon!</p>
-              <a href="#" class="d-block text-success text-end">View All</a>
+              <div class="mb-4">Sắp đến hạn</div>
+              <p class="mb-5">Tuyệt vời, không có bài tập nào sắp đến hạn!</p>
+              <a href="#" class="d-block text-success text-end">Xem tất cả</a>
             </div>
           </div>
 
@@ -193,8 +193,8 @@
                   </div>
 
                   <div class="px-3 mb-3">
-                  <input type="text"placeholder="Tieu de" name="tieude">
-                  <input type="text"placeholder="Chu de" name="chude">
+                  <input type="text" placeholder="Tiêu đề" name="tieude">
+                  <input type="text" placeholder="Chủ đề" name="chude">
                     <div class="form-floating" style="padding-top: 5px;" >
                       <textarea
                       name="noidung"
@@ -219,7 +219,7 @@
                           alt="Upload"
                         />
                       </label>
-                      <input     name="file" id="upload" type="file" />
+                      <input name="file" id="upload" type="file" />
                     </div>
                     <div class="d-flex">
                       <button

@@ -199,7 +199,7 @@
                 <div
                   class="d-flex align-items-center justify-content-between mb-2"
                 >
-                  <span class="class-card__role fs-5">{{$class->hoten}}</span> 
+                  <span class="class-card__role fs-5">{{$lopHoc->TaiKhoan->hoten}}</span> 
                   <div>
                   <section>
  

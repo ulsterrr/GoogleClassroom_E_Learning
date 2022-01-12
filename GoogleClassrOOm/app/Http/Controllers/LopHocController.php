@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+
 use Illuminate\Http\Request;
 use App\Models\LopHoc;
 use App\Models\LopHocThongBao;
@@ -24,8 +26,7 @@ class LopHocController extends Controller
         $baidang->tieude=$request->tieude;
         $baidang->chude=$request->chude;
         $baidang->noidung=$request->noidung;
-        $baidang->thoihan=$request->deadline;
-        $baidang->thoigian="";
+        $baidang->thoihan = Carbon::parse($request->deadline);
         $baidang->file="";
         $baidang->lophocid=$id;
         $baidang->save();
@@ -55,9 +56,9 @@ class LopHocController extends Controller
                 $yeucau ->lophocid = $id;
                 $yeucau ->trangthai=1;
                 $yeucau->save();
-                return back()->with('success','Them thanh cong');
+                return back()->with('success','Thêm thành công');
             }else{
-                return back()->with('failed','Da tham gia');
+                return back()->with('failed','Đã tham gia');
             }
         }
         return back()->with('error','Mail không tồn tại');

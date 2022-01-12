@@ -91,7 +91,7 @@
           </li>
           <li class="dashboard__info-item">
             <span class="dashboard__info-item-left">Mật khẩu</span>
-            <span>{{ auth()->user()->password }}</span>
+            <span>**********</span>
           </li>
           <li class="dashboard__info-item">
             <span class="dashboard__info-item-left">Họ tên</span>
@@ -106,16 +106,8 @@
             <span>{{ auth()->user()->sdt }}</span>
           </li>
           <li class="dashboard__info-item">
-            <span class="dashboard__info-item-left">Ảnh đại diện</span>
-            <img
-              src="https://avatars.dicebear.com/api/adventurer-neutral/123456.svg"
-              alt="Avatar"
-              class="avatar"
-            />
-          </li>
-          <li class="dashboard__info-item">
             <span class="dashboard__info-item-left">Loại tài khoản</span>
-            <span>Giáo viên</span>
+            <span>{{ auth()->user()->loaiTaiKhoan->tenloaitk }}</span>
           </li>
           <li class="dashboard__info-item">
             <span class="dashboard__info-item-left">Hoạt động</span>

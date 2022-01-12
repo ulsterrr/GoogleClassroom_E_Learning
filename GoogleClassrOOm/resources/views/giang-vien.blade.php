@@ -16,7 +16,22 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
       rel="stylesheet"
     />
-
+    <!-- Script -->
+    <script>
+      var deleteLinks = document.querySelectorAll(".delete");
+  
+      for (var i = 0; i <script deleteLinks.length; i++) {
+      deleteLinks[i].addEventListener("click", function (event) {
+      event.preventDefault();
+  
+      var choice = confirm(this.getAttribute("data-confirm"));
+  
+      if (choice) {
+        window.location.href = this.getAttribute("href");
+      }
+      });
+      }
+    </script>
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
@@ -219,9 +234,9 @@
                   class="d-flex align-items-center justify-content-between mb-2"
                 >
                   <h5 class="class-card__classname">{{ $lopHoc->tenlop }}</h5>
-                  <a href="{{ route('XoaLop',['id'=>$lopHoc->id]) }}"><div class="btn btn-dark fs-6">&#x2716;</div></a>
+                  <a onclick="return confirm('Bạn có chắc xóa lớp {{ $lopHoc->tenlop }}?')" href="{{ route('XoaLop',['id'=>$lopHoc->id]) }}" class="delete" data-confirm="Bạn có chắc muốn xóa lớp này?"><div class="btn btn-dark fs-6">&#x2716;</div></a>
                 </div>
-
+            
                 <div
                   class="d-flex align-items-center justify-content-between mb-2"
                 >
@@ -257,5 +272,6 @@
         </div>
       </div> 
     </section>
+    
   </body>
 </html>

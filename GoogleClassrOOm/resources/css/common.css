@@ -17,7 +17,7 @@
 .avatar {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: 70%;
 }
 
 .avatar > img {
@@ -53,7 +53,7 @@
 }
 
 .space-header {
-  margin-top: 120px;
+  margin-top: 90px;
 }
 
 .cursor-pointer {

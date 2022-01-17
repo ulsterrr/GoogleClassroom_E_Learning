@@ -27,7 +27,12 @@
     <!-- Scripts -->
     <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
     <script src="{{ asset('js/main.js') }}" defer></script>
-
+    <script>
+      var loadFile = function(event) {
+        var image = document.getElementById('output');
+        image.src = URL.createObjectURL(event.target.files[0]);
+      };
+      </script>
   </head>
   <body>
     <!-- Header -->
@@ -49,11 +54,11 @@
       </a>
 
       <nav class="d-flex align-items-center gap-3">
-        <a class="d-flex align-items-center text-secondary" href="#">Stream</a>
+        <a class="d-flex align-items-center text-secondary" href="#">Bảng tin</a>
         <a class="d-flex align-items-center text-secondary" href="#"
-          >Classwork</a
+          >Bài tập</a
         >
-        <a class="d-flex align-items-center text-secondary" href="{{Route('dsSinhVien',['id'=>$layInfoLop->id])}}">People</a>
+        <a class="d-flex align-items-center text-secondary" href="{{Route('dsSinhVien',['id'=>$layInfoLop->id])}}">Mọi người</a>
       </nav>
 
       <div class="popup ms-auto">
@@ -114,15 +119,15 @@
       >
         <h1 class="banner__class">{{ $layInfoLop->tenlop }}</h1>
         <div class="fs-4">
-          <span>Teacher: </span
+          <span>Giảng viên: </span
           ><span class="banner__teacher">{{$layInfoLop->TaiKhoan->hoten}}</span>
         </div>
         <div class="fs-4">
-          <span>Subject: </span
+          <span>Chủ đề: </span
           ><span class="banner__subject">{{ $layInfoLop->chude }}</span>
         </div>
         <div class="fs-4">
-          <span>Room: </span><span class="banner__room">{{ $layInfoLop->code }}</span>
+          <span>Mã lớp: </span><span class="banner__room">{{ $layInfoLop->code }}</span>
         </div>
       </section>
 
@@ -219,8 +224,17 @@
                           alt="Upload"
                         />
                       </label>
-                      <input name="file" id="upload" type="file" />
+                      <input
+                      id="upload"
+                      name="image"
+                      type="file"
+                      class="form-control py-3"
+                      placeholder="{{ asset('svgs/upload.svg') }}"
+                      onchange="loadFile(event)"
+                      />
+                      
                     </div>
+                    <p><img id="output" width="200" /></p>
                     <div class="d-flex">
                       <button
                         type="button"
@@ -250,16 +264,20 @@
                   <div class="d-flex align-items-center mb-3">
                     <img
                       class="avatar me-3"
-                      src="https://avatars.dicebear.com/api/adventurer-neutral/123456.svg"
+                      src="{{ asset('images/'.auth()->user()->hinhdaidien) }}"
                       alt="Avatar"
                     />
                     <h3 class="fs-5">{{$layInfoLop->TaiKhoan->hoten}}</h3>
                   </div>
-                  <div class="btn btn-dark text-white">&#x2716;</div>
+                  <a class="btn btn-dark text-white" onclick="return confirm('Bạn có chắc xóa bài viết này?')" href="{{ route('XoaBaiDang',['id'=>$value->id]) }}" class="delete" data-confirm="Bạn có chắc muốn xóa lớp này?">&#x2716;</a>
+                    
+                  
                 </div>
 
                 <p class="border-bottom pb-3">{{$value->noidung}}</p>
-
+                <p class="border-bottom pb-3"><img
+                  src="{{ asset('images/'.$value->file) }}"
+                /></p>
                 <div class="fw-bold text-decoration mb-4">
                   Nhận xét về lớp học:
                 </div>
@@ -281,13 +299,13 @@
                           alt="Avatar"
                         />
                         <div>
-                          <h3 class="fs-6">Student</h3>
+                          <h3 class="fs-6">Học Sinh</h3>
                           <time class="text-black-50">10 th 11</time>
                         </div>
                       </div>
                       <div class="btn btn-dark text-white">&#x2716;</div>
-                    </div>
-                    <p>Hi there!</p>
+                      </div>
+                    <p>Xin chào!</p>
                   </li>
                 </ul>
 
@@ -299,75 +317,14 @@
                   />
                   <input
                     class="flex-grow-1 border me-2 p-2"
-                    placeholder="Write your comment..."
+                    placeholder="Thêm nhận xét trong lớp học..."
                   />
-                  <button type="submit" class="btn btn-primary">Send</button>
+                  <button type="submit" class="btn btn-primary">Gửi</button>
                 </form>
               </li>
             </ul>
 
 @endforeach
-            <ul>
-              <li class="bg-white px-3 py-4 rounded shadow">
-                <div class="d-flex align-items-center justify-content-between">
-                  <div class="d-flex align-items-center mb-3">
-                    <img
-                      class="avatar me-3"
-                      src="https://avatars.dicebear.com/api/adventurer-neutral/123456.svg"
-                      alt="Avatar"
-                    />
-                    <h3 class="fs-5">Teacher</h3>
-                  </div>
-                  <div class="btn btn-dark text-white">&#x2716;</div>
-                </div>
-
-                <p class="border-bottom pb-3">Hi all my students!!</p>
-
-                <div class="fw-bold text-decoration mb-4">
-                  Nhận xét về lớp học:
-                </div>
-
-                <ul class="mt-2 border-bottom">
-                  <li>
-                    <div
-                      class="
-                        d-flex
-                        align-items-center
-                        justify-content-between
-                        mb-3
-                      "
-                    >
-                      <div class="d-flex align-items-center">
-                        <img
-                          class="avatar me-3"
-                          src="https://avatars.dicebear.com/api/adventurer-neutral/12345.svg"
-                          alt="Avatar"
-                        />
-                        <div>
-                          <h3 class="fs-6">Student</h3>
-                          <time class="text-black-50">10 th 11</time>
-                        </div>
-                      </div>
-                      <div class="btn btn-dark text-white">&#x2716;</div>
-                    </div>
-                    <p>Hi there!</p>
-                  </li>
-                </ul>
-
-                <form class="d-flex align-items-center mt-4">
-                  <img
-                    class="avatar me-3"
-                    src="https://avatars.dicebear.com/api/adventurer-neutral/123456.svg"
-                    alt="Avatar"
-                  />
-                  <input
-                    class="flex-grow-1 border me-2 p-2"
-                    placeholder="Write your comment..."
-                  />
-                  <button type="submit" class="btn btn-primary">Send</button>
-                </form>
-              </li>
-            </ul>
           </div>
         </div>
       </section>

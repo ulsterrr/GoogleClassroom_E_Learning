@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Student</title>
+    <title>Học Sinh</title>
 
     <!-- Tab icon -->
     <link rel="icon" href="{{ asset('svgs/board.svg') }}" />
@@ -18,6 +18,7 @@
     />
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
@@ -99,24 +100,28 @@
           </div>
           <p class="popup__email">{{ auth()->user()->email }}</p>
           <a class="popup__link" href="{{ route('youraccount') }}" target="_blank"
-            >Manage your account</a
+            >Quản lý Tài Khoản</a
           >
-          <div class="popup__logout mt-auto cursor-pointer"><a class="btn btn-primary" href="{{ route('dang-xuat') }}">Log Out
+          <div class="popup__logout mt-auto cursor-pointer"><a class="btn btn-primary" href="{{ route('dang-xuat') }}">Đăng xuất
           </a></div>
 
           <div class="popup__pseudo"></div>
         </div>
       </div>
     </header>
-    
-    <section class="px-4 space-header mb-4">
+    <style>
+      .p {
+        margin-top: 85px;
+      }
+      </style>
+    <section class="px-4 p mb-4">
       <button
         type="button"
         class="btn btn-dark"
         data-bs-toggle="modal"
         data-bs-target="#modal-student"
       >
-        Find class
+      <i class="fa fa-plus" ></i>
       </button>
 
       <div
@@ -129,7 +134,7 @@
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Class Code</h5>
+              <h5 class="modal-title">Nhập mã lớp</h5>
               <button
                 type="button"
                 class="btn-close"
@@ -141,7 +146,7 @@
             <form class="" action="{{Route('GiaNhapLop')}}" method="post">
               @csrf
               <div class="mx-3 my-3">
-                <input name="classcode" class="form-control py-3" placeholder="Class code" />
+                <input name="classcode" class="form-control py-3" placeholder="Mã lớp..." />
               </div>
 
               <div class="modal-footer">
@@ -150,14 +155,14 @@
                   class="btn btn-secondary py-2"
                   data-bs-dismiss="modal"
                 >
-                  Cancel
+                  Hủy
                 </button>
                 <button
                   type="submit"
                   class="btn btn-primary py-2"
                   data-bs-dismiss="modal"
                 >
-                  Find
+                  Gia Nhập
                 </button>
               </div>
             </form>

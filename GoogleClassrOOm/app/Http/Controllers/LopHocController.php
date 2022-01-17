@@ -22,12 +22,14 @@ class LopHocController extends Controller
         return view('danh-sach-cho',compact('lophoc','dsHocvien'));
     }
     function themBaiDang(Request $request,$id){
+        $name = $request->file('image')->getClientOriginalName();
+        $request->file('image')->storeAs('images', $name);
         $baidang= new LopHocThongBao;
         $baidang->tieude=$request->tieude;
         $baidang->chude=$request->chude;
         $baidang->noidung=$request->noidung;
         $baidang->thoihan = Carbon::parse($request->deadline);
-        $baidang->file="";
+        $baidang->file= $name;
         $baidang->lophocid=$id;
         $baidang->save();
         return back();
@@ -62,5 +64,10 @@ class LopHocController extends Controller
             }
         }
         return back()->with('error','Mail không tồn tại');
+    }
+    function xoaBaiDang($id){
+        $baiviet=LopHocThongBao::find($id);
+        $baiviet->delete();
+        return back()->with('mess','Xóa thành công');
     }
 }

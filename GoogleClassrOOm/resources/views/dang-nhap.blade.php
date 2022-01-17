@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign In</title>
+    <title>Đăng nhập</title>
 
     <!-- Tab icon -->
     <link rel="icon" href="{{ asset('svgs/board.svg') }}" />
@@ -34,7 +34,7 @@
       <div class="board">
         <img src="{{ asset('svgs/board.svg') }}" alt="Board" />
       </div>
-      <h1 class="fs-2 mb-3">Sign In</h1>
+      <h1 class="fs-2 mb-3">Đăng Nhập</h1>
       
       <form action="{{ route('xuly-dangnhap') }}" method="POST">
     @csrf
@@ -43,7 +43,7 @@
             type=""
             class="form-control py-3"
             name="username"
-            placeholder="Username"
+            placeholder="Tên đăng nhập"
           />
         </div>
         <div class="mb-3">
@@ -51,7 +51,7 @@
             type="password"
             class="form-control py-3"
             name="password"
-            placeholder="Password"
+            placeholder="Mật khẩu"
           />
         </div>
         <h6 style="color:Tomato;">
@@ -71,14 +71,14 @@
             id="flexCheckDefault"
           />
           <label class="form-check-label" for="flexCheckDefault">
-            Remember me
+            Ghi nhớ đăng nhập
           </label>
         </div>
         <button type="submit" class="w-100 py-3 btn btn-primary">
-          Sign In
+          Đăng Nhập
         </button>
-        <div class="my-2">OR</div>
-        <a href="{{ route('quenMK') }}" class="d-block mb-3 text-primary">Forgot password?</a>
+        <div class="my-2">hoặc</div>
+        <a href="{{ route('quenMK') }}" class="d-block mb-3 text-primary">Quên mật khẩu?</a>
         </form>
         <button  class="w-100 py-3 btn btn-dark"><a style="color:white;text-decoration:none " href="{{ route('DangKi') }}">Sign Up</a></button>
     </div>

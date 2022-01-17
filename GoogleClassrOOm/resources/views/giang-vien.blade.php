@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Teacher</title>
+    <title>Giảng viên</title>
 
     <!-- Tab icon -->
     <link rel="icon" href="{{ asset('svgs/board.svg') }}" />
@@ -17,21 +17,6 @@
       rel="stylesheet"
     />
     <!-- Script -->
-    <script>
-      var deleteLinks = document.querySelectorAll(".delete");
-  
-      for (var i = 0; i <script deleteLinks.length; i++) {
-      deleteLinks[i].addEventListener("click", function (event) {
-      event.preventDefault();
-  
-      var choice = confirm(this.getAttribute("data-confirm"));
-  
-      if (choice) {
-        window.location.href = this.getAttribute("href");
-      }
-      });
-      }
-    </script>
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
@@ -39,7 +24,11 @@
     <link rel="stylesheet" href="{{ asset('css/reset.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/components.css') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <style>
+      p.ex1 {
+        margin-top: 80px;
+      }
+    </style>
     <!-- Scripts -->
     <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
     <script src="{{ asset('js/main.js') }}" defer></script>
@@ -77,10 +66,12 @@
         bg-white
       "
     >
-      <a href="#" class="logo me-3">
-        <img src="{{ asset('svgs/logo.svg') }}" alt="Logo" />
-      </a>
-
+      <div>
+        <img src="{{ asset('svgs/logo.svg') }}" alt="Logo" alt="Google" height="34px" width="78px"> 
+        <span class="text-muted"><font size="+1">Lớp học</font></span>
+        
+      </div>
+      
       <div class="popup ms-auto">
         <div class="avatar me-3 cursor-pointer">
           <img
@@ -111,9 +102,9 @@
           </div>
           <p class="popup__email">{{ auth()->user()->email }}</p>
           <a class="popup__link" href="{{ route('youraccount') }}" target="_blank"
-            >Manage your account</a
+            >Quản lý Tài Khoản</a
           >
-          <div class="popup__logout mt-auto cursor-pointer"><a class="btn btn-primary" href="{{ route('dang-xuat') }}">Log Out
+          <div class="popup__logout mt-auto cursor-pointer"><a class="btn btn-primary" href="{{ route('dang-xuat') }}">Đăng xuất Tài Khoản
           </a></div>
 
           <div class="popup__pseudo"></div>
@@ -121,15 +112,19 @@
       </div>
      
     </header>
-
-    <section class="px-4 space-header mb-4">
+    <style>
+      .p {
+        margin-top: 85px;
+      }
+      </style>
+    <section class="px-4 p mb-4">
       <button
         type="button"
-        class="btn btn-dark"
+        class="btn btn-success"
         data-bs-toggle="modal"
         data-bs-target="#modal-teacher"
       >
-  Thêm lớp
+      Thêm lớp
         
       </button>
 
@@ -207,7 +202,7 @@
             <a class="btn btn-danger" href="{{ route('giang-vien') }}">Hủy
             </a>
             <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
-              Add
+              Thêm
             </button>
           </div>
         </form>
@@ -234,18 +229,18 @@
                   class="d-flex align-items-center justify-content-between mb-2"
                 >
                   <h5 class="class-card__classname">{{ $lopHoc->tenlop }}</h5>
-                  <a onclick="return confirm('Bạn có chắc xóa lớp {{ $lopHoc->tenlop }}?')" href="{{ route('XoaLop',['id'=>$lopHoc->id]) }}" class="delete" data-confirm="Bạn có chắc muốn xóa lớp này?"><div class="btn btn-dark fs-6">&#x2716;</div></a>
+                  <a onclick="return confirm('Bạn có chắc xóa lớp {{ $lopHoc->tenlop }}?')" href="{{ route('XoaLop',['id'=>$lopHoc->id]) }}" class="delete" data-confirm="Bạn có chắc muốn xóa lớp này?"><div class="btn btn-secondary fs-6">&#x2716;</div></a>
                 </div>
             
                 <div
                   class="d-flex align-items-center justify-content-between mb-2"
                 >
-                  <span class="class-card__role fs-5">Teacher</span>  
+                  <span class="class-card__role fs-5">{{ auth()->user()->hoten }}</span>  
                   <div>
                   <section>
       <button
         type="button"
-        class="btn btn-dark"
+        class="btn btn-info"
       >
 
    

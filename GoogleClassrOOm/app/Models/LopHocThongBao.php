@@ -21,4 +21,11 @@ class LopHocThongBao extends Model
                                 'thongbaoid','taikhoanid',
                                 'id','id');
     }
+    public function dsBinhLuan()
+    {
+        return $this->hasMany('App\Models\LopHocBinhLuan','thongbaoid','id');
+    }
+    public function TaiKhoan(){
+        return $this->belongsTo('App\Models\TaiKhoan','taikhoanid','id');
+    }
 }

@@ -53,7 +53,7 @@
             <input
               type="text"
               class="form-control py-3"
-              placeholder="Phone Number"
+              placeholder="Phone Number or Email"
               name="Phone"
             />
           </div>

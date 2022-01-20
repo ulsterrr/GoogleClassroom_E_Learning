@@ -199,7 +199,8 @@
 
                   <div class="px-3 mb-3">
                   <input type="text" placeholder="Tiêu đề" name="tieude">
-                  <input type="text" placeholder="Chủ đề" name="chude">
+                  
+                  <!-- <input type="text" placeholder="Chủ đề" name="chude"> -->
                     <div class="form-floating" style="padding-top: 5px;" >
                       <textarea
                       name="noidung"
@@ -212,6 +213,20 @@
                         >Nội dung</label
                       >
                     </div>
+                    <select name="chude">
+                      <option value="Bài tập">
+                          Bài Tập
+                     </option>
+                     <option value="Thông báo">
+                          Thông báo
+                     </option>
+                     <option value="Kiểm tra">
+                         Kiểm tra
+                     </option>
+                     <option value="Bài học">
+                         Bài học
+                     </option>
+                    </select>
                   </div>
                   <h5 style="padding-left:10px;">Hạn nộp</h5>
                   <input type="datetime-local" name="deadline" style="margin:10px;">
@@ -267,7 +282,7 @@
                       src="{{ asset('images/'.auth()->user()->hinhdaidien) }}"
                       alt="Avatar"
                     />
-                    <h3 class="fs-5">{{$layInfoLop->TaiKhoan->hoten}}</h3>
+                    <h3 class="fs-5">{{$value->TaiKhoan->hoten}}</h3>
                   </div>
                   <a class="btn btn-dark text-white" onclick="return confirm('Bạn có chắc xóa bài viết này?')" href="{{ route('XoaBaiDang',['id'=>$value->id]) }}" class="delete" data-confirm="Bạn có chắc muốn xóa lớp này?">&#x2716;</a>
                     
@@ -275,14 +290,15 @@
                 </div>
 
                 <p class="border-bottom pb-3">{{$value->noidung}}</p>
-                <p class="border-bottom pb-3"><img
-                  src="{{ asset('images/'.$value->file) }}"
-                /></p>
+                <p class="border-bottom pb-3"><a
+                  href="{{ asset('images/'.$value->file) }}"
+                />{{$value->file}}</a></p>
                 <div class="fw-bold text-decoration mb-4">
                   Nhận xét về lớp học:
                 </div>
 
                 <ul class="mt-2 border-bottom">
+                  @foreach($value->dsBinhLuan as $binhluan)
                   <li>
                     <div
                       class="
@@ -299,23 +315,26 @@
                           alt="Avatar"
                         />
                         <div>
-                          <h3 class="fs-6">Học Sinh</h3>
-                          <time class="text-black-50">10 th 11</time>
+                          <h3 class="fs-6">{{$binhluan->TaiKhoan->hoten}}</h3>
+                          <time class="text-black-50">{{$binhluan->thoigian}}</time>
                         </div>
                       </div>
                       <div class="btn btn-dark text-white">&#x2716;</div>
                       </div>
-                    <p>Xin chào!</p>
+                    <p>{{$binhluan->noidung}}</p>
                   </li>
+                  @endforeach
                 </ul>
-
-                <form class="d-flex align-items-center mt-4">
+                <form action="{{route('thembinhluan',['id'=>$layInfoLop->id])}}" method="post" class="d-flex align-items-center mt-4">
+                  @csrf
                   <img
                     class="avatar me-3"
                     src="https://avatars.dicebear.com/api/adventurer-neutral/123456.svg"
                     alt="Avatar"
                   />
+                  <input type="hidden" name="idthongbao" value="{{$value->id}}">
                   <input
+                    name="noidung"
                     class="flex-grow-1 border me-2 p-2"
                     placeholder="Thêm nhận xét trong lớp học..."
                   />
@@ -323,7 +342,6 @@
                 </form>
               </li>
             </ul>
-
 @endforeach
           </div>
         </div>

@@ -18,7 +18,7 @@ class CreateLopHocThongBaosTable extends Migration
             $table->string('tieude');
             $table->string('chude');
             $table->string('noidung');
-            $table->string('file');
+            $table->string('file')->nullable();
             $table->dateTime('thoihan');
             $table->integer('lophocid');
             $table->integer('taikhoanid');

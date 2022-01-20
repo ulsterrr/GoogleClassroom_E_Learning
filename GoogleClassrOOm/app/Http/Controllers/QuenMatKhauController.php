@@ -8,7 +8,7 @@ use App\Models\TaiKhoan;
 class QuenMatKhauController extends Controller
 {
     function quenMatKhau(Request $req){
-        $taiKhoan = TaiKhoan::where('sdt',$req->Phone)->first();
+        $taiKhoan = TaiKhoan::where('sdt',$req->Phone)->orWhere('email',$req->Phone)->first();
         
         if(!empty($taiKhoan)){
             $taiKhoan->password=Hash::make($req->newpass);

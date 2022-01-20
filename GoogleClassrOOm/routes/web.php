@@ -75,5 +75,6 @@ Route::get('confirmStudent/{idtaikhoan}/{idlop}',[LopHocController::class,'confi
 Route::get('deleteStudent/{idtaikhoan}/{idlop}',[LopHocController::class,'deleteStudent'])->name('deletestudent');
 
 Route::post('them-bai-dang/{id}',[LopHocController::class,'themBaiDang'])->name('themBaiDang');
-
+Route::post('/binhluan/{id}',[LopHocController::class,'thembinhluan']
+)->name('thembinhluan');
 Route::post('addmail/{id}',[LopHocController::class,'addstudentbymail'])->name('AddMail');

@@ -77,3 +77,7 @@ Route::get('deleteStudent/{idtaikhoan}/{idlop}',[LopHocController::class,'delete
 Route::post('them-bai-dang/{id}',[LopHocController::class,'themBaiDang'])->name('themBaiDang');
 
 Route::post('addmail/{id}',[LopHocController::class,'addstudentbymail'])->name('AddMail');
+
+Route::get('/quan-tri-vien', function () {
+    return view('quan-tri-vien');
+})->name('Admin');

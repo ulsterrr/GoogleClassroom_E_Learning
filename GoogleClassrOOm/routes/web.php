@@ -81,3 +81,6 @@ Route::post('addmail/{id}',[LopHocController::class,'addstudentbymail'])->name('
 Route::get('/quan-tri-vien', function () {
     return view('quan-tri-vien');
 })->name('Admin');
+Route::post('/binhluan/{id}',[LopHocController::class,'thembinhluan']
+)->name('thembinhluan');
+Route::post('addmail/{id}',[LopHocController::class,'addstudentbymail'])->name('AddMail');

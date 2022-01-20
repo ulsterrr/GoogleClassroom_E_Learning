@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\LopHoc;
 use App\Models\LopHocThongBao;
+use App\Models\LopHocBinhLuan;
 use App\Models\YeuCauLopHoc;
 use App\Models\TaiKhoan;
 class LopHocController extends Controller
@@ -22,15 +23,19 @@ class LopHocController extends Controller
         return view('danh-sach-cho',compact('lophoc','dsHocvien'));
     }
     function themBaiDang(Request $request,$id){
-        $name = $request->file('image')->getClientOriginalName();
-        $request->file('image')->storeAs('images', $name);
+       
         $baidang= new LopHocThongBao;
+        if(!empty($request->image)){
+            $name = $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('images', $name);
+            $baidang->file= $name;
+        }
         $baidang->tieude=$request->tieude;
         $baidang->chude=$request->chude;
         $baidang->noidung=$request->noidung;
         $baidang->thoihan = Carbon::parse($request->deadline);
-        $baidang->file= $name;
         $baidang->lophocid=$id;
+        $baidang->taikhoanid=auth()->user()->id;
         $baidang->save();
         return back();
     }
@@ -69,5 +74,17 @@ class LopHocController extends Controller
         $baiviet=LopHocThongBao::find($id);
         $baiviet->delete();
         return back()->with('mess','Xóa thành công');
+    }
+    public function thembinhluan(Request $req,$id)
+    {
+        $binhluan= new LopHocBinhLuan();
+        $binhluan->noidung= $req->noidung;
+        $binhluan->taikhoanid=auth()->user()->id;
+        $binhluan->thongbaoid=$req->idthongbao;
+        $date = date('Y/m/d h:i:s', time());
+        $binhluan->thoigian=$date;
+        $binhluan->save();
+        return redirect()->back();
+
     }
 }

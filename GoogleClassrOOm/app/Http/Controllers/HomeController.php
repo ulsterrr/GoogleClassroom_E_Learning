@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\TaiKhoan;
 use App\Models\LopHoc;
 use Illuminate\Http\Request;
-use App\Models\LopHocThongBao; 
+use App\Models\LopHocThongBao;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
@@ -13,11 +14,17 @@ class HomeController extends Controller
         return view('cap-nhat-tai-khoan');
     }
     function editTK(Request $req){
+        if ($req->hasFile('image'))
+        {
         $taikhoan=TaiKhoan::find(auth()->user()->id);
-        $upImage = $req->image;
+        if ($req->file('image')->getClientOriginalName() != null){
         $name = $req->file('image')->getClientOriginalName();
- 
-        $req->file('image')->storeAs('images', $name);
+        }
+        if ($name != null){
+            $req->file('image')->storeAs('images', $name);
+        }
+        
+
         if(!empty($req->username)){
             $taikhoan->username = $req->username;
         }
@@ -34,11 +41,35 @@ class HomeController extends Controller
             $taikhoan->sdt =$req->sdt;
         }
         if(!empty($req->image)){
-            $taikhoan->hinhdaidien = $name;
+            $taikhoan->hinhdaidien = $req->file('image')->getClientOriginalName();
         }
         
         $taikhoan->save();
+        Auth::logout();
         return redirect()->route("dang-nhap");
+    }
+    else {
+        $taikhoan=TaiKhoan::find(auth()->user()->id);
+
+        if(!empty($req->username)){
+            $taikhoan->username = $req->username;
+        }
+        if(!empty($req->password)){
+            $taikhoan->password =Hash::make($req->password);
+        }
+        if(!empty($req->hoten)){
+            $taikhoan->hoten =$req->hoten;
+        }
+        if(!empty($req->email)){
+            $taikhoan->email =$req->email;
+        }
+        if(!empty($req->sdt)){
+            $taikhoan->sdt =$req->sdt;
+        }  
+        $taikhoan->save();
+        Auth::logout();
+        return redirect()->route("dang-nhap");
+    }
     }
     function vaoLop($id){
         $layInfoLop=LopHoc::find($id);

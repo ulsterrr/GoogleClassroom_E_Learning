@@ -15,8 +15,6 @@ class TaiKhoanSeeder extends Seeder
      */
     public function run()
     {
-        $dsLoaiTK = LoaiTaiKhoan::all();
-        foreach($dsLoaiTK as $loaiTK){
         for($i=1;$i<=20;$i++)
         {
             $random= rand(1, 2);
@@ -27,11 +25,11 @@ class TaiKhoanSeeder extends Seeder
             $taikhoan->email = "email{$i}@gmail.com";
             $taikhoan->token = "";
             $taikhoan->sdt = "01234567{$i}";
-            $taikhoan->hinhdaidien = "taikhoan{$i}.jpg";
+            $taikhoan->hinhdaidien = "unnamed.png";
             $taikhoan->maloaitk = $random;
             $taikhoan->hoatdong = 1;
             $taikhoan->save();
         }
-    }
+    
     }
 }

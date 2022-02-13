@@ -17,6 +17,22 @@ Route::group(['prefix'=>'/', 'middleware' => ['auth','giangvien']],function(){
     Route::get('/giang-vien', [GiangVienController::class, 'dsLopHoc'])->name('giang-vien');
 });
 
+//Page ADMIN
+Route::group(['prefix'=>'/', 'middleware' => ['auth','admin']],function(){
+
+    Route::get('/quan-tri-vien', function() {
+        return view('quan-tri-vien');
+})->name('Admin');
+
+    Route::get('/quan-tri-vien/thong-tin', function() {
+    return view('admin-info');
+})->name('AdminInfo');
+
+Route::get('/quan-tri-vien/Profile/Picture', 'AdminController@profilePicture');
+Route::post('/quan-tri-vien/Profile/Picture', 'AdminController@updateAvatar');
+
+});
+//
 
 Route::get('/', function () {
     return view('dang-nhap');
@@ -78,9 +94,6 @@ Route::post('them-bai-dang/{id}',[LopHocController::class,'themBaiDang'])->name(
 
 Route::post('addmail/{id}',[LopHocController::class,'addstudentbymail'])->name('AddMail');
 
-Route::get('/quan-tri-vien', function () {
-    return view('quan-tri-vien');
-})->name('Admin');
 Route::post('/binhluan/{id}',[LopHocController::class,'thembinhluan']
 )->name('thembinhluan');
 Route::post('addmail/{id}',[LopHocController::class,'addstudentbymail'])->name('AddMail');

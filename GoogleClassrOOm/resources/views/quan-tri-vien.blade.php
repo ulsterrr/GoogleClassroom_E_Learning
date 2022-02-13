@@ -15,6 +15,10 @@
     	<link rel="stylesheet" href="{{ asset('css/main.css') }}" />
     	<link rel="stylesheet" href="{{ asset('css/reset.css') }}" />
     	<link rel="stylesheet" href="{{ asset('css/components.css') }}" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
         <title>Quản trị web</title>
     </head>
@@ -81,12 +85,12 @@
     </header>
 	<style>
 		.p {
-		  margin-top: 70px;
+		  margin-top: 75px;
 		}
 		</style>
-        <div class="l-navbar p" id="nav-bar">
+        <div class="l-navbar" id="nav-bar">
             <nav class="nav">
-                <div>
+                <div class="p">
                     
 
                     <div class="nav__list">
@@ -95,42 +99,104 @@
                             <span class="nav__name">Dashboard</span>
                         </a>
 
+                        <a href="{{ route('AdminInfo') }}" class="nav__link">
+                          <i class='bx bxs-chip nav__icon' ></i>
+                              <span class="nav__name">Hồ sơ QTV</span>
+                        </a>
+
                         <a href="#" class="nav__link">
                             <i class='bx bx-user nav__icon' ></i>
-                            <span class="nav__name">Users</span>
+                            <span class="nav__name">Người dùng</span>
                         </a>
                         
                         <a href="#" class="nav__link">
-                            <i class='bx bx-message-square-detail nav__icon' ></i>
-                            <span class="nav__name">Messages</span>
+                          <i class='bx bx-wallet-alt nav__icon' ></i>
+                            <span class="nav__name">Lớp học</span>
                         </a>
 
                         <a href="#" class="nav__link">
-                            <i class='bx bx-bookmark nav__icon' ></i>
-                            <span class="nav__name">Favorites</span>
+                          <i class='bx bx-folder nav__icon' ></i>
+                            <span class="nav__name">Kho chứa</span>
                         </a>
 
                         <a href="#" class="nav__link">
-                            <i class='bx bx-folder nav__icon' ></i>
-                            <span class="nav__name">Data</span>
+                            <i class='bx bx-hdd nav__icon' ></i>
+                            <span class="nav__name">Dữ liệu</span>
                         </a>
 
                         <a href="#" class="nav__link">
                             <i class='bx bx-bar-chart-alt-2 nav__icon' ></i>
-                            <span class="nav__name">Analytics</span>
+                            <span class="nav__name">Thống kê</span>
                         </a>
                     </div>
                 </div>
 
                 <a href="#" class="nav__link">
-                    <i class='bx bx-log-out nav__icon' ></i>
-                    <span class="nav__name">Log Out</span>
+                    <i class='bx bx-cog nav__icon' ></i>
+                    <span class="nav__name">Cài đặt</span>
                 </a>
             </nav>
         </div>
-
+        <div style="margin-top: 85px">
         <h1>Components</h1>
+        <div>
+          <h2>Table Head Colors</h2>
+          <p>The .thead-dark class adds a black background to table headers, and the .thead-light class adds a grey background to table headers:</p>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>John</td>
+                <td>Doe</td>
+                <td>john@example.com</td>
+              </tr>
+              <tr>
+                <td>Mary</td>
+                <td>Moe</td>
+                <td>mary@example.com</td>
+              </tr>
+              <tr>
+                <td>July</td>
+                <td>Dooley</td>
+                <td>july@example.com</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>John</td>
+                <td>Doe</td>
+                <td>john@example.com</td>
+              </tr>
+              <tr>
+                <td>Mary</td>
+                <td>Moe</td>
+                <td>mary@example.com</td>
+              </tr>
+              <tr>
+                <td>July</td>
+                <td>Dooley</td>
+                <td>july@example.com</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
         <!--===== MAIN JS =====-->
         <script src="{{ asset('js/main.js') }}"></script>
-    </body>
+      </body>
 </html>

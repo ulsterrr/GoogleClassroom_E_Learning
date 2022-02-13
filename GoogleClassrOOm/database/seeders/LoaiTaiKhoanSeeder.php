@@ -24,6 +24,9 @@ class LoaiTaiKhoanSeeder extends Seeder
         $taikhoan->mota = "Tài khoản với nghiệp vụ là học sinh tham gia lớp học";
         $taikhoan->save();
 
-            
+        $taikhoan = new LoaiTaiKhoan();
+        $taikhoan->tenloaitk = "Administrator";
+        $taikhoan->mota = "Tài khoản với nghiệp vụ là quản lí hệ thống E-learning";
+        $taikhoan->save();
     }
 }

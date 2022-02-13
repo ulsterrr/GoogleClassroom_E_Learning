@@ -35,6 +35,9 @@ class DangNhapController extends Controller
         
         if (Auth::attempt($credentials)) {
             // Chứng thực thành công
+            if ($taikhoan->maloaitk == 3) {
+                return redirect()->route('Admin')->with(compact('taikhoan'));
+            } else
             if ($taikhoan->maloaitk == 1) {
             return redirect()->route('giang-vien')->with(compact('taikhoan'));
             }

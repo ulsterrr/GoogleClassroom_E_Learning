@@ -75,8 +75,13 @@ Route::get('confirmStudent/{idtaikhoan}/{idlop}',[LopHocController::class,'confi
 Route::get('deleteStudent/{idtaikhoan}/{idlop}',[LopHocController::class,'deleteStudent'])->name('deletestudent');
 
 Route::post('them-bai-dang/{id}',[LopHocController::class,'themBaiDang'])->name('themBaiDang');
+
+Route::post('addmail/{id}',[LopHocController::class,'addstudentbymail'])->name('AddMail');
+
+Route::get('/quan-tri-vien', function () {
+    return view('quan-tri-vien');
+})->name('Admin');
 Route::post('/binhluan/{id}',[LopHocController::class,'thembinhluan']
 )->name('thembinhluan');
 Route::post('addmail/{id}',[LopHocController::class,'addstudentbymail'])->name('AddMail');
-
 Route::get('thong-bao-bai-tap/{id}',[ThongBaoBaiTapController::class,'getBaiTap'])->name('thongBaoBaiTap');

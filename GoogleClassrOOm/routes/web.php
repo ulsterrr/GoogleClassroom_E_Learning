@@ -12,7 +12,7 @@ use App\Http\Controllers\XoaLopController;
 use App\Http\Controllers\GianhaplopController;
 use App\Http\Controllers\HocSinhController;
 use App\Http\Controllers\LopHocController;
-
+use App\Http\Controllers\ThongBaoBaiTapController;
 Route::group(['prefix'=>'/', 'middleware' => ['auth','giangvien']],function(){
     Route::get('/giang-vien', [GiangVienController::class, 'dsLopHoc'])->name('giang-vien');
 });
@@ -97,3 +97,4 @@ Route::post('addmail/{id}',[LopHocController::class,'addstudentbymail'])->name('
 Route::post('/binhluan/{id}',[LopHocController::class,'thembinhluan']
 )->name('thembinhluan');
 Route::post('addmail/{id}',[LopHocController::class,'addstudentbymail'])->name('AddMail');
+Route::get('thong-bao-bai-tap/{id}',[ThongBaoBaiTapController::class,'getBaiTap'])->name('thongBaoBaiTap');

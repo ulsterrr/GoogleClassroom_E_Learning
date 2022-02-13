@@ -55,7 +55,7 @@
 
       <nav class="d-flex align-items-center gap-3">
         <a class="d-flex align-items-center text-secondary" href="#">Bảng tin</a>
-        <a class="d-flex align-items-center text-secondary" href="#"
+        <a class="d-flex align-items-center text-secondary" href="{{Route('thongBaoBaiTap',['id'=>$layInfoLop->id])}}"
           >Bài tập</a
         >
         <a class="d-flex align-items-center text-secondary" href="{{Route('dsSinhVien',['id'=>$layInfoLop->id])}}">Mọi người</a>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DangNhapController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DangKiController;
@@ -25,11 +26,16 @@ Route::group(['prefix'=>'/', 'middleware' => ['auth','admin']],function(){
 })->name('Admin');
 
     Route::get('/quan-tri-vien/thong-tin', function() {
-    return view('admin-info');
+    return view('pages.admin.hoso.admin-info');
 })->name('AdminInfo');
 
-Route::get('/quan-tri-vien/Profile/Picture', 'AdminController@profilePicture');
-Route::post('/quan-tri-vien/Profile/Picture', 'AdminController@updateAvatar');
+
+Route::get('/quan-tri-vien/lop-hoc/ds-lophoc', [AdminController::class, 'dsLopHoc'])->name('ad-ds-lop');
+Route::post('/quan-tri-vien/lop-hoc/ds-lophoc', [AdminController::class, 'taoLopHoc'])->name('add-tao-lop');
+Route::get('/quan-tri-vien/lop-hoc/xoa-lop/{id}', [AdminController::class, 'xoaLopHoc'])->name('ad-xoa-lop');
+Route::get('/quan-tri-vien/lop-hoc/sua-lop/{id}', [AdminController::class, 'suaLopHocIndex'])->name('ad-sua-lop');
+Route::post('/quan-tri-vien/lop-hoc/sua-lop/{id}', [AdminController::class, 'capNhatLopHoc'])->name('add-sua-lop');
+Route::get('/quan-tri-vien/lop-hoc/tao-lop', [AdminController::class, 'taoLopHocIndex'])->name('ad-tao-lop');
 
 });
 //

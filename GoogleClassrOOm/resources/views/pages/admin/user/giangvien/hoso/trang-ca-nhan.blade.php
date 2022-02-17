@@ -1,4 +1,4 @@
-@extends('layouts.dash')
+@extends('layouts.dashHead')
 
 @section('title', 'Admin - Teacher Profile Page Manager')
 
@@ -11,12 +11,6 @@
                     <h1>Teacher Profile Page Manager</h1>
                     </div>
                 <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item">Home</li>
-                    <li class="breadcrumb-item">User</li>
-                    <li class="breadcrumb-item">Teacher</li>
-                    <li class="breadcrumb-item active">Profile</li>
-                </ol>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -168,12 +162,7 @@
                                                 <p>Kosong...</p>
                                             @endif
 
-                                            <h6>No. Telp :</h6>
-                                            @if($teacher->no_telp)
-                                                <p>{{ $teacher->no_telp }}</p>
-                                            @else
-                                                <p>Kosong...</p>
-                                            @endif
+                                            
                                         </div>
                                     </div>
                                 </div>

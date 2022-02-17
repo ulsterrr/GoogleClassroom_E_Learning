@@ -1,4 +1,4 @@
-@extends('layouts.adhead')
+@extends('layouts.dashHead')
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -158,13 +158,13 @@
                     <div class="row">
                       <div class="col-md-3">
                           <!-- Profile Image -->
-                          <div class="card card-primary card-outline">
+                          <div class="card">
                             <div class="card-body box-profile">
                               <div class="text-center">
                                     @if(auth()->user()->hinhdaidien)
-                                        <img class="profile-user-img img-fluid img-circle" src="{{ asset('images/'.auth()->user()->hinhdaidien) }}" alt="User profile picture">
+                                        <img src="{{ asset('images/'.auth()->user()->hinhdaidien) }}" alt="Ảnh đại diện">
                                     @else
-                                        <img class="profile-user-img img-fluid img-circle" src="{{ asset('images/'.auth()->user()->hinhdaidien) }}" alt="User profile picture">
+                                        <img src="{{ asset('images/'.auth()->user()->hinhdaidien) }}" alt="Ảnh đại diện">
                                     @endif
                                 </div>
         

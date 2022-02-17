@@ -1,4 +1,4 @@
-@extends('layouts.dash')
+@extends('layouts.dashHead')
 
 @section('title', 'List User Student')
 
@@ -27,9 +27,9 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Table Daftar User Teacher</h3>
+                    <h3 class="card-title">Table Daftar User Student</h3>
                     <div class="card-tools">
-                        <form action="/Okemin/User/Teacher/List/Search" method="get">
+                        <form action="/Okemin/User/Student/List/Search/" method="get">
                             @csrf
                             <div class="input-group input-group-sm" style="width: 150px;">
                                 <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -51,20 +51,22 @@
                         <th>Username</th>
                         <th>E-Mail</th>
                         <th>No.Telp</th>
+                        <th>Kelas</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach($search as $s )
+                      @foreach($students as $sd )
                         <tr>
-                            <td>{{ $s->name }}</td>
-                            <td>{{ $s->nisn }}</td>
-                            <td>{{ $s->username }}</td>
-                            <td>{{ $s->email }}</td>
-                            <td>{{ $s->no_telp }}</td>
+                            <td>{{ $sd->name }}</td>
+                            <td>{{ $sd->nisn }}</td>
+                            <td>{{ $sd->username }}</td>
+                            <td>{{ $sd->email }}</td>
+                            <td>{{ $sd->no_telp }}</td>
+                            <td>{{ $sd->kelas }}</td>
                             <td>
-                                <a type="button" class="btn btn-block bg-gradient-primary btn-xs" href="/Okemin/User/Student/Profile/{{ $s->id }}">Edit Profile</a>
-                                <a type="button" class="btn btn-block bg-gradient-danger btn-xs" href="/Okemin/User/Student/Delete/{{ $s->id }}">Delete</a>
+                                <a type="button" class="btn btn-block bg-gradient-primary btn-xs" href="/Okemin/User/Student/Profile/{{ $sd->id }}">Sửa Thông Tin</a>
+                                <a type="button" class="btn btn-block bg-gradient-danger btn-xs" href="/Okemin/User/Student/Delete/{{ $sd->id }}">Xóa</a>
                             </td>
                         </tr>
                       @endforeach

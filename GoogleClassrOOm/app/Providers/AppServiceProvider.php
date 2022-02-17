@@ -11,10 +11,6 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
-    {
-        //
-    }
 
     /**
      * Bootstrap any application services.
@@ -24,5 +20,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+    }
+    public function register()
+    {   
+    if ($this->app->isLocal()) {
+        $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+    }
+    // ...
     }
 }

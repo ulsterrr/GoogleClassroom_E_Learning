@@ -1,6 +1,6 @@
-@extends('layouts.dash')
+@extends('layouts.dashHead')
 
-@section('title', 'List Kelas')
+@section('title', 'Tìm Lớp Học')
 
 @section('content')
     <!-- Content Header (Page header) -->

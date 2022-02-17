@@ -1,6 +1,6 @@
-@extends('layouts.dash')
+@extends('layouts.dashHead')
 
-@section('title', 'List User Student')
+@section('title', 'List User Teacher')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -8,13 +8,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>List Dari User Student</h1>
+                    <h1>List Dari User Teacher</h1>
                     </div>
                 <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item">Home</li>
                     <li class="breadcrumb-item active">User</li>
-                    <li class="breadcrumb-item active">List User Student</li>
+                    <li class="breadcrumb-item active">List User Teacher</li>
                 </ol>
                 </div>
             </div>
@@ -27,9 +27,9 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Table Daftar User Student</h3>
+                    <h3 class="card-title">Table Daftar User Teacher</h3>
                     <div class="card-tools">
-                        <form action="/Okemin/User/Student/List/Search/" method="get">
+                        <form action="/Okemin/User/Teacher/List/Search" method="get">
                             @csrf
                             <div class="input-group input-group-sm" style="width: 150px;">
                                 <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -47,26 +47,24 @@
                     <thead>
                       <tr>
                         <th>Nama</th>
-                        <th>NISN</th>
+                        <th>NIP</th>
                         <th>Username</th>
                         <th>E-Mail</th>
                         <th>No.Telp</th>
-                        <th>Kelas</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach($students as $sd )
+                      @foreach($search as $s )
                         <tr>
-                            <td>{{ $sd->name }}</td>
-                            <td>{{ $sd->nisn }}</td>
-                            <td>{{ $sd->username }}</td>
-                            <td>{{ $sd->email }}</td>
-                            <td>{{ $sd->no_telp }}</td>
-                            <td>{{ $sd->kelas }}</td>
+                            <td>{{ $s->name }}</td>
+                            <td>{{ $s->nip }}</td>
+                            <td>{{ $s->username }}</td>
+                            <td>{{ $s->email }}</td>
+                            <td>{{ $s->no_telp }}</td>
                             <td>
-                                <a type="button" class="btn btn-block bg-gradient-primary btn-xs" href="/Okemin/User/Student/Profile/{{ $sd->id }}">Edit Profile</a>
-                                <a type="button" class="btn btn-block bg-gradient-danger btn-xs" href="/Okemin/User/Student/Delete/{{ $sd->id }}">Delete</a>
+                                <a type="button" class="btn btn-block bg-gradient-primary btn-xs" href="/Okemin/User/Teacher/Profile/{{ $s->id }}">Edit Profile</a>
+                                <a type="button" class="btn btn-block bg-gradient-danger btn-xs" href="/Okemin/User/Teacher/Delete/{{ $s->id }}">Delete</a>
                             </td>
                         </tr>
                       @endforeach

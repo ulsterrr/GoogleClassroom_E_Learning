@@ -1,3 +1,4 @@
+@extends('layouts.dashHead')
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -94,14 +95,14 @@
                     
 
                     <div class="nav__list">
-                        <a href="#" class="nav__link active">
+                        <a href="#" class="nav__link">
                         <i class='bx bx-grid-alt nav__icon' ></i>
                             <span class="nav__name">Dashboard</span>
                         </a>
 
-                        <a href="{{ route('AdminInfo') }}" class="nav__link">
-                          <i class='bx bxs-chip nav__icon' ></i>
-                              <span class="nav__name">Hồ sơ QTV</span>
+                        <a href="{{ route('AdminInfo') }}" class="nav__link ">
+                            <i class='bx bxs-chip nav__icon' ></i>
+                                <span class="nav__name">Hồ sơ QTV</span>
                         </a>
 
                         <a href="#" class="nav__link">
@@ -109,7 +110,7 @@
                             <span class="nav__name">Người dùng</span>
                         </a>
                         
-                        <a href="{{route('ad-ds-lop')}}" class="nav__link">
+                        <a href="#" class="nav__link active">
                           <i class='bx bx-wallet-alt nav__icon' ></i>
                             <span class="nav__name">Lớp học</span>
                         </a>
@@ -137,66 +138,78 @@
                 </a>
             </nav>
         </div>
-        <div style="margin-top: 85px">
-        <h1>Components</h1>
-        <div>
-          <h2>Table Head Colors</h2>
-          <p>The .thead-dark class adds a black background to table headers, and the .thead-light class adds a grey background to table headers:</p>
-          <table class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Email</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
-              </tr>
-              <tr>
-                <td>Mary</td>
-                <td>Moe</td>
-                <td>mary@example.com</td>
-              </tr>
-              <tr>
-                <td>July</td>
-                <td>Dooley</td>
-                <td>july@example.com</td>
-              </tr>
-            </tbody>
-          </table>
-          <table class="table">
-            <thead class="thead-light">
-              <tr>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Email</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
-              </tr>
-              <tr>
-                <td>Mary</td>
-                <td>Moe</td>
-                <td>mary@example.com</td>
-              </tr>
-              <tr>
-                <td>July</td>
-                <td>Dooley</td>
-                <td>july@example.com</td>
-              </tr>
-            </tbody>
-          </table>
+    <div style="margin-top: 85px">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Lớp Học</h1>
+                    </div>
+                <div class="col-sm-6">
+                </div>
+            </div>
         </div>
+    </section>
+
+    <section class="content">
+        <div class="col-md-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Tùy chỉnh lớp</h3>
+                </div>
+
+                <div class="card-body">
+                     <div class="row">
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success alert-block">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{{ $message }}</strong>
+                                <p>...</p>
+                            </div>
+                        @endif
+                    </div>
+                    <!-- End of Success And Fail/Error Alert -->
+
+                <form role="form" action="{{ route('add-sua-lop',['id'=>$lophoc->id]) }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group row">
+                        <label for="input1" class="col-sm-2 col-form-label">Tên Lớp Học</label>
+                        <div class="col-sm-10">
+                          <input value="{{ $lophoc->tenlop }}" name="tenlop" type="name" class="form-control" id="input1" placeholder="Tên Lớp Học">
+                            @if($errors->has('nama_mapel'))
+                                <div class="text-danger">
+                                    {{ $errors->first('nama_mapel')}}
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="input2" class="col-sm-2 col-form-label">Chủ đề</label>
+                        <div class="col-sm-10">
+                          <input value="{{ $lophoc->chude }}" name="chude" type="text" class="form-control" id="input2" placeholder="Chủ đề">
+                            @if($errors->has('deskripsi'))
+                                <div class="text-danger">
+                                    {{ $errors->first('deskripsi')}}
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                    <button name="submit" type="submit" class="btn btn-block bg-gradient-primary">Xác nhận</button>
+                </form>
+
+                </div>
+                <!-- /.card-body -->
+            </div>
+
+            <!-- /.card -->
+            <div class="d-none" id="card-refresh-content">
+                1234
+            </div>
         </div>
-        <!--===== MAIN JS =====-->
-        <script src="{{ asset('js/main.js') }}"></script>
-      </body>
+        <!-- /.col -->
+    </section>
+</div>
+    <!-- /.content -->
+    <script src="{{ asset('js/main.js') }}"></script>
+</body>
 </html>

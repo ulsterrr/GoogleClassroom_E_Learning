@@ -1,4 +1,4 @@
-@extends('layouts.dash')
+@extends('layouts.dashHead')
 
 @section('title', 'Change Photo Profile')
 

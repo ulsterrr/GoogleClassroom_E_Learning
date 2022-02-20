@@ -46,17 +46,17 @@
       </a>
 
       <nav class="d-flex align-items-center gap-3">
-        <a class="d-flex align-items-center text-secondary" href="#">Stream</a>
+        <a class="d-flex align-items-center text-secondary" href="#">Bảng tin</a>
         <a class="d-flex align-items-center text-secondary" href="#"
-          >Classwork</a
+          >Bài Tập</a
         >
-        <a class="d-flex align-items-center text-secondary" href="#">People</a>
+        <a class="d-flex align-items-center text-secondary" href="#">Mọi người</a>
       </nav>
 
       <div class="popup ms-auto">
         <div class="avatar me-3 cursor-pointer">
           <img
-            src="https://avatars.dicebear.com/api/adventurer-neutral/123456.svg"
+            src="{{ asset('images/'.auth()->user()->hinhdaidien) }}"
             alt="Avatar"
           />
         </div>
@@ -74,14 +74,19 @@
         >
           <img
             class="popup__avatar cursor-pointer"
-            src="https://avatars.dicebear.com/api/adventurer-neutral/123456.svg"
+            src="{{ asset('images/'.auth()->user()->hinhdaidien) }}"
             alt="Avatar"
           />
-          <p class="popup__email">youremail@gmail.com</p>
-          <a class="popup__link" href="edit.html" target="_blank"
-            >Manage your account</a
+          <div class="d-flex gap-3">
+            <span class="flex-center text-nowrap d-none d-md-flex"
+              >{{ auth()->user()->hoten }}</span>       
+          </div>
+          <p class="popup__email">{{ auth()->user()->email }}</p>
+          <a class="popup__link" href="{{ route('youraccount') }}" target="_blank"
+            >Quản lý tài khoản</a
           >
-          <div class="popup__logout mt-auto cursor-pointer">Log Out</div>
+          <div class="popup__logout mt-auto cursor-pointer"><a class="btn btn-primary" href="{{ route('dang-xuat') }}">Log Out
+          </a></div>
 
           <div class="popup__pseudo"></div>
         </div>
@@ -103,7 +108,7 @@
           <div class="square me-2">
             <img src="{{ asset('svgs/profile.svg') }}" />
           </div>
-          <span class="fs-6 text-primary">Your homework</span>
+          <span class="fs-6 text-primary">Bài tập của bạn</span>
         </div>
         <div class="d-flex align-items-center cursor-pointer ms-auto me-4">
           <div class="square me-2">
@@ -111,12 +116,7 @@
           </div>
           <span class="fs-6 text-primary">Google Drive</span>
         </div>
-        <div class="d-flex align-items-center cursor-pointer">
-          <div class="square me-2">
-            <img src="{{ asset('svgs/calendar.svg') }}" />
-          </div>
-          <span class="fs-6 text-primary">Calender</span>
-        </div>
+   
       </section>
 
       <!-- Storage -->

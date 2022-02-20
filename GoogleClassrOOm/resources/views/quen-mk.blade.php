@@ -30,14 +30,14 @@
       <div class="board">
         <img src="{{ asset('svgs/board.svg') }}" alt="Board" />
       </div>
-      <h1 class="fs-2 mb-3">Forgot Password</h1>
+      <h1 class="fs-2 mb-3">Quên Mật Khẩu</h1>
       
       <form action="{{route('quenMatKhau')}}" method="post">
       @csrf
         <div class="mb-3">
           <input
             class="form-control py-3"
-            placeholder="Username"
+            placeholder="Tài Khoản"
             name="tai_khoan"
           />
         </div>
@@ -53,7 +53,7 @@
             <input
               type="text"
               class="form-control py-3"
-              placeholder="Phone Number or Email"
+              placeholder="SĐT hoặc Email"
               name="Phone"
             />
           </div>
@@ -61,7 +61,7 @@
             <input
               type="password"
               class="form-control py-3"
-              placeholder="New Password"
+              placeholder="Mật khẩu mới"
               name="newpass"
             />
           </div>
@@ -75,10 +75,10 @@
         </div> -->
         
         <button type="submit" class="w-100 py-3 btn btn-primary mb-3">      
-          Reset my Password
+         Xác nhận
         </button>
         
-        <button class="w-100 py-3 btn btn-dark">Go Back</button>
+       
       </form>
     </div>
 </form>

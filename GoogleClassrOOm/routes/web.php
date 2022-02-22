@@ -69,7 +69,7 @@ Route::post('/quan-tri-vien/hoc-vien/sua-thongtin/{id}', [AdminController::class
 
 Route::get('/', function () {
     return view('dang-nhap');
-});
+})->name('DangNhap');
 
 //Route::get('/giang-vien', [GiangVienController::class, 'dsLopHoc'])->name('giang-vien')->middleware('auth');
 

@@ -42,7 +42,7 @@ Route::get('/quan-tri-vien/lop-hoc/tao-lop', [AdminController::class, 'taoLopHoc
 
 Route::get('/', function () {
     return view('dang-nhap');
-});
+})->name('DangNhap');
 
 //Route::get('/giang-vien', [GiangVienController::class, 'dsLopHoc'])->name('giang-vien')->middleware('auth');
 

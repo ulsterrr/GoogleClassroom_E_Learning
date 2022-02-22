@@ -80,7 +80,7 @@
         <div class="my-2">hoặc</div>
         <a href="{{ route('quenMK') }}" class="d-block mb-3 text-primary">Quên mật khẩu?</a>
         </form>
-        <button  class="w-100 py-3 btn btn-dark"><a style="color:white;text-decoration:none " href="{{ route('DangKi') }}">Sign Up</a></button>
+        <button  class="w-100 py-3 btn btn-dark"><a style="color:white;text-decoration:none " href="{{ route('DangKi') }}">Đăng kí</a></button>
     </div>
   </body>
 </html>

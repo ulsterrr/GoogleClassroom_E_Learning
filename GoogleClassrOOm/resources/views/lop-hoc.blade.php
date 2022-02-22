@@ -311,7 +311,7 @@
                       <div class="d-flex align-items-center">
                         <img
                           class="avatar me-3"
-                          src="https://avatars.dicebear.com/api/adventurer-neutral/12345.svg"
+                          src="{{ asset('images/'.auth()->user()->hinhdaidien) }}"
                           alt="Avatar"
                         />
                         <div>
@@ -329,9 +329,10 @@
                   @csrf
                   <img
                     class="avatar me-3"
-                    src="https://avatars.dicebear.com/api/adventurer-neutral/123456.svg"
+                    src="{{ asset('images/'.auth()->user()->hinhdaidien) }}"
                     alt="Avatar"
                   />
+                  
                   <input type="hidden" name="idthongbao" value="{{$value->id}}">
                   <input
                     name="noidung"

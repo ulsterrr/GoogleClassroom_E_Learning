@@ -230,7 +230,13 @@
                                                 @else
                                                     <p>???</p>
                                                 @endif
-        
+                                                
+                                                <h6>Số điện thoại : </h6>
+                                                @if(auth()->user()->sdt)
+                                                    <p>{{ auth()->user()->sdt }}</p>
+                                                @else
+                                                    <p>???</p>
+                                                @endif
                                             
                                             </div>
                                         </div>

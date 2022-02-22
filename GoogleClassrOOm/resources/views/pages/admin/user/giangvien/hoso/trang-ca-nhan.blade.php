@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Teacher Profile Page Manager</h1>
+                    <h1>Thông tin Giảng viên</h1>
                     </div>
                 <div class="col-sm-6">
                 </div>
@@ -24,42 +24,29 @@
                   <!-- Profile Image -->
                   <div class="card card-primary card-outline">
                     <div class="card-body box-profile">
-                      <div class="text-center">
-                            @if($teacher->photo)
-                                <img class="profile-user-img img-fluid img-circle" src="/storage/avatars/{{ $teacher->avatar }}" alt="User profile picture">
+                        <div class="widget-user-image">
+                            @if($gv->hinhdaidien)
+                                <img class="img-circle mx-auto d-block" width="200px"  src="{{ asset('images/'.$gv->hinhdaidien) }}" alt="Ảnh đại diện">
                             @else
-                                <img class="profile-user-img img-fluid img-circle" src="{{ asset('/storage/avatars/defaultAvatar.png') }}" alt="User profile picture">
+                                <img class="img-circle mx-auto d-block" width="200px"  src="{{ asset('images/unnamed.png') }}" alt="Ảnh đại diện">
                             @endif
                         </div>
 
-                      <h3 class="profile-username text-center">{{ $teacher->name }}</h3>
-
-                      <p class="text-muted text-center">{{ $teacher->jabatan }}</p>
+                      <h3 class="profile-username text-center">{{ $gv->hoten }}</h3>
 
                       <ul class="list-group list-group-unbordered mb-3">
+
                         <li class="list-group-item">
-                          <b>NIP</b> <a class="float-right">{{ $teacher->nip }}</a>
-                        </li>
-                        <li class="list-group-item">
-                          <b>Kelas</b> <a class="float-right">{{ $teacher->kelas }}</a>
-                        </li>
-                        <li class="list-group-item">
-                          <b>Jabatan</b> <a class="float-right">{{ $teacher->jabatan }}</a>
-                        </li>
-                        <li class="list-group-item">
-                            <b>User Role</b> <a class="float-right">
-                                @if($teacher->hasRole('Admin'))
-                                    Admin
-                                @elseif($teacher->hasRole('Teacher'))
-                                    Teacher
+                            <b>Loại tài khoản</b> <a class="float-right">
+                                @if($gv->maloaitk == 3)
+                                    Người quản trị
+                                @elseif($gv->maloaitk == 2)
+                                    Giáo viên
                                 @else
-                                    Student
+                                    Học viên
                                 @endif
                             </a>
-                        </li>
-                        <li class="list-group-item">
-                            <b>Ganti Photo Profile User Ini?</b> <a href="/Okemin/User/Teacher/Profile/Picture/{{ $teacher->id }}">Klik ini!</a>
-                        </li>
+                        </li>                       
                       </ul>
                     </div>
                     <!-- /.card-body -->
@@ -72,9 +59,9 @@
                     <div class="card">
                         <div class="card-header p-2">
                         <ul class="nav nav-pills">
-                            <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Profile Details</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#password" data-toggle="tab">Change Password</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Chi Tiết Tài Khoản</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Tùy Chỉnh</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#password" data-toggle="tab">Thay đổi mật khẩu</a></li>
                         </ul>
 
                         </div><!-- /.card-header -->
@@ -86,58 +73,51 @@
                                 <div class="post">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <h5>INFO PRIBADI</h5>
-                                            <h6>Name :</h6>
-                                            @if($teacher->name)
-                                                <p>{{ $teacher->name }}</p>
-                                            @else
-                                                <p>Kosong...</p>
+                                            <h5>Thông tin Giảng Viên</h5>
+                                            <h6>Họ Tên :</h6>
+                                            @if($teacher->hoten)
+                                                <p>{{ $teacher->hoten }}</p>
+                                        
                                             @endif
 
-                                            <h6>Tempat Lahir :</h6>
-                                            @if($teacher->tempat_lahir)
-                                                <p>{{ $teacher->tempat_lahir }}</p>
-                                            @else
-                                                <p>Kosong...</p>
+                                            <h6>Ngày sinh :</h6>
+                                            @if($teacher->ngaysinh)
+                                                <p>{{ $teacher->ngaysinh }}</p>
+                                           
                                             @endif
 
-                                            <h6>Tanggal Lahir :</h6>
-                                            @if($teacher->tgl_lahir)
-                                                <p>{{ $teacher->tgl_lahir }}/{{ $teacher->bulan_lahir }}/{{ $teacher->tahun_lahir }}</p>
-                                            @else
-                                                <p>Kosong...</p>
+                                            <h6>Số điện thoại :</h6>
+                                            @if($teacher->sdt)
+                                                <p>{{ $teacher->sdt }}</p>
+                                            
                                             @endif
 
-                                            <h6>Jenis Kelamin :</h6>
-                                            @if($teacher->jenis_kelamin)
-                                                <p>{{ $teacher->jenis_kelamin }}</p>
-                                            @else
-                                                <p>Kosong...</p>
-                                            @endif
-
-                                            <h6>Agama :</h6>
-                                            @if($teacher->agama)
-                                                <p>{{ $teacher->agama }}</p>
-                                            @else
-                                                <p>Kosong...</p>
+                                            <h6>Giới tính :</h6>
+                                            @if($teacher->gioitinh)
+                                                <p>{{ $teacher->gioitinh }}</p>
+                                            
                                             @endif
                                         </div>
 
                                         <div class="col-md-6">
-                                            <h5>INFO AKADEMIK</h5>
-                                            <h6>NIP :</h6>
-                                            @if($teacher->nip)
-                                                <p>{{ $teacher->nip }}</p>
+                                            <h5></h5>
+                                            <h6>Trạng thái :</h6>
+                                            @if($teacher->hoatdong == 0)
+                                                <p>Đang hoạt động</p>
                                             @else
-                                                <p>Kosong...</p>
-                                            @endif
+                                                <p>Đã xóa</p>
+                                           @endif
 
-                                            <h6>Jabatan :</h6>
-                                            @if($teacher->jabatan)
-                                                <p>{{ $teacher->jabatan }}</p>
-                                            @else
-                                                <p>Kosong...</p>
-                                            @endif
+                                            <h6>Loại tài khoản :</h6>
+                                            <a class="float-right">
+                                                @if(auth()->user()->maloaitk == 3)
+                                                    Người quản trị
+                                                @elseif(auth()->user()->maloaitk == 2)
+                                                    Giáo viên
+                                                @else
+                                                    Học viên
+                                                @endif
+                                            </a>
                                         </div>
                                     </div>
 
@@ -147,19 +127,17 @@
 
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <h5>INFO AKUN</h5>
-                                            <h6>Username :</h6>
+                                            <h5>Thông tin tài khoản</h5>
+                                            <h6>Tên tài khoản :</h6>
                                             @if($teacher->username)
                                                 <p>{{ $teacher->username }}</p>
-                                            @else
-                                                <p>Kosong...</p>
+                                        
                                             @endif
 
-                                            <h6>E-mail :</h6>
-                                            @if($teacher->email)
-                                                <p>{{ $teacher->email }}</p>
-                                            @else
-                                                <p>Kosong...</p>
+                                            <h6>Số ID :</h6>
+                                            @if($teacher->id)
+                                                <p>{{ $teacher->id }}</p>
+                                            
                                             @endif
 
                                             
@@ -178,20 +156,20 @@
                                         <div class="alert alert-success alert-block">
                                             <button type="button" class="close" data-dismiss="alert">×</button>
                                             <strong>{{ session('message.profile') }}</strong>
-                                            <p>You can see it in the Profile Details</p>
+                                            <p>Bạn có thể xem ở chi tiết tài khoản</p>
                                         </div>
                                     @endif
                                 </div>
                                 <!-- End of Success And Fail/Error Alert -->
-                                <form class="form-horizontal" method="post" action="/Okemin/User/Teacher/Profile/Send/{{ $teacher->id }}">
+                                <form class="form-horizontal" method="post" action="{{ route('ad-sua-gv')}}">
                                     @csrf
                                     {{ method_field('PUT') }}
 
-                                    <h5>INFO PRIBADI</h5>
+                                    <h5>Thông tin</h5>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Nama*</label>
+                                        <label class="col-sm-2 col-form-label">Họ Tên</label>
                                         <div class="col-sm-10">
-                                            <input  name="name" type="name" class="form-control" placeholder="Name" value="{{ $teacher->name }}">
+                                            <input  name="name" type="name" class="form-control" placeholder="Họ tên" value="{{ $teacher->hoten }}">
                                             @if($errors->has('name'))
                                                 <div class="text-danger">
                                                     {{ $errors->first('name')}}
@@ -207,41 +185,9 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Tanggal Lahir*</label>
-                                        <div class="col-sm-10">
-                                            <input  name="tgl_lahir" type="text" class="form-control" placeholder="Tanggal Lahir, misal: 05" value="{{ $teacher->tgl_lahir }}">
-                                            @if($errors->has('tgl_lahir'))
-                                                <div class="text-danger">
-                                                    {{ $errors->first('tgl_lahir')}}
-                                                </div>
-                                            @endif
-                                        </div>
-                                    </div>
+                                    
 
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Bulan Lahir*</label>
-                                        <div class="col-sm-10">
-                                            <input  name="bulan_lahir" type="text" class="form-control" placeholder="Bulan Lahir, misal: 12" value="{{ $teacher->bulan_lahir }}">
-                                            @if($errors->has('bulan_lahir'))
-                                                <div class="text-danger">
-                                                    {{ $errors->first('bulan_lahir')}}
-                                                </div>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Tahun Lahir*</label>
-                                        <div class="col-sm-10">
-                                            <input  name="tahun_lahir" type="text" class="form-control" placeholder="Tahun Lahir, misal: 2003" value="{{ $teacher->tahun_lahir }}">
-                                            @if($errors->has('tahun_lahir'))
-                                                <div class="text-danger">
-                                                    {{ $errors->first('tahun_lahir')}}
-                                                </div>
-                                            @endif
-                                        </div>
-                                    </div>
+                                    
 
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Jenis Kelamin</label>
@@ -249,13 +195,18 @@
                                             <input name="jenis_kelamin" type="text" class="form-control" placeholder="Jenis Kelamin" value="{{ $teacher->jenis_kelamin }}">
                                         </div>
                                     </div>
-
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Agama</label>
+                                        <label for="input8" class="col-sm-2 col-form-label">Giới tính</label>
                                         <div class="col-sm-10">
-                                            <input name="agama" type="text" class="form-control" placeholder="Agama" value="{{ $teacher->agama }}">
+                                            <select name="kelas" class="form-control">
+                                                    <option value="0">Nam</option>
+                                                    <option value="1">Nữ</option>
+                                                    <option value="NULL">Khác</option>
+                                            </select>
+                                           
                                         </div>
                                     </div>
+                                
 
                                     <!-- Garis Pembatas -->
                                     <hr>

@@ -11,34 +11,16 @@ use App\Models\LopHoc;
 use App\Models\LoaiTaiKhoan;
 class AdminController extends Controller
 {
-    //Index method for Admin Controller
-    public function index()
+
+    public function dsAdmin()
     {
-        $user = Auth::user();
-        return view('pages.admin.home', compact('user', $user));
+        $ad = TaiKhoan::whereHas('loaitaikhoan', function($q){
+            $q->where('maloaitk', '3');
+        })->get();
+
+        return view('pages.admin.user.giangvien.admin-ds-admin', compact('ad'));
     }
-
-    public function capNhatAvt(Request $request){
-
-        $request->validate([
-            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
-        ]);
-
-        $user = Auth::user();
-
-        $avatarName = $user->id.'_avatar'.time().'.'.request()->avatar->getClientOriginalExtension();
-
-        $request->avatar->storeAs('avatars',$avatarName);
-
-        $user->avatar = $avatarName;
-
-        $user->save();
-
-        return back()
-            ->with('success','Cập nhật thành công.');
-    }
-
-    public function editProfile($id, Request $request)
+    public function editAdmin($id, Request $request)
     {
 
             $this->validate($request,[
@@ -66,7 +48,7 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function EditPassword($id, Request $request)
+    public function thayDoiMK($id, Request $request)
     {       
         TaiKhoan::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
 
@@ -112,7 +94,7 @@ class AdminController extends Controller
 
 
         $key = LopHoc::where('tenlop','like',"%".$key."%")
-                            ->orWhere('mota','like',"%".$key."%")
+                            ->orWhere('chude','like',"%".$key."%")
                             ->get();
 
 
@@ -158,8 +140,8 @@ class AdminController extends Controller
     {
         $user = Auth::user();
 
-        $gv = TaiKhoan::whereHas('maloaitk', function($q){
-            $q->where('name', '1');
+        $gv = TaiKhoan::whereHas('loaitaikhoan', function($q){
+            $q->where('maloaitk', '1');
         })->get();
 
         return view('pages.admin.user.giangvien.admin-ds-giangvien', compact('user', 'gv',));
@@ -174,10 +156,9 @@ class AdminController extends Controller
 		$key = $request->table_search;
 
 
-        $search = TaiKhoan::whereHas('maloaitk', function($q){
-            $q->where('name', '1');
-        })->where('name','like',"%".$key."%")
-        //->orWhere('nip','like',"%".$key."%")
+        $search = TaiKhoan::whereHas('loaitaikhoan', function($q){
+            $q->where('maloaitk', '1');
+        })->where('hoten','like',"%".$key."%")
         ->orWhere('username','like',"%".$key."%")
         ->get();
 
@@ -194,16 +175,6 @@ class AdminController extends Controller
         $teacher = User::findOrFail($id);
         $teacher->delete();
         return redirect()->back()->with('success', 'User Berhasil diHapus.');
-    }
-
-
-
-
-    public function thongTinGiangVien($id)
-    {
-        $user = Auth::user();
-        $gv = User::findOrFail($id);
-        return view('pages.admin.user.giangvien.hoso.avt', compact('user', 'gv',));
     }
 
     public function capNhatAvtGiangVien($id, Request $request){
@@ -226,43 +197,33 @@ class AdminController extends Controller
     }
 
 
-    public function thongTin($id)
+    public function thongTinGiangVien($id)
     {
         $user = Auth::user();
-    	$teacher = User::findOrFail($id);
+    	$teacher = TaiKhoan::findOrFail($id);
     	return view('pages.admin.user.giangvien.hoso.trang-ca-nhan', compact('user', 'teacher',));
     }
 
-    public function editProfileTeacher($id, Request $request)
+    public function avtGiangVien($id)
+    {
+        $user = Auth::user();
+        $gv = TaiKhoan::findOrFail($id);
+        return view('pages.admin.user.giangvien.hoso.avt', compact('user', 'gv' ,));
+    }
+
+    public function suaHoSoGiangVien($id, Request $request)
     {
 
-            $this->validate($request,[
-                'name' => 'required',
-                'tgl_lahir' => 'required',
-                'bulan_lahir' => 'required',
-                'tahun_lahir' => 'required',
-                'nip' => 'required',
-                'username' => 'required',
-                'email' => 'email|required',
-                'no_telp' => 'required'
-            ]);
-
-            $teacher = TaiKhoan::findOrFail($id);
-            $teacher->name = $request->name;
-            $teacher->tempat_lahir = $request->tempat_lahir;
-            $teacher->tgl_lahir = $request->tgl_lahir;
-            $teacher->bulan_lahir = $request->bulan_lahir;
-            $teacher->tahun_lahir = $request->tahun_lahir;
-            $teacher->jenis_kelamin = $request->jenis_kelamin;
-            $teacher->agama = $request->agama;
-            $teacher->nip = $request->nip;
-            $teacher->jabatan = $request->jabatan;
-            $teacher->username = $request->username;
-            $teacher->email = $request->email;
-            $teacher->save();
+            $gv = TaiKhoan::findOrFail($id);
+            $gv->hoten = $request->name;
+            $gv->sdt = $request->phone;
+            $gv->ngaysinh = $request->bird;
+            $gv->maloaitk = $request->role;
+            $gv->email = $request->email;
+            $gv->save();
 
 
-            $request->session()->flash('message.profile', 'Profile Details was successfully updated!');
+            $request->session()->flash('message.profile', 'Sửa thành công!');
 
             return redirect()->back();
     }
@@ -272,33 +233,33 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function EditPasswordTeacher($id, Request $request)
+    public function doiMKGiangVien($id, Request $request)
     {
         $request->validate([
             'new_password' => ['required'],
             'confirm_new_password' => ['same:new_password'],
         ]);
-        $teacher = User::findOrFail($id);
-        User::find($teacher->id)->update(['password'=> Hash::make($request->new_password)]);
+        $teacher = TaiKhoan::findOrFail($id);
+        TaiKhoan::find($teacher->id)->update(['password'=> Hash::make($request->new_password)]);
 
-        $request->session()->flash('message.password', 'Password was successfully updated!');
+        $request->session()->flash('message.password', 'Đổi mật khẩu thành công!');
 
         return redirect()->back();
     }
 
 
-    public function showStudentList()
+    public function dsHocVien()
     {
         $user = Auth::user();
 
-        $students = User::whereHas('roles', function($q){
-            $q->where('name', 'Student');
+        $st = TaiKhoan::whereHas('maloaitk', function($q){
+            $q->where('name', '2');
         })->get();
 
-        return view('pages.okemin.user.student.showStudentList', compact('user', 'students',));
+        return view('pages.admin.user.hocvien.admin-ds-hocvien', compact('user', 'st',));
     }
 
-    public function searchStudent(Request $request)
+    public function timKiemHocVien(Request $request)
 	{
         $user = Auth::user();
 
@@ -306,40 +267,40 @@ class AdminController extends Controller
 		$search = $request->table_search;
 
 
-        $search = User::whereHas('roles', function($q){
-            $q->where('name', 'Student');
-        })->where('name','like',"%".$search."%")
-        ->orWhere('nisn','like',"%".$search."%")
+        $search = TaiKhoan::whereHas('loaitaikhoan', function($q){
+            $q->where('maloaitk', '2');
+        })->where('hoten','like',"%".$search."%")
+        ->orWhere('sdt','like',"%".$search."%")
         ->orWhere('username','like',"%".$search."%")
         ->get();
 
-		return view('pages.okemin.user.student.showStudentFiltered', compact('search', 'user') );
+		return view('pages.admin.user.hocvien.admin-find-hocvien', compact('search', 'user') );
     }
 
     
-    public function deleteStudent($id)
+    public function xoaHocVien($id)
     {
         $user = Auth::user();
-        $student = User::findOrFail($id);
+        $student = TaiKhoan::findOrFail($id);
         $student->delete();
-        return redirect()->back()->with('success', 'User Berhasil diHapus.');
+        return redirect()->back()->with('success', 'Xóa học viên thành công.');
     }
 
 
-    public function profilePictureStudent($id)
+    public function loadAvtHocVien($id)
     {
         $user = Auth::user();
-        $student = User::findOrFail($id);
-        return view('pages.okemin.user.student.profile.picture', compact('user', 'student',));
+        $student = TaiKhoan::findOrFail($id);
+        return view('pages.admin.user.hocvien.hoso.avt', compact('user', 'student',));
     }
 
-    public function updateAvatarStudent($id, Request $request){
+    public function doiAvtHocVien($id, Request $request){
 
         $request->validate([
             'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
         ]);
 
-        $student = User::findOrFail($id);
+        $student = TaiKhoan::findOrFail($id);
 
         $avatarName = $student->id.'_avatar'.time().'.'.request()->avatar->getClientOriginalExtension();
 
@@ -349,53 +310,38 @@ class AdminController extends Controller
         $student->save();
 
         return back()
-            ->with('success','You have successfully upload image.');
+            ->with('success','Đổi hình đại diện thành công.');
     }
 
 
-    public function showProfileStudent($id)
+    public function thongTinHocVien($id)
     {
         $user = Auth::user();
-        $student = User::findOrFail($id);
-        $kelas = Kelas::all();
-    	return view('pages.okemin.user.student.profile.profilePage', compact('user', 'student', 'kelas'));
+        $student = TaiKhoan::findOrFail($id);
+        $lophoc = LopHoc::all();
+    	return view('pages.admin.user.hocvien.hoso.trang-ca-nhan', compact('user', 'student', 'lophoc'));
     }
 
-    public function editProfileStudent($id, Request $request)
+    public function suaHoSoHocVien($id, Request $request)
     {
 
         $this->validate($request,[
-            'name' => 'required',
-            'tgl_lahir' => 'required',
-            'bulan_lahir' => 'required',
-            'tahun_lahir' => 'required',
-            'nisn' => 'required',
-            'kelas' => 'required',
-            'tahun_masuk' => 'required',
+            'hoten' => 'required',
             'username' => 'required',
             'email' => 'email',
-            'no_telp' => 'required',
+            'sdt' => 'required',
         ]);
 
-        $student = User::findOrFail($id);
-        $student->name = $request->name;
-        $student->tempat_lahir = $request->tempat_lahir;
-        $student->tgl_lahir = $request->tgl_lahir;
-        $student->bulan_lahir = $request->bulan_lahir;
-        $student->tahun_lahir = $request->tahun_lahir;
-        $student->jenis_kelamin = $request->jenis_kelamin;
-        $student->nisn = $request->nisn;
-        $student->agama = $request->agama;
-        $student->kelas = $request->kelas;
-        $student->jabatan = $request->jabatan;
-        $student->tahun_masuk = $request->tahun_masuk;
-        $student->username = $request->username;
+        $student = TaiKhoan::findOrFail($id);
+        $student->hoten = $request->name;
+        $student->maloaitk = $request->maloaitk;
+        $student->hoatdong = $request->hoatdong;
         $student->email = $request->email;
-        $student->no_telp = $request->no_telp;
+        $student->sdt = $request->sdt;
         $student->save();
 
 
-        $request->session()->flash('message.profile', 'Profile Details was successfully updated!');
+        $request->session()->flash('message.profile', 'Thay đổi thông tin thành công!');
 
         return redirect()->back();
     }
@@ -405,102 +351,81 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function EditPasswordStudent($id, Request $request)
+    public function doiMKHocVien($id, Request $request)
     {
         $request->validate([
             'new_password' => ['required'],
             'confirm_new_password' => ['same:new_password'],
         ]);
-        $student = User::findOrFail($id);
-        User::find($student->id)->update(['password'=> Hash::make($request->new_password)]);
+        $student = TaiKhoan::findOrFail($id);
+        TaiKhoan::find($student->id)->update(['password'=> Hash::make($request->new_password)]);
 
-        $request->session()->flash('message.password', 'Password was successfully updated!');
+        $request->session()->flash('message.password', 'Mật khẩu đã được thay đổi!');
 
         return redirect()->back();
     }
 
-    public function showCreateTeacher()
+    public function taoGiangVienIndex()
     {
         $user = Auth::user();
-    	return view('pages.okemin.user.teacher.createTeacher', compact('user'));
+    	return view('pages.admin.user.giangvien.admin-tao-gv');
     }
 
-    public function createTeacher(Request $request)
+    public function taoGiangVien(Request $request)
     {
         $this->validate($request,[
-            'name' => 'required',
-            "tgl_lahir" => 'required',
-            "bulan_lahir" => 'required',
-            "tahun_lahir" => 'required',
-            "nip" => 'required|unique:users',
-            "username" => 'required|unique:users',
+            'username' => 'required',
+            "password" => 'required',
+            "hoten" => 'required',
+            "sdt" => 'required',
             "email" => 'required|unique:users',
-            "no_telp" => 'required',
         ]);
-
-        $teacher = User::create([
-            'nip' => $request->input('nip'),
-            'name' => $request->input('name'),
-            'username' => $request->input('username'),
-            'email' => $request->input('email'),
-            'jabatan' => $request->input('jabatan'),
-            'tempat_lahir' => $request->input('tempat_lahir'),
-            'tgl_lahir' => $request->input('tgl_lahir'),
-            'bulan_lahir' => $request->input('bulan_lahir'),
-            'tahun_lahir' => $request->input('tahun_lahir'),
-            'jenis_kelamin' => $request->input('jenis_kelamin'),
-            'agama' => $request->input('agama'),
-            'no_telp' => $request->input('no_telp')
-        ]);
-        $teacher->roles()->attach(Role::where('name', 'Teacher')->first());
-
-
-        return back()->with('success','Teacher telah berhasil dibuat...');
+        $taiKhoan = new TaiKhoan;
+        $taiKhoan->username=$request->Username;
+        $taiKhoan->password=Hash::make($request->password);
+        $taiKhoan->hoten=$request->Fullname;
+        $taiKhoan->email=$request->email;
+        $taiKhoan->sdt=$request->Phone;
+        $taiKhoan->hinhdaidien="unnamed.png";
+        $taiKhoan->token="";
+        $taiKhoan->maloaitk=2;
+        $taiKhoan->hoatdong=1;
+        $taiKhoan->save();
+            
+        return back()->with('success','Đã thêm mới giảng viên!');
     }
 
     // Teacher
-    public function showCreateStudent()
+    public function taoHocVienIndex()
     {
         $user = Auth::user();
-        $kelas = Kelas::all();
-    	return view('pages.okemin.user.student.createStudent', compact('user', 'kelas'));
+        $lophoc = LopHoc::all();
+    	return view('pages.admin.user.hocvien.admin-tao-hs', compact('user', 'lophoc'));
     }
 
-    public function createStudent(Request $request)
+    public function taoHocVien(Request $request)
     {
         $this->validate($request,[
-            'name' => 'required',
-            "tgl_lahir" => 'required',
-            "bulan_lahir" => 'required',
-            "tahun_lahir" => 'required',
-            "nisn" => 'required|unique:users',
-            "username" => 'required|unique:users',
+            'username' => 'required',
+            "password" => 'required',
+            "hoten" => 'required',
+            "sdt" => 'required',
             "email" => 'required|unique:users',
-            "kelas" => 'required',
-            "tahun_masuk" => 'required',
-            "no_telp" => 'required',
         ]);
-
-        $teacher = User::create([
-            'nisn' => $request->input('nisn'),
-            'name' => $request->input('name'),
-            'username' => $request->input('username'),
-            'email' => $request->input('email'),
-            'kelas' => $request->input('kelas'),
-            'jabatan' => $request->input('jabatan'),
-            'tempat_lahir' => $request->input('tempat_lahir'),
-            'tgl_lahir' => $request->input('tgl_lahir'),
-            'bulan_lahir' => $request->input('bulan_lahir'),
-            'tahun_lahir' => $request->input('tahun_lahir'),
-            'jenis_kelamin' => $request->input('jenis_kelamin'),
-            'agama' => $request->input('agama'),
-            'tahun_masuk' => $request->input('tahun_masuk'),
-            'no_telp' => $request->input('no_telp')
-        ]);
-        $teacher->roles()->attach(Role::where('name', 'Student')->first());
+        $taiKhoan = new TaiKhoan;
+        $taiKhoan->username=$request->Username;
+        $taiKhoan->password=Hash::make($request->password);
+        $taiKhoan->hoten=$request->Fullname;
+        $taiKhoan->email=$request->email;
+        $taiKhoan->sdt=$request->Phone;
+        $taiKhoan->hinhdaidien="unnamed.png";
+        $taiKhoan->token="";
+        $taiKhoan->maloaitk=2;
+        $taiKhoan->hoatdong=1;
+        $taiKhoan->save();
 
 
-        return back()->with('success','Student telah berhasil dibuat...');
+        return back()->with('success','Đã tạo học viên mới.');
     }
 
 }

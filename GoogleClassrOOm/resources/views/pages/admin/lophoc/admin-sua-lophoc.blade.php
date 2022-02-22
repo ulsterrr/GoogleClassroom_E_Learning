@@ -186,12 +186,7 @@
                     <div class="form-group row">
                         <label for="input2" class="col-sm-2 col-form-label">Chủ đề</label>
                         <div class="col-sm-10">
-                          <input value="{{ $lophoc->chude }}" name="chude" type="text" class="form-control" id="input2" placeholder="Chủ đề">
-                            @if($errors->has('deskripsi'))
-                                <div class="text-danger">
-                                    {{ $errors->first('deskripsi')}}
-                                </div>
-                            @endif
+                          <input value="{{ $lophoc->chude }}" name="chude" type="text" class="form-control" id="input2" placeholder="Chủ đề">                          
                         </div>
                     </div>
                     <button name="submit" type="submit" class="btn btn-block bg-gradient-primary">Xác nhận</button>
@@ -202,9 +197,6 @@
             </div>
 
             <!-- /.card -->
-            <div class="d-none" id="card-refresh-content">
-                1234
-            </div>
         </div>
         <!-- /.col -->
     </section>

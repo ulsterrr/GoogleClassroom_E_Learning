@@ -26,6 +26,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
     <script src="{{ asset('js/main.js') }}" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
       .labl {
         display : block;
@@ -182,20 +183,23 @@
             >
               <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                
+                  <div class="modal-header center">
+                    <h4 class="center" style="justify-content: center;text-align: center;">Thêm lớp học</h4>
+                  </div>
       
-              <form class="add-class" action="{{route('add-tao-lop')}}" method="post">
+              <form class="add-class center" action="{{route('add-tao-lop')}}" method="post">
                 @csrf
+                
                 <div class="mx-3 my-3">
-                <h3 style="justify-content: center;text-align: center;padding-bottom:25px"> Thêm lớp học</h3>
+                
                   <div class="mb-3">
-                    <input name="classname" class="form-control py-3" placeholder="Class Name" />
+                    <input name="classname" class="form-control py-3" placeholder="Tên lớp" />
                   </div>
                   <div class="mb-3">
-                    <input name="subject" class="form-control py-3" placeholder="Subject" />
+                    <input name="subject" class="form-control py-3" placeholder="Chủ đề" />
                   </div>
                   <div>
-                    <p>Choose background</p>
+                    <p>Chọn ảnh nền</p>
                     <div class="backgrounds">
                       <div class="background h-100 cursor-pointer">
                       <label class="labl">
@@ -243,9 +247,6 @@
                 </div>
       
                 <div class="modal-footer">
-      
-                  <a class="btn btn-danger" href="#">Hủy
-                  </a>
                   <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
                     Thêm
                   </button>
@@ -274,10 +275,10 @@
                 <div class="card-header">
                     <h3 class="card-title">Danh sách lớp</h3>
                     <div class="card-tools">
-                        <form action="/Okemin/Kelas/List/Search/" method="get">
+                        <form action="{{ route('ad-tim-lop') }}" method="get">
                             @csrf
                             <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                                <input type="text" name="table_search" class="form-control float-right" placeholder="Tìm kiếm">
 
                                 <div class="input-group-append">
                                     <button name="submit" type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
@@ -292,7 +293,7 @@
                     <thead>
                       <tr>
                         <th>Tên Lớp</th>
-                        <th>Mô tả lớp</th>
+                        <th>Chủ đề</th>
                         <th>Tùy chọn</th>
                       </tr>
                     </thead>

@@ -28,14 +28,41 @@ Route::group(['prefix'=>'/', 'middleware' => ['auth','admin']],function(){
     Route::get('/quan-tri-vien/thong-tin', function() {
     return view('pages.admin.hoso.admin-info');
 })->name('AdminInfo');
+Route::get('/quan-tri-vien/ds-admin', [AdminController::class, 'dsAdmin'])->name('ad-ds-ad');
 
-
+//Lớp học
 Route::get('/quan-tri-vien/lop-hoc/ds-lophoc', [AdminController::class, 'dsLopHoc'])->name('ad-ds-lop');
+Route::get('/quan-tri-vien/lop-hoc/tim-kiem-lophoc', [AdminController::class, 'timKiemLopHoc'])->name('ad-tim-lop');
 Route::post('/quan-tri-vien/lop-hoc/ds-lophoc', [AdminController::class, 'taoLopHoc'])->name('add-tao-lop');
+
 Route::get('/quan-tri-vien/lop-hoc/xoa-lop/{id}', [AdminController::class, 'xoaLopHoc'])->name('ad-xoa-lop');
+
 Route::get('/quan-tri-vien/lop-hoc/sua-lop/{id}', [AdminController::class, 'suaLopHocIndex'])->name('ad-sua-lop');
 Route::post('/quan-tri-vien/lop-hoc/sua-lop/{id}', [AdminController::class, 'capNhatLopHoc'])->name('add-sua-lop');
-Route::get('/quan-tri-vien/lop-hoc/tao-lop', [AdminController::class, 'taoLopHocIndex'])->name('ad-tao-lop');
+
+//Giảng viên
+Route::get('/quan-tri-vien/giang-vien/ds-giangvien', [AdminController::class, 'dsGiangVien'])->name('ad-ds-gv');
+Route::get('/quan-tri-vien/giang-vien/tim-kiem-giangvien', [AdminController::class, 'timKiemGiangVien'])->name('ad-tim-gv');
+
+Route::get('/quan-tri-vien/giang-vien/tao-moi-giangvien', [AdminController::class, 'dsGiangVien'])->name('ad-tao-gv');
+Route::post('/quan-tri-vien/giang-vien/tao-moi-giangvien', [AdminController::class, 'suaHoSoGiangVien'])->name('add-tao-gv');
+
+Route::get('/quan-tri-vien/giang-vien/xoa-giangvien/{id}', [AdminController::class, 'xoaGiangVien'])->name('ad-xoa-gv');
+
+Route::get('/quan-tri-vien/giang-vien/sua-thongtin/{id}', [AdminController::class, 'thongTinGiangVien'])->name('ad-sua-gv');
+Route::post('/quan-tri-vien/giang-vien/sua-thongtin/{id}', [AdminController::class, 'suaHoSoGiangVien'])->name('add-sua-gv');
+
+//Học viên
+Route::get('/quan-tri-vien/hoc-vien/ds-hocvien', [AdminController::class, 'dsHocVien'])->name('ad-ds-hs');
+Route::get('/quan-tri-vien/hoc-vien/tim-kiem-hocvien', [AdminController::class, 'timKiemHocVien'])->name('ad-tim-hs');
+
+Route::get('/quan-tri-vien/hoc-vien/tao-moi-hocvien', [AdminController::class, 'taoLopHocIndex'])->name('ad-tao-hs');
+Route::post('/quan-tri-vien/hoc-vien/tao-moi-hocvien', [AdminController::class, 'taoLopHoc'])->name('add-tao-hs');
+
+Route::get('/quan-tri-vien/giang-vien/xoa-hocvien/{id}', [AdminController::class, 'xoaGixoaHocVienangVien'])->name('ad-xoa-hs');
+
+Route::get('/quan-tri-vien/hoc-vien/sua-thongtin/{id}', [AdminController::class, 'thongTinHocVien'])->name('ad-sua-hs');
+Route::post('/quan-tri-vien/hoc-vien/sua-thongtin/{id}', [AdminController::class, 'suaHoSoHocVien'])->name('add-sua-hs');
 
 });
 //

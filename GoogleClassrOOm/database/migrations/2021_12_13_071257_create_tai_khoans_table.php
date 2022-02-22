@@ -20,6 +20,8 @@ class CreateTaiKhoansTable extends Migration
             $table->string('hoten');
             $table->string('email');
             $table->string('sdt');
+            $table->date('ngaysinh');
+            $table->integer('gioitinh')->default(0);
             $table->string('hinhdaidien');
             $table->string('token');
             $table->integer('maloaitk');

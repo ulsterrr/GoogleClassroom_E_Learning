@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\LoaiTaiKhoan;
+use Illuminate\Database\Seeder;
 
 class LoaiTaiKhoanSeeder extends Seeder
 {
@@ -13,7 +13,7 @@ class LoaiTaiKhoanSeeder extends Seeder
      * @return void
      */
     public function run()
-    {    
+    {
         $taikhoan1 = new LoaiTaiKhoan();
         $taikhoan1->tenloaitk = "Giáo viên";
         $taikhoan1->mota = "Tài khoản với nghiệp vụ là giáo viên";

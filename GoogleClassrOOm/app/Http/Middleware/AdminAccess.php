@@ -14,10 +14,10 @@ class AdminAccess
                 return $next($request);
             }
             if (Auth::user()->maloaitk == 2) {
-                return redirect()->route('hoc-sinh')->with('message', 'Bạn không có quyền truy cập trang giảng viên!!!');
+                return redirect()->route('hoc-sinh')->with('message', 'Bạn không có quyền truy cập trang quản trị viên!!!');
             }
             if (Auth::user()->maloaitk == 1) {
-                return redirect()->route('giang-vien')->with('message', 'Bạn không có quyền truy cập trang giảng viên!!!');
+                return redirect()->route('giang-vien')->with('message', 'Bạn không có quyền truy cập trang quản trị viên!!!');
             }
     }
 }

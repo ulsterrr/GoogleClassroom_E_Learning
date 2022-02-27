@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="vn">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,46 +13,52 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}"/>
-    <link rel="stylesheet" href= "{{ asset('css/common.css ') }}" />
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/common.css ') }}" />
     <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/reset.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/components.css') }}" />
-   
+
 
     <!-- Scripts -->
     <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
     <script src="{{ asset('js/main.js') }}" defer></script>
     <style>
-      .labl {
-          display : block;
-          width: 210px;
-          height:115px;
-      }
-      .labl > input{ /* HIDE RADIO */
-          visibility: hidden; /* Makes input not-clickable */
-          position: absolute; /* Remove input from document flow */
-      }
-      .labl > input + div{ /* DIV STYLES */
-          cursor:pointer;
-          border:2px solid transparent;
-      }
-      .labl > input:checked + div{ /* (RADIO CHECKED) DIV STYLES */
-          border: 1px solid #ff6600;
-      }
-      </style>
-  </head>
+        .labl {
+            display: block;
+            width: 210px;
+            height: 115px;
+        }
 
-  <body>
+        .labl>input {
+            /* HIDE RADIO */
+            visibility: hidden;
+            /* Makes input not-clickable */
+            position: absolute;
+            /* Remove input from document flow */
+        }
+
+        .labl>input+div {
+            /* DIV STYLES */
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .labl>input:checked+div {
+            /* (RADIO CHECKED) DIV STYLES */
+            border: 1px solid #ff6600;
+        }
+
+    </style>
+</head>
+
+<body>
     <!-- Header -->
     <header
-      class="
+        class="
         fixed-top
         header
         shadow
@@ -60,22 +67,18 @@
         px-4
         py-3
         bg-white
-      "
-    >
-      <a href="#" class="logo me-3">
-        <img src="{{ asset('svgs/logo.svg') }}" alt="Logo" />
-      </a>
+      ">
+        <a href="#" class="logo me-3">
+            <img src="{{ asset('svgs/logo.svg') }}" alt="Logo" />
+        </a>
 
-      <div class="popup ms-auto">
-        <div class="avatar me-3 cursor-pointer">
-          <img
-          src="{{ asset('images/'.auth()->user()->hinhdaidien) }}"
-            alt="Avatar"
-          />
-        </div>
+        <div class="popup ms-auto">
+            <div class="avatar me-3 cursor-pointer">
+                <img src="{{ asset('images/' . auth()->user()->hinhdaidien) }}" alt="Avatar" />
+            </div>
 
-        <div
-          class="
+            <div
+                class="
             popup__content
             d-flex
             flex-column
@@ -83,102 +86,90 @@
             shadow
             rounded-3
             bg-white
-          "
-        >
-          <img
-            class="popup__avatar cursor-pointer"
-            src="{{ asset('images/'.auth()->user()->hinhdaidien) }}"
-            alt="Avatar"
-          />
-          <div class="d-flex gap-3">
-            <span class="flex-center text-nowrap d-none d-md-flex"
-              >{{ auth()->user()->hoten }}</span>       
-          </div>
-          <p class="popup__email">{{ auth()->user()->email }}</p>
-          <a class="popup__link" href="{{ route('youraccount') }}" target="_blank"
-            >Manage your account</a
-          >
-          <div class="popup__logout mt-auto cursor-pointer"><a class="btn btn-primary" href="{{ route('dang-xuat') }}">Log Out
-          </a></div>
+          ">
+                <img class="popup__avatar cursor-pointer" src="{{ asset('images/' . auth()->user()->hinhdaidien) }}"
+                    alt="Avatar" />
+                <div class="d-flex gap-3">
+                    <span class="flex-center text-nowrap d-none d-md-flex">{{ auth()->user()->hoten }}</span>
+                </div>
+                <p class="popup__email">{{ auth()->user()->email }}</p>
+                <a class="popup__link" href="{{ route('youraccount') }}" target="_blank">Manage your account</a>
+                <div class="popup__logout mt-auto cursor-pointer"><a class="btn btn-primary"
+                        href="{{ route('dang-xuat') }}">Log Out
+                    </a></div>
 
-          <div class="popup__pseudo"></div>
+                <div class="popup__pseudo"></div>
+            </div>
         </div>
-      </div>
 
-    
+
     </header>
 
-    <form class="add-class" action="{{route('sualophoc',['id'=>$lophoc->id])}}" method="post">
-      @csrf
-      <div class="mx-3 my-3">
-        <h3 style = "padding-bottom:20px; justify-content: center; display: flex;">Thay đổi thông tin lớp học</h3>
-        <div class="mb-3">
-          <input name="classname" class="form-control py-3" value="{{$lophoc->tenlop}}" placeholder="Class Name" />
-        </div>
-        <div class="mb-3">
-          <input name="subject" class="form-control py-3" value="{{$lophoc->chude}}" placeholder="Subject" />
-        </div>
-        <div>
-          <p>Choose background</p>
-          <div class="backgrounds">
-            <div class="background h-100 cursor-pointer">
-            <label class="labl">
-            <input type="radio" name="radioname" value="https://cdn.dribbble.com/users/1338391/screenshots/15344962/media/6564bb2cf0975c926b603b7133486307.jpg?compress=1&resize=1600x1200"/>
-              <img 
-                class="img-cover rounded"
-                src="https://cdn.dribbble.com/users/1338391/screenshots/15344962/media/6564bb2cf0975c926b603b7133486307.jpg?compress=1&resize=1600x1200"
-                alt="Background"
-              />
-            </label>
+    <form class="add-class" action="{{ route('sualophoc', ['id' => $lophoc->id]) }}" method="post">
+        @csrf
+        <div class="mx-3 my-3">
+            <h3 style="padding-bottom:20px; justify-content: center; display: flex;">Thay đổi thông tin lớp học</h3>
+            <div class="mb-3">
+                <input name="classname" class="form-control py-3" value="{{ $lophoc->tenlop }}"
+                    placeholder="Class Name" />
             </div>
-            <div class="background h-100 cursor-pointer ">
-            <label class="labl">
-            <input type="radio" name="radioname" value="https://cdn.dribbble.com/users/1338391/screenshots/15322399/media/4290a3ccff443d96fe1c8d990211254e.jpg?compress=1&resize=1600x1200" />
-              <img 
-                class="img-cover rounded"
-                src="https://cdn.dribbble.com/users/1338391/screenshots/15322399/media/4290a3ccff443d96fe1c8d990211254e.jpg?compress=1&resize=1600x1200"
-                alt="Background"
-              />
-              </label>
+            <div class="mb-3">
+                <input name="subject" class="form-control py-3" value="{{ $lophoc->chude }}" placeholder="Subject" />
             </div>
-            
-            <div class="background h-100 cursor-pointer ">
-            <label class="labl">
-            <input type="radio" name="radioname" value="https://cdn.dribbble.com/users/1338391/screenshots/15333283/media/8b76dd5f6d7d18d37e4e3b74b33cd903.jpg?compress=1&resize=1600x1200" />
-              <img 
-                class="img-cover rounded"
-                src="https://cdn.dribbble.com/users/1338391/screenshots/15333283/media/8b76dd5f6d7d18d37e4e3b74b33cd903.jpg?compress=1&resize=1600x1200"
-                alt="Background"
-              />
-              </label>
-            </div>
-            <div class="background h-100 cursor-pointer " >
-            <label class="labl">
-              <input type="radio" name="radioname" value="https://cdn.dribbble.com/users/1338391/screenshots/15318231/media/4c725fe4efbaa9d498f39f13600e396a.jpg?compress=1&resize=1600x1200" />
-              <img 
-                class="img-cover rounded"
-                src="https://cdn.dribbble.com/users/1338391/screenshots/15318231/media/4c725fe4efbaa9d498f39f13600e396a.jpg?compress=1&resize=1600x1200"
-                alt="Background"
-              />
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
+            <div>
+                <p>Choose background</p>
+                <div class="backgrounds">
+                    <div class="background h-100 cursor-pointer">
+                        <label class="labl">
+                            <input type="radio" name="radioname"
+                                value="https://cdn.dribbble.com/users/1338391/screenshots/15344962/media/6564bb2cf0975c926b603b7133486307.jpg?compress=1&resize=1600x1200" />
+                            <img class="img-cover rounded"
+                                src="https://cdn.dribbble.com/users/1338391/screenshots/15344962/media/6564bb2cf0975c926b603b7133486307.jpg?compress=1&resize=1600x1200"
+                                alt="Background" />
+                        </label>
+                    </div>
+                    <div class="background h-100 cursor-pointer ">
+                        <label class="labl">
+                            <input type="radio" name="radioname"
+                                value="https://cdn.dribbble.com/users/1338391/screenshots/15322399/media/4290a3ccff443d96fe1c8d990211254e.jpg?compress=1&resize=1600x1200" />
+                            <img class="img-cover rounded"
+                                src="https://cdn.dribbble.com/users/1338391/screenshots/15322399/media/4290a3ccff443d96fe1c8d990211254e.jpg?compress=1&resize=1600x1200"
+                                alt="Background" />
+                        </label>
+                    </div>
 
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary btn-modal"
-          data-bs-dismiss="modal"
-        >
-        <a style="color:white;text-decoration:none " href="{{ route('giang-vien') }}">Trở về</a>
-        </button>
-        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
-          Sửa
-        </button>
-       
-      </div>
+                    <div class="background h-100 cursor-pointer ">
+                        <label class="labl">
+                            <input type="radio" name="radioname"
+                                value="https://cdn.dribbble.com/users/1338391/screenshots/15333283/media/8b76dd5f6d7d18d37e4e3b74b33cd903.jpg?compress=1&resize=1600x1200" />
+                            <img class="img-cover rounded"
+                                src="https://cdn.dribbble.com/users/1338391/screenshots/15333283/media/8b76dd5f6d7d18d37e4e3b74b33cd903.jpg?compress=1&resize=1600x1200"
+                                alt="Background" />
+                        </label>
+                    </div>
+                    <div class="background h-100 cursor-pointer ">
+                        <label class="labl">
+                            <input type="radio" name="radioname"
+                                value="https://cdn.dribbble.com/users/1338391/screenshots/15318231/media/4c725fe4efbaa9d498f39f13600e396a.jpg?compress=1&resize=1600x1200" />
+                            <img class="img-cover rounded"
+                                src="https://cdn.dribbble.com/users/1338391/screenshots/15318231/media/4c725fe4efbaa9d498f39f13600e396a.jpg?compress=1&resize=1600x1200"
+                                alt="Background" />
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-modal" data-bs-dismiss="modal">
+                <a style="color:white;text-decoration:none " href="{{ route('giang-vien') }}">Trở về</a>
+            </button>
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                Sửa
+            </button>
+
+        </div>
     </form>
-  </body>
+</body>
+
 </html>

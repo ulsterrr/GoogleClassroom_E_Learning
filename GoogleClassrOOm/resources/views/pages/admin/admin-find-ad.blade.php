@@ -90,7 +90,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Danh sách Giảng viên</h1>
+                        <h1>Tìm với từ khóa "{{$key}}"</h1>
                     </div>
                     <div class="col-sm-6">
 
@@ -105,9 +105,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Dữ liệu Giảng viên</h3>
+                            <h3 class="card-title">Dữ liệu Quản trị viên</h3>
                             <div class="card-tools">
-                                <form action="{{ route('ad-tim-gv') }}" method="get">
+                                <form action="{{ route('ad-tim-ad') }}" method="get">
                                     @csrf
                                     <div class="input-group input-group-sm" style="width: 250px;">
                                         <input type="text" name="table_search" class="form-control float-right"
@@ -135,11 +135,10 @@
                                         </th>
                                         <th>Ngày sinh</th>
                                         <th>Loại Tài Khoản</th>
-                                        <th>Tùy chọn</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($gv as $t)
+                                    @foreach ($search as $t)
                                         <tr>
                                             <td>{{ $t->hoten }}</td>
                                             <td>{{ $t->username }}</td>
@@ -167,15 +166,6 @@
                                                         Học viên
                                                     @endif
                                                 </a>
-                                            </td>
-                                            <td>
-                                                <a type="button" class="btn btn-block bg-gradient-primary btn-xs"
-                                                    href="{{ route('ad-sua-gv', ['id' => $t->id]) }}">Thông tin</a>
-                                                <a type="button" class="btn btn-block bg-gradient-danger btn-xs"
-                                                    href="{{ route('ad-xoa-gv', ['id' => $t->id]) }}"
-                                                    onclick="return confirm('Bạn có chắc xóa tài khoản {{ $t->hoten }}?')"
-                                                    class="delete"
-                                                    data-confirm="Bạn có chắc muốn xóa tài khoản {{ $t->hoten }} này?">Xóa</a>
                                             </td>
                                         </tr>
                                     @endforeach

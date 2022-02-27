@@ -1,31 +1,78 @@
 @extends('layouts.dashHead')
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- ===== BOX ICONS ===== -->
-        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ asset('svgs/board.svg') }}">
+    <!-- ===== BOX ICONS ===== -->
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
 
-        <!-- ===== CSS ===== -->
-        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
-    	<link rel="stylesheet" href="{{ asset('css/common.css') }}" />
-    	<link rel="stylesheet" href="{{ asset('css/main.css') }}" />
-    	<link rel="stylesheet" href="{{ asset('css/reset.css') }}" />
-    	<link rel="stylesheet" href="{{ asset('css/components.css') }}" />
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/reset.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/components.css') }}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'></script>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
+    <script>
+        $(document).ready(function() {
+            var ctx = $("#chart-line");
+            var ct = $("#chart-lin");
+            var myLineChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ["Admin", "Giảng viên", "Học viên"],
+                    datasets: [{
+                        data: [{{ $ad }}, {{ $gv }}, {{ $hs }}],
+                        backgroundColor: ["rgba(255, 0, 0, 0.5)", "rgba(100, 255, 0, 0.5)",
+                            "rgba(200, 50, 255, 0.5)"
+                        ]
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Tổng số tài khoản: {{ $tk }}'
+                    }
+                }
+            });
+            var myLineChar = new Chart(ct, {
+                type: 'pie',
+                data: {
+                    labels: ["Đang hoạt động", "Không hoạt động", "Tạm khóa"],
+                    datasets: [{
+                        data: [{{ $hd }}, {{ $khd }}, {{ $k }}],
+                        backgroundColor: ["rgba(0, 254, 0 , 1)", "rgba(255, 157, 0, 1)",
+                            "rgba(209, 198, 181, 1)"
+                        ]
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Trạng thái tài khoản'
+                    }
+                }
+            });
+        });
+    </script>
+    <title>Quản trị web</title>
+</head>
 
-        <title>Quản trị web</title>
-    </head>
-    <body id="body-pd">
+<body id="body-pd">
     <header id="header"
-      class="
+        class="
         fixed-top
         header
         shadow
@@ -34,27 +81,25 @@
         px-4
         py-3
         bg-white
-      "
-    >
-	<div class="header__toggle">
-		<i class='bx bx-menu' id="header-toggle"></i>
-	</div>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="{{ route('Admin') }}" class="logo me-3">
-        <img src="{{ asset('svgs/logo.svg') }}" alt="Logo" />
-      </a>
-	  <span class="text-muted"><font size="+1">Quản trị</font></span>
-
-      <div class="popup ms-auto">
-        <div class="avatar me-3 cursor-pointer">
-          <img
-          src="{{ asset('images/'.auth()->user()->hinhdaidien) }}"
-            alt="Avatar"
-          />
+      ">
+        <div class="header__toggle">
+            <i class='bx bx-menu' id="header-toggle"></i>
         </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{{ route('Admin') }}" class="logo me-3">
+            <img src="{{ asset('svgs/logo.svg') }}" alt="Logo" />
+        </a>
+        <span class="text-muted">
+            <font size="+1">Quản trị</font>
+        </span>
 
-        <div
-          class="
+        <div class="popup ms-auto">
+            <div class="avatar me-3 cursor-pointer">
+                <img src="{{ asset('images/' . auth()->user()->hinhdaidien) }}" alt="Avatar" />
+            </div>
+
+            <div
+                class="
             popup__content
             d-flex
             flex-column
@@ -62,199 +107,83 @@
             shadow
             rounded-3
             bg-white
-          "
-        >
-          <img
-            class="popup__avatar cursor-pointer"
-            src="{{ asset('images/'.auth()->user()->hinhdaidien) }}"
-            alt="Avatar"
-          />
-          <div class="d-flex gap-3">
-            <span class="flex-center text-nowrap d-none d-md-flex"
-              >{{ auth()->user()->hoten }}</span>       
-          </div>
-          <p class="popup__email">{{ auth()->user()->email }}</p>
-          <a class="popup__link" href="{{ route('youraccount') }}" target="_blank"
-            >Quản lý Tài Khoản</a
-          >
-          <div class="popup__logout mt-auto cursor-pointer"><a class="btn btn-primary" href="{{ route('dang-xuat') }}">Đăng xuất
-          </a></div>
+          ">
+                <img class="popup__avatar cursor-pointer" src="{{ asset('images/' . auth()->user()->hinhdaidien) }}"
+                    alt="Avatar" />
+                <div class="d-flex gap-3">
+                    <span class="flex-center text-nowrap d-none d-md-flex">{{ auth()->user()->hoten }}</span>
+                </div>
+                <p class="popup__email">{{ auth()->user()->email }}</p>
+                <a class="popup__link" href="{{ route('youraccount') }}" target="_blank">Quản lý Tài Khoản</a>
+                <div class="popup__logout mt-auto cursor-pointer"><a class="btn btn-primary"
+                        href="{{ route('dang-xuat') }}">Đăng xuất
+                    </a></div>
 
-          <div class="popup__pseudo"></div>
+                <div class="popup__pseudo"></div>
+            </div>
         </div>
-      </div>
     </header>
-	<style>
-		.p {
-		  margin-top: 75px;
-		}
-		</style>
-        <div class="l-navbar" id="nav-bar">
-            <nav class="nav">
-                <div class="p">
-                    
+    <style>
+        .p {
+            margin-top: 75px;
+        }
 
-                    <div class="nav__list ">
-                        <a href="#" class="nav__link active">
-                        <i class='bx bx-grid-alt nav__icon' ></i>
-                            <span class="nav__name">Dashboard</span>
-                        </a>
+    </style>
+    @include('layouts.dashSidebar')
+    <div style="margin-top: 85px">
+        <h1>Trang chủ Admin</h1>
+        <div class="container-fluid">
+        <div class="row">
 
-                        <a href="{{ route('AdminInfo') }}" class="nav__link">
-                          <i class='bx bxs-chip nav__icon' ></i>
-                              <span class="nav__name">Administrator</span>
-                        </a>
-                        
-                        <!-- a -->
-                        <a class="dropdown-btn" style="padding-bottom: 8px">
-                          <i class='bx bx-layer nav__icon' ></i>
-                          <span class="nav__name">Lớp học
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          </span>
-                          <i class='bx bxs-down-arrow' ></i>
-                        </a>
-
-                        <div class="dropdown-container">
-                          <a href="{{route('ad-ds-lop')}}" class="nav_drop_link">
-                            <span style="padding-left: 31px">
-                              <i class='bx bxs-right-arrow'></i>&nbsp;&nbsp;
-                              Danh sách lớp
-                            </span>
-                          </a>
-                          <a href="{{ route('ad-ds-lop') }}" class="nav_drop_link">
-                            <span style="padding-left: 31px">
-                              <i class='bx bxs-right-arrow'></i>&nbsp;&nbsp;
-                              Tạo mới lớp học
-                            </span>
-                          </a>
-                                                                    
-                        </div> 
-                        <!-- a -->
-                        <a class="dropdown-btn" style="padding-bottom: 8px">
-                          <i class='bx bx-buoy nav__icon' ></i>
-                          <span class="nav__name">Quản lý
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          </span>
-                          <i class='bx bxs-down-arrow' ></i>
-                        </a>
-
-                        <div class="dropdown-container">
-                          <a href="{{ route('ad-ds-ad') }}" class="nav_drop_link">
-                            <span style="padding-left: 31px">
-                              <i class='bx bxs-right-arrow'></i>&nbsp;&nbsp;
-                              Danh sách Admin
-                            </span>
-                          </a>
-                          <a href="{{ route('ad-ds-gv') }}" class="nav_drop_link">
-                            <span style="padding-left: 31px">
-                              <i class='bx bxs-right-arrow'></i>&nbsp;&nbsp;
-                              Danh sách Giảng viên
-                            </span>
-                          </a>
-                          <a href="{{ route('ad-ds-hs') }}" class="nav_drop_link">
-                            <span style="padding-left: 31px">
-                              <i class='bx bxs-right-arrow'></i>&nbsp;&nbsp;
-                              Danh sách Học viên
-                            </span>
-                          </a>                                             
+            <div class="col-sm-8 col-md-6">
+                <div class="">
+                    <div class="card">
+                        <div class="card-header">Thống kê tài khoản</div>
+                        <div class="card-body">
+                            <div class="chartjs-size-monitor"
+                                style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                                <div class="chartjs-size-monitor-expand"
+                                    style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                    <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                                </div>
+                                <div class="chartjs-size-monitor-shrink"
+                                    style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                    <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                                </div>
+                            </div> <canvas id="chart-line" width="299" height="200" class="chartjs-render-monitor"
+                                style="display: block; width: 299px; height: 200px;"></canvas>
                         </div>
-                        <!-- a --> 
-                        <a class="dropdown-btn" style="padding-bottom: 8px">
-                          <i class='bx bxs-add-to-queue nav__icon'></i>
-                          <span class="nav__name">Thêm mới&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                          <i class='bx bxs-down-arrow' ></i>
-                        </a>
-
-                        <div class="dropdown-container">
-                          <a href="{{ route('ad-tao-ad') }}" class="nav_drop_link">
-                            <span style="padding-left: 31px">
-                              <i class='bx bxs-right-arrow'></i>&nbsp;&nbsp;
-                              Tạo mới Admin
-                            </span>
-                          </a>
-                          <a href="{{ route('ad-tao-gv') }}" class="nav_drop_link">
-                            <span style="padding-left: 31px">
-                              <i class='bx bxs-right-arrow'></i>&nbsp;&nbsp;
-                              Tạo mới Giảng viên
-                            </span>
-                          </a>
-                          <a href="{{ route('ad-tao-hs') }}" class="nav_drop_link">
-                            <span style="padding-left: 31px">
-                              <i class='bx bxs-right-arrow'></i>&nbsp;&nbsp;
-                              Tạo mới Học viên
-                            </span>
-                          </a>                                             
-                        </div>                              
                     </div>
                 </div>
-                
+            </div>
 
-                <a href="#" class="nav__link">
-                    <i class='bx bx-cog nav__icon' ></i>
-                    <span class="nav__name">Cài đặt</span>
-                </a>
-            </nav>
+
+            <div class="col-sm-8 col-md-6">
+                <div class="">
+                    <div class="card">
+                        <div class="card-header">Trạng thái tài khoản</div>
+                        <div class="card-body">
+                            <div class="chartjs-size-monitor"
+                                style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                                <div class="chartjs-size-monitor-expand"
+                                    style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                    <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                                </div>
+                                <div class="chartjs-size-monitor-shrink"
+                                    style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                    <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                                </div>
+                            </div> <canvas id="chart-lin" width="299" height="200" class="chartjs-render-monitor"
+                                style="display: block; width: 299px; height: 200px;"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div style="margin-top: 85px">
-        <h1>Components</h1>
-        <div>
-          <h2>Table Head Colors</h2>
-          <p>The .thead-dark class adds a black background to table headers, and the .thead-light class adds a grey background to table headers:</p>
-          <table class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Email</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
-              </tr>
-              <tr>
-                <td>Mary</td>
-                <td>Moe</td>
-                <td>mary@example.com</td>
-              </tr>
-              <tr>
-                <td>July</td>
-                <td>Dooley</td>
-                <td>july@example.com</td>
-              </tr>
-            </tbody>
-          </table>
-          <table class="table">
-            <thead class="thead-light">
-              <tr>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Email</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
-              </tr>
-              <tr>
-                <td>Mary</td>
-                <td>Moe</td>
-                <td>mary@example.com</td>
-              </tr>
-              <tr>
-                <td>July</td>
-                <td>Dooley</td>
-                <td>july@example.com</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        </div>
+    </div>
         <!--===== MAIN JS =====-->
         <script src="{{ asset('js/main.js') }}"></script>
-      </body>
+
+</body>
+
 </html>

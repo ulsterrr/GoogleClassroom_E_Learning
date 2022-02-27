@@ -23,7 +23,15 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+                if (Auth::user()->maloaitk == 1){
                 return redirect()->route('giang-vien');
+                }
+                else if (Auth::user()->maloaitk == 2){
+                    return redirect()->route('hoc-sinh');
+                }
+                else if (Auth::user()->maloaitk == 3){
+                    return redirect()->route('Admin');
+                }
             }
         }
 

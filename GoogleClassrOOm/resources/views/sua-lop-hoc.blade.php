@@ -104,7 +104,7 @@
 
 
     </header>
-
+    <div style="margin-top: 85px">
     <form class="add-class" action="{{ route('sualophoc', ['id' => $lophoc->id]) }}" method="post">
         @csrf
         <div class="mx-3 my-3">
@@ -170,6 +170,7 @@
 
         </div>
     </form>
+    </div>
 </body>
 
 </html>

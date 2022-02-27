@@ -17,6 +17,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => '/', 'middleware' => ['auth', 'giangvien']], function () {
     Route::get('/giang-vien', [GiangVienController::class, 'dsLopHoc'])->name('giang-vien');
+
+    Route::get('/them-lop-hoc', function () {
+        return view('them-lop-hoc');
+    })->name('ThemLop');
+    Route::post('/them-lop-hoc', [ThemLopController::class, 'themLop']
+    )->name('themlop');
+
+    Route::get('sua-lop-hoc/{id}', [SuaLopController::class, 'getLop'])->name('SuaLop');
+    Route::post('sua-lop-hoc/{id}', [SuaLopController::class, 'suaLop']
+    )->name('sualophoc');
+
+    Route::get('xoa-lop-hoc/{id}', [XoaLopController::class, 'xoaLop'])->name('XoaLop');
+
+    Route::get('xoa-bai-viet/{id}', [LopHocController::class, 'xoaBaiDang'])->name('XoaBaiDang');
+    Route::get('danh-sach-cho/{id}', [LopHocController::class, 'danhSachSinhVien'])->name('dsSinhVien');
+    Route::get('confirmStudent/{idtaikhoan}/{idlop}', [LopHocController::class, 'confirmstudent'])->name('confirmstudent');
+    Route::get('deleteStudent/{idtaikhoan}/{idlop}', [LopHocController::class, 'deleteStudent'])->name('deletestudent');
+    Route::post('addmail/{id}', [LopHocController::class, 'addstudentbymail'])->name('AddMail');
 });
 
 //Page ADMIN
@@ -35,7 +53,6 @@ Route::group(['prefix' => '/', 'middleware' => ['auth', 'admin']], function () {
     Route::get('/quan-tri-vien/tao-admin', [AdminController::class, 'taoAdminIndex'])->name('ad-tao-ad');
     Route::post('/quan-tri-vien/tao-admin', [AdminController::class, 'taoAdmin'])->name('add-tao-ad');
     Route::get('/quan-tri-vien/tim-kiem-admin', [AdminController::class, 'timKiemAdmin'])->name('ad-tim-ad');
-
 
 //Lớp học
     Route::get('/quan-tri-vien/lop-hoc/ds-lophoc', [AdminController::class, 'dsLopHoc'])->name('ad-ds-lop');
@@ -112,20 +129,6 @@ Route::get('/quen-mat-khau', function () {
 })->name('quenMK');
 Route::post('/quen-mat-khau', [QuenMatKhauController::class, 'quenMatKhau'])->name('quenMatKhau');
 
-Route::get('/them-lop-hoc', function () {
-    return view('them-lop-hoc');
-})->name('ThemLop');
-Route::post('/them-lop-hoc', [ThemLopController::class, 'themLop']
-)->name('themlop');
-
-Route::get('sua-lop-hoc/{id}', [SuaLopController::class, 'getLop'])->name('SuaLop');
-Route::post('sua-lop-hoc/{id}', [SuaLopController::class, 'suaLop']
-)->name('sualophoc');
-
-Route::get('xoa-lop-hoc/{id}', [XoaLopController::class, 'xoaLop'])->name('XoaLop');
-
-Route::get('xoa-bai-viet/{id}', [LopHocController::class, 'xoaBaiDang'])->name('XoaBaiDang');
-
 Route::post('gia-nhap-lop', [GianhaplopController::class, 'gianhaplop'])->name('GiaNhapLop');
 
 Route::get('chi-tiet-lop-hoc/{id}', [LopHocController::class, 'detailClass'])->name("ChiTietLopHoc");
@@ -133,15 +136,9 @@ Route::get('chi-tiet-lop-hoc/{id}', [LopHocController::class, 'detailClass'])->n
 Route::get('lop-hoc/{id}', [HomeController::class, 'vaoLop'])->name('LopHoc');
 //Route::post('lop-hoc/{id}',[HomeController::class,'suaLop'])->name('sualophoc');
 
-Route::get('danh-sach-cho/{id}', [LopHocController::class, 'danhSachSinhVien'])->name('dsSinhVien');
-Route::get('confirmStudent/{idtaikhoan}/{idlop}', [LopHocController::class, 'confirmstudent'])->name('confirmstudent');
-Route::get('deleteStudent/{idtaikhoan}/{idlop}', [LopHocController::class, 'deleteStudent'])->name('deletestudent');
-
 Route::post('them-bai-dang/{id}', [LopHocController::class, 'themBaiDang'])->name('themBaiDang');
-
-Route::post('addmail/{id}', [LopHocController::class, 'addstudentbymail'])->name('AddMail');
 
 Route::post('/binhluan/{id}', [LopHocController::class, 'thembinhluan']
 )->name('thembinhluan');
-Route::post('addmail/{id}', [LopHocController::class, 'addstudentbymail'])->name('AddMail');
+
 Route::get('thong-bao-bai-tap/{id}', [ThongBaoBaiTapController::class, 'getBaiTap'])->name('thongBaoBaiTap');
